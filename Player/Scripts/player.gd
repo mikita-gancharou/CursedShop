@@ -1,5 +1,4 @@
 # player.gd
-class_name Player
 extends CharacterBody2D
 
 @export var speed: float = 100.0
@@ -7,9 +6,11 @@ extends CharacterBody2D
 @export var gravity: float = 500.0
 
 @onready var sprite: AnimatedSprite2D = $Sprite
-@onready var state_machine: PlayerStateMachine = $PlayerStateMachine  # Указали правильный тип для state_machine
+
+@onready var state_machine: StateMachine = $PlayerStateMachine
 
 func _ready() -> void:
+	add_to_group("Player")  # Добавляем в группу Player
 	state_machine.setup(self)  # Передаем текущий объект (Player)
 
 func _process(delta: float) -> void:

@@ -10,7 +10,7 @@ size = Vector2(105, 76.5)
 [node name="TestLevel" type="Node2D"]
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
-position = Vector2(532, 288)
+position = Vector2(647, 303)
 
 [node name="Sprite2D" type="Sprite2D" parent="StaticBody2D"]
 texture = ExtResource("2_762du")
@@ -31,12 +31,12 @@ shape = SubResource("RectangleShape2D_1mgib")
 [node name="Mobs" type="Node2D" parent="."]
 
 [node name="Skeleton" parent="Mobs" instance=ExtResource("3_1mgib")]
-position = Vector2(165, 215)
+position = Vector2(121, 222)
 
 [node name="Player" type="Node2D" parent="."]
 
 [node name="Player" parent="Player" instance=ExtResource("1_nir0s")]
-position = Vector2(528, 110)
-speed = null
-acceleration = null
-gravity = null
+position = Vector2(688, 228)
+speed = 100.0
+acceleration = 0.25
+gravity = 500.0

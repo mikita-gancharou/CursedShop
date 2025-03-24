@@ -1,9 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://bbmyhbudmxacl"]
+[gd_scene load_steps=17 format=3 uid="uid://bbmyhbudmxacl"]
 
 [ext_resource type="Texture2D" uid="uid://rabswei3xbva" path="res://Mobs/Skeleton/Sprites/Idle.png" id="1_u7iap"]
 [ext_resource type="Script" uid="uid://dp84o1g6twktt" path="res://Mobs/Skeleton/skeleton.gd" id="1_vmvj3"]
+[ext_resource type="Texture2D" uid="uid://cnkbaon0obyw4" path="res://Mobs/Skeleton/Sprites/Walk.png" id="3_4jn2x"]
 [ext_resource type="Script" uid="uid://bmnlnqmgviqul" path="res://Mobs/Skeleton/idle_skeleton_state.gd" id="3_52bmv"]
 [ext_resource type="Script" uid="uid://bu1ei4nedkqci" path="res://Mobs/Skeleton/skeleton_state_machine.gd" id="3_gtf7y"]
+[ext_resource type="Script" uid="uid://ctcxl74akg1tw" path="res://Mobs/Skeleton/chase_skeleton_state.gd" id="5_dgasx"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_u7iap"]
 size = Vector2(20, 18.8462)
@@ -24,6 +26,22 @@ region = Rect2(300, 0, 150, 150)
 atlas = ExtResource("1_u7iap")
 region = Rect2(450, 0, 150, 150)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_a1moq"]
+atlas = ExtResource("3_4jn2x")
+region = Rect2(0, 0, 150, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pfjha"]
+atlas = ExtResource("3_4jn2x")
+region = Rect2(150, 0, 150, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dtso3"]
+atlas = ExtResource("3_4jn2x")
+region = Rect2(300, 0, 150, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uqbr8"]
+atlas = ExtResource("3_4jn2x")
+region = Rect2(450, 0, 150, 150)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_4jn2x"]
 animations = [{
 "frames": [{
@@ -42,6 +60,23 @@ animations = [{
 "loop": true,
 "name": &"Idle",
 "speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a1moq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pfjha")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dtso3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uqbr8")
+}],
+"loop": true,
+"name": &"Walk",
+"speed": 10.0
 }]
 
 [node name="Skeleton" type="CharacterBody2D"]
@@ -58,12 +93,14 @@ shape = SubResource("RectangleShape2D_u7iap")
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.62405, 0.62405)
 sprite_frames = SubResource("SpriteFrames_4jn2x")
-animation = &"Idle"
+animation = &"Walk"
 autoplay = "Idle"
-frame_progress = 0.154377
 
 [node name="SkeletonStateMachine" type="Node" parent="."]
 script = ExtResource("3_gtf7y")
 
 [node name="IdleSkeletonState" type="Node" parent="SkeletonStateMachine"]
 script = ExtResource("3_52bmv")
+
+[node name="ChaseSkeletonState" type="Node" parent="SkeletonStateMachine"]
+script = ExtResource("5_dgasx")

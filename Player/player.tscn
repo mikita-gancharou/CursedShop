@@ -249,9 +249,6 @@ animations = [{
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_4ntmi")
-speed = null
-acceleration = null
-gravity = null
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-2, 12.5)
@@ -261,7 +258,7 @@ shape = SubResource("RectangleShape2D_4ntmi")
 sprite_frames = SubResource("SpriteFrames_i4o1l")
 animation = &"Idle"
 autoplay = "Idle"
-frame_progress = 0.589548
+frame_progress = 0.426227
 
 [node name="PlayerStateMachine" type="Node" parent="."]
 script = ExtResource("3_k53q1")

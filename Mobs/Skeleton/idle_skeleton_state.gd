@@ -16,10 +16,15 @@ func update(delta: float) -> void:
 	owner_character.apply_gravity(delta)
 	owner_character.apply_velocity(delta)
 
-	# Пример: проверка на расстояние до игрока для скелета
-	var player = get_tree().get_first_node_in_group("Player")
-	if player and owner_character.global_position.distance_to(player.global_position) < 100:
-		transition.emit("ChaseSkeletonState")
+	# Печать всех объектов в группе "Player"
+	var players = get_tree().get_nodes_in_group("Player")
 
+	if players.size() > 0:
+		var player = players[0]  # Берем первого игрока
+		if owner_character.global_position.distance_to(player.global_position) < 500:
+			transition.emit("ChaseSkeletonState")
+	else:
+		print("No player found in the group.")
+	
 func physics_update(delta: float) -> void:
 	pass
