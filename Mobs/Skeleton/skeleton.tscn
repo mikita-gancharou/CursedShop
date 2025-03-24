@@ -1,0 +1,69 @@
+[gd_scene load_steps=11 format=3 uid="uid://bbmyhbudmxacl"]
+
+[ext_resource type="Texture2D" uid="uid://rabswei3xbva" path="res://Mobs/Skeleton/Sprites/Idle.png" id="1_u7iap"]
+[ext_resource type="Script" uid="uid://dp84o1g6twktt" path="res://Mobs/Skeleton/skeleton.gd" id="1_vmvj3"]
+[ext_resource type="Script" uid="uid://bmnlnqmgviqul" path="res://Mobs/Skeleton/idle_skeleton_state.gd" id="3_52bmv"]
+[ext_resource type="Script" uid="uid://bu1ei4nedkqci" path="res://Mobs/Skeleton/skeleton_state_machine.gd" id="3_gtf7y"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_u7iap"]
+size = Vector2(20, 18.8462)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vmvj3"]
+atlas = ExtResource("1_u7iap")
+region = Rect2(0, 0, 150, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_52bmv"]
+atlas = ExtResource("1_u7iap")
+region = Rect2(150, 0, 150, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gtf7y"]
+atlas = ExtResource("1_u7iap")
+region = Rect2(300, 0, 150, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dgasx"]
+atlas = ExtResource("1_u7iap")
+region = Rect2(450, 0, 150, 150)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4jn2x"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vmvj3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_52bmv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gtf7y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dgasx")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 10.0
+}]
+
+[node name="Skeleton" type="CharacterBody2D"]
+script = ExtResource("1_vmvj3")
+speed = null
+acceleration = null
+gravity = null
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(3, 1)
+scale = Vector2(0.62405, 1.62253)
+shape = SubResource("RectangleShape2D_u7iap")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.62405, 0.62405)
+sprite_frames = SubResource("SpriteFrames_4jn2x")
+animation = &"Idle"
+autoplay = "Idle"
+frame_progress = 0.154377
+
+[node name="SkeletonStateMachine" type="Node" parent="."]
+script = ExtResource("3_gtf7y")
+
+[node name="IdleSkeletonState" type="Node" parent="SkeletonStateMachine"]
+script = ExtResource("3_52bmv")

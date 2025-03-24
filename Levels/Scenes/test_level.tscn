@@ -1,0 +1,42 @@
+[gd_scene load_steps=5 format=3 uid="uid://h27sx774f05b"]
+
+[ext_resource type="PackedScene" uid="uid://bktkenhh3omxt" path="res://Player/player.tscn" id="1_nir0s"]
+[ext_resource type="Texture2D" uid="uid://dw5oe6hcssu8o" path="res://Art/Sprites/shop.png" id="2_762du"]
+[ext_resource type="PackedScene" uid="uid://bbmyhbudmxacl" path="res://Mobs/Skeleton/skeleton.tscn" id="3_1mgib"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1mgib"]
+size = Vector2(105, 76.5)
+
+[node name="TestLevel" type="Node2D"]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(532, 288)
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D"]
+texture = ExtResource("2_762du")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, 4.25)
+shape = SubResource("RectangleShape2D_1mgib")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="."]
+position = Vector2(170, 298)
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D2"]
+texture = ExtResource("2_762du")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
+shape = SubResource("RectangleShape2D_1mgib")
+
+[node name="Mobs" type="Node2D" parent="."]
+
+[node name="Skeleton" parent="Mobs" instance=ExtResource("3_1mgib")]
+position = Vector2(165, 215)
+
+[node name="Player" type="Node2D" parent="."]
+
+[node name="Player" parent="Player" instance=ExtResource("1_nir0s")]
+position = Vector2(528, 110)
+speed = null
+acceleration = null
+gravity = null
