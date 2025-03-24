@@ -13,14 +13,14 @@ func exit() -> void:
 	pass
 
 func update(delta: float) -> void:
+	
 	owner_character.apply_gravity(delta)
 	owner_character.apply_velocity(delta)
 
-	# Печать всех объектов в группе "Player"
-	var players = get_tree().get_nodes_in_group("Player")
 
+	var players = get_tree().get_nodes_in_group("Player")
 	if players.size() > 0:
-		var player = players[0]  # Берем первого игрока
+		var player = players[0]  
 		if owner_character.global_position.distance_to(player.global_position) < 500:
 			transition.emit("ChaseSkeletonState")
 	else:

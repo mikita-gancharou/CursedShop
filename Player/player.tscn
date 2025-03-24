@@ -1,10 +1,12 @@
-[gd_scene load_steps=38 format=3 uid="uid://bktkenhh3omxt"]
+[gd_scene load_steps=40 format=3 uid="uid://bktkenhh3omxt"]
 
 [ext_resource type="Script" uid="uid://ijhu8mqn7htu" path="res://Player/Scripts/player.gd" id="1_4ntmi"]
 [ext_resource type="Texture2D" uid="uid://c0o3j8vpuro5j" path="res://Player/Sprites/char_blue_1.png" id="1_l8h54"]
-[ext_resource type="Script" uid="uid://bgel6l33dittp" path="res://Player/player_state_machine.gd" id="3_k53q1"]
-[ext_resource type="Script" uid="uid://dave52gd24f1d" path="res://Player/idle_player_state.gd" id="4_k53q1"]
-[ext_resource type="Script" uid="uid://nc7cse3emiuo" path="res://Player/running_player_state.gd" id="5_fhl08"]
+[ext_resource type="Script" uid="uid://bgel6l33dittp" path="res://Player/Scripts/player_state_machine.gd" id="3_k53q1"]
+[ext_resource type="Script" uid="uid://dave52gd24f1d" path="res://Player/Scripts/idle_player_state.gd" id="4_k53q1"]
+[ext_resource type="Script" uid="uid://nc7cse3emiuo" path="res://Player/Scripts/running_player_state.gd" id="5_fhl08"]
+[ext_resource type="Script" uid="uid://ij54av0q6tho" path="res://Player/Scripts/jump_player_state.gd" id="6_fhl08"]
+[ext_resource type="Script" uid="uid://6puiyegqn022" path="res://Player/Scripts/fall_player_state.gd" id="7_vtle1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4ntmi"]
 size = Vector2(14, 31)
@@ -256,9 +258,10 @@ shape = SubResource("RectangleShape2D_4ntmi")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_i4o1l")
-animation = &"Idle"
+animation = &"Jump"
 autoplay = "Idle"
-frame_progress = 0.426227
+frame = 8
+frame_progress = 1.0
 
 [node name="PlayerStateMachine" type="Node" parent="."]
 script = ExtResource("3_k53q1")
@@ -268,3 +271,9 @@ script = ExtResource("4_k53q1")
 
 [node name="RunningPlayerState" type="Node" parent="PlayerStateMachine"]
 script = ExtResource("5_fhl08")
+
+[node name="JumpPlayerState" type="Node" parent="PlayerStateMachine"]
+script = ExtResource("6_fhl08")
+
+[node name="FallPlayerState" type="Node" parent="PlayerStateMachine"]
+script = ExtResource("7_vtle1")
