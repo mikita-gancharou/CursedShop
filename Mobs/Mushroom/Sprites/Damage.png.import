@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://qurd2glg4uv3"
-path="res://.godot/imported/Attack.png-d83ba8f76d6ef0fde0d99e2e9ca6d8d9.ctex"
+uid="uid://dhsmd3aa4wefm"
+path="res://.godot/imported/Damage.png-e76d5156557c928bcd6f06e2cea825bc.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Mobs/Mushroom/Sprites/Attack.png"
-dest_files=["res://.godot/imported/Attack.png-d83ba8f76d6ef0fde0d99e2e9ca6d8d9.ctex"]
+source_file="res://Mobs/Mushroom/Sprites/Damage.png"
+dest_files=["res://.godot/imported/Damage.png-e76d5156557c928bcd6f06e2cea825bc.ctex"]
 
 [params]
 
