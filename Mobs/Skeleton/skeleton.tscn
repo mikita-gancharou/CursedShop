@@ -1,14 +1,48 @@
-[gd_scene load_steps=17 format=3 uid="uid://bbmyhbudmxacl"]
+[gd_scene load_steps=28 format=3 uid="uid://bbmyhbudmxacl"]
 
 [ext_resource type="Texture2D" uid="uid://rabswei3xbva" path="res://Mobs/Skeleton/Sprites/Idle.png" id="1_u7iap"]
 [ext_resource type="Script" uid="uid://dp84o1g6twktt" path="res://Mobs/Skeleton/skeleton.gd" id="1_vmvj3"]
+[ext_resource type="Texture2D" uid="uid://s63v6dohts8d" path="res://Mobs/Skeleton/Sprites/Attack.png" id="2_pfjha"]
 [ext_resource type="Texture2D" uid="uid://cnkbaon0obyw4" path="res://Mobs/Skeleton/Sprites/Walk.png" id="3_4jn2x"]
 [ext_resource type="Script" uid="uid://bmnlnqmgviqul" path="res://Mobs/Skeleton/idle_skeleton_state.gd" id="3_52bmv"]
 [ext_resource type="Script" uid="uid://bu1ei4nedkqci" path="res://Mobs/Skeleton/skeleton_state_machine.gd" id="3_gtf7y"]
 [ext_resource type="Script" uid="uid://ctcxl74akg1tw" path="res://Mobs/Skeleton/chase_skeleton_state.gd" id="5_dgasx"]
+[ext_resource type="PackedScene" uid="uid://gyo6l4o5jwxw" path="res://Code/Scripts/damage_box.tscn" id="8_dtso3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_u7iap"]
 size = Vector2(20, 18.8462)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bpspg"]
+atlas = ExtResource("2_pfjha")
+region = Rect2(0, 0, 150, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o0wmh"]
+atlas = ExtResource("2_pfjha")
+region = Rect2(150, 0, 150, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uu01r"]
+atlas = ExtResource("2_pfjha")
+region = Rect2(300, 0, 150, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fn7ex"]
+atlas = ExtResource("2_pfjha")
+region = Rect2(450, 0, 150, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i18sh"]
+atlas = ExtResource("2_pfjha")
+region = Rect2(600, 0, 150, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5e4x2"]
+atlas = ExtResource("2_pfjha")
+region = Rect2(750, 0, 150, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cmvrd"]
+atlas = ExtResource("2_pfjha")
+region = Rect2(900, 0, 150, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e52d4"]
+atlas = ExtResource("2_pfjha")
+region = Rect2(1050, 0, 150, 150)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vmvj3"]
 atlas = ExtResource("1_u7iap")
@@ -46,6 +80,35 @@ region = Rect2(450, 0, 150, 150)
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_bpspg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o0wmh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uu01r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fn7ex")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i18sh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5e4x2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cmvrd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e52d4")
+}],
+"loop": true,
+"name": &"Attack1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_vmvj3")
 }, {
 "duration": 1.0,
@@ -79,13 +142,15 @@ animations = [{
 "speed": 10.0
 }]
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_cpykj"]
+radius = 7.0
+height = 32.0
+
 [node name="Skeleton" type="CharacterBody2D"]
 script = ExtResource("1_vmvj3")
-speed = null
-acceleration = null
-gravity = null
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2(3, 1)
 scale = Vector2(0.62405, 1.62253)
 shape = SubResource("RectangleShape2D_u7iap")
@@ -93,7 +158,7 @@ shape = SubResource("RectangleShape2D_u7iap")
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.62405, 0.62405)
 sprite_frames = SubResource("SpriteFrames_4jn2x")
-animation = &"Walk"
+animation = &"Idle"
 autoplay = "Idle"
 
 [node name="SkeletonStateMachine" type="Node" parent="."]
@@ -104,3 +169,14 @@ script = ExtResource("3_52bmv")
 
 [node name="ChaseSkeletonState" type="Node" parent="SkeletonStateMachine"]
 script = ExtResource("5_dgasx")
+
+[node name="DamageBox" parent="." instance=ExtResource("8_dtso3")]
+
+[node name="CollisionShape2D" parent="DamageBox/HurtBox" index="0"]
+position = Vector2(6, 1)
+shape = SubResource("CapsuleShape2D_cpykj")
+
+[node name="CollisionShape2D" parent="DamageBox/HitBox" index="0"]
+position = Vector2(24, -2)
+
+[editable path="DamageBox"]

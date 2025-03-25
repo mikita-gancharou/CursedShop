@@ -2,20 +2,27 @@
 extends CharacterBody2D
 
 @export var speed: float = 100.0
-@export var acceleration: float = 0.25
+@export var acceleration: float
 @export var gravity: float = 500.0
-@export var jump_velocity: float = 200.0
+@export var jump_velocity: float = 220.0
 
 @onready var sprite: AnimatedSprite2D = $Sprite
-
 @onready var state_machine: StateMachine = $PlayerStateMachine
+
+@onready var stand_collision: CollisionShape2D = $StandCollision
+@onready var slide_collision: CollisionShape2D = $SlideCollision
+var is_sliding: bool = false
+
 
 func _ready() -> void:
 	add_to_group("Player")  # Добавляем в группу Player
 	state_machine.setup(self)  # Передаем текущий объект (Player)
 
 func _process(delta: float) -> void:
-	pass
+	if stand_collision.disabled:
+		acceleration = 1
+	else:
+		acceleration = 0.25
 
 func get_input_vector() -> Vector2:
 	var input_vector = Vector2.ZERO

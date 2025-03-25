@@ -1,9 +1,15 @@
+#idle_skeleton_state.gd
 class_name IdleSkeletonState
 extends State
 
+var into_killzone: float
+
 func enter(character: CharacterBody2D) -> void:
 	owner_character = character
+	into_killzone = owner_character.into_killzone  
+	
 	owner_character.velocity.x = 0
+	
 	if owner_character.has_node("Sprite"):
 		var sprite = owner_character.get_node("Sprite")
 		if sprite is AnimatedSprite2D:
@@ -21,7 +27,7 @@ func update(delta: float) -> void:
 	var players = get_tree().get_nodes_in_group("Player")
 	if players.size() > 0:
 		var player = players[0]  
-		if owner_character.global_position.distance_to(player.global_position) < 500:
+		if owner_character.global_position.distance_to(player.global_position) < into_killzone:
 			transition.emit("ChaseSkeletonState")
 	else:
 		print("No player found in the group.")

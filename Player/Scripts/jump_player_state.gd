@@ -32,6 +32,9 @@ func update(delta: float) -> void:
 	if owner_character.velocity.y > 10.0:
 		transition.emit("FallPlayerState")
 	
+	if Input.is_action_just_pressed("slide") and owner.is_on_floor():
+		transition.emit("SlidePlayerState")
+		
 
 
 func physics_update(delta: float) -> void:

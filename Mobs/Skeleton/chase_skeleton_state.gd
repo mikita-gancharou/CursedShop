@@ -2,10 +2,14 @@ class_name ChaseSkeletonState
 extends State
 
 var player: CharacterBody2D  # Ссылка на игрока
+var out_of_killzone: float
 
 func enter(character: CharacterBody2D) -> void:
 	owner_character = character
 	player = get_tree().get_first_node_in_group("Player")  # Получаем первого игрока в группе "Player"
+	
+	out_of_killzone = owner_character.out_of_killzone 
+	
 	if owner_character.has_node("Sprite"):
 		var sprite = owner_character.get_node("Sprite")
 		if sprite is AnimatedSprite2D:
@@ -22,7 +26,7 @@ func update(delta: float) -> void:
 	# Проверка на расстояние до игрока
 	if player:
 		var distance = owner_character.global_position.distance_to(player.global_position)
-		if distance > 800:
+		if distance > out_of_killzone:
 			# Если слишком далеко, возвращаемся в Idle состояние
 			transition.emit("IdleSkeletonState")
 		else:

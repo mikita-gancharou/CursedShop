@@ -5,6 +5,9 @@ extends CharacterBody2D
 @export var acceleration: float = 0.2
 @export var gravity: float = 500.0
 
+@export var into_killzone: float = 200.0
+@export var out_of_killzone: float = 300.0
+
 @onready var sprite: AnimatedSprite2D = $Sprite
 @onready var state_machine: SkeletonStateMachine = $SkeletonStateMachine  # Указываем правильный тип
 

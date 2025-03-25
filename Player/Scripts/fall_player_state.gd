@@ -1,7 +1,5 @@
-# fall_player_state.gd
 class_name FallPlayerState
 extends State
-
 
 func enter(character: CharacterBody2D) -> void:
 	owner_character = character
@@ -10,7 +8,6 @@ func enter(character: CharacterBody2D) -> void:
 		var sprite = owner_character.get_node("Sprite")
 		if sprite is AnimatedSprite2D:
 			sprite.play("Fall")
-
 
 func exit() -> void:
 	pass
@@ -27,8 +24,19 @@ func update(delta: float) -> void:
 
 	if owner_character.is_on_floor():
 		sprite.play("Land")
-		await sprite.animation_finished
+		var landed = sprite.animation_finished
+		
+		# Позволяем прыгнуть, даже если началась анимация приземления
+		while not landed:
+			if owner_character.is_jump_pressed():
+				transition.emit("JumpPlayerState")
+				return
+			await get_tree().process_frame
+	
 		transition.emit("IdlePlayerState")
+	
+	if Input.is_action_just_pressed("slide") and owner.is_on_floor():
+		transition.emit("SlidePlayerState")
 	
 func physics_update(delta: float) -> void:
 	pass
