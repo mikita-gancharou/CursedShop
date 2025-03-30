@@ -3,11 +3,16 @@ extends Node
 
 signal transition(new_state_name: StringName)
 
-var player: Player
+# Универсальная переменная для любых сущностей
+var entity: Node
+
+# Задаем геттер для получения сущности, если это игрок или моб
+func get_entity() -> Node:
+	return entity
 
 func _ready() -> void:
 	await owner.ready
-	player = owner as Player
+	entity = owner  # Присваиваем родительскую сущность
 
 func enter() -> void:
 	pass
