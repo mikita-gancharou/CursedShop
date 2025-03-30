@@ -6,11 +6,6 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_od3ui"]
 size = Vector2(15, 31)
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_l8h54"]
-radius = 5.0
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_4ntmi"]
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_bbimk"]
 atlas = ExtResource("1_l8h54")
 region = Rect2(0, 56, 56, 56)
@@ -627,12 +622,22 @@ animations = [{
 "speed": 10.0
 }]
 
-[node name="CharacterBody2D" type="CharacterBody2D"]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_l8h54"]
+radius = 5.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4ntmi"]
+
+[node name="Player" type="CharacterBody2D"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
 position = Vector2(-2.5, 12.5)
 shape = SubResource("RectangleShape2D_od3ui")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_dkpta")
+animation = &"Idle"
+autoplay = "Idle"
 
 [node name="Camera2D" type="Camera2D" parent="."]
 drag_left_margin = 0.15
@@ -653,8 +658,3 @@ shape = SubResource("CapsuleShape2D_l8h54")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackDirection/HitBox"]
 position = Vector2(7, 13)
 shape = SubResource("CircleShape2D_4ntmi")
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-sprite_frames = SubResource("SpriteFrames_dkpta")
-animation = &"Slide"
-autoplay = "Idle"
