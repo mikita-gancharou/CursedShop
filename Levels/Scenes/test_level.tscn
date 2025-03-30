@@ -2595,7 +2595,7 @@ motion_scale = Vector2(0.2, 0.2)
 motion_mirroring = Vector2(800, 0)
 
 [node name="BackgroundLayer1" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer1"]
-position = Vector2(320, 96)
+position = Vector2(328, 80)
 scale = Vector2(2.5, 2.5)
 texture = ExtResource("1_agw3v")
 
@@ -2604,7 +2604,7 @@ motion_scale = Vector2(0.5, 0.5)
 motion_mirroring = Vector2(800, 0)
 
 [node name="BackgroundLayer2" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer2"]
-position = Vector2(320, 128)
+position = Vector2(328, 104)
 scale = Vector2(2.5, 2.5)
 texture = ExtResource("2_3qix0")
 
@@ -2612,7 +2612,7 @@ texture = ExtResource("2_3qix0")
 motion_mirroring = Vector2(800, 0)
 
 [node name="BackgroundLayer3" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer3"]
-position = Vector2(320, 120)
+position = Vector2(328, 128)
 scale = Vector2(2.5, 2.5)
 texture = ExtResource("3_wtpou")
 
@@ -2625,5 +2625,5 @@ tile_set = SubResource("TileSet_swfa6")
 
 [node name="Player" type="Node2D" parent="."]
 
-[node name="CharacterBody2D" parent="." instance=ExtResource("1_nir0s")]
-position = Vector2(240, 184)
+[node name="Player" parent="Player" instance=ExtResource("1_nir0s")]
+position = Vector2(560, 224)
