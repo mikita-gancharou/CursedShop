@@ -1,3 +1,0 @@
-# skeleton_state_machine.gd
-class_name SkeletonStateMachine
-extends StateMachine

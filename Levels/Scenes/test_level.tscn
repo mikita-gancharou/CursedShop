@@ -1,12 +1,9 @@
-[gd_scene load_steps=10 format=4 uid="uid://h27sx774f05b"]
+[gd_scene load_steps=7 format=4 uid="uid://h27sx774f05b"]
 
 [ext_resource type="Texture2D" uid="uid://bcdq16p0651b5" path="res://Art/Textures/oak_woods_tileset.png" id="1_1mgib"]
 [ext_resource type="Texture2D" uid="uid://bktc2ebwpqfbf" path="res://Art/Background/background_layer_1.png" id="1_agw3v"]
-[ext_resource type="PackedScene" uid="uid://bktkenhh3omxt" path="res://Player/player.tscn" id="1_nir0s"]
 [ext_resource type="Texture2D" uid="uid://c8fa340g4s3nk" path="res://Art/Background/background_layer_2.png" id="2_3qix0"]
-[ext_resource type="PackedScene" uid="uid://bbmyhbudmxacl" path="res://Mobs/Skeleton/skeleton.tscn" id="3_1mgib"]
 [ext_resource type="Texture2D" uid="uid://dxsudnvvfcmso" path="res://Art/Background/background_layer_3.png" id="3_wtpou"]
-[ext_resource type="PackedScene" uid="uid://cx8l3pvvpm3ih" path="res://Mobs/Mushroom/mushroom.tscn" id="7_3qix0"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wvl1i"]
 texture = ExtResource("1_1mgib")
@@ -2625,16 +2622,4 @@ tile_set = SubResource("TileSet_swfa6")
 
 [node name="Mobs" type="Node2D" parent="."]
 
-[node name="Skeleton" parent="Mobs" instance=ExtResource("3_1mgib")]
-position = Vector2(1197, 238)
-collision_layer = 4
-
-[node name="Mushroom" parent="Mobs" instance=ExtResource("7_3qix0")]
-position = Vector2(729, 243)
-collision_layer = 4
-
 [node name="Player" type="Node2D" parent="."]
-
-[node name="Player" parent="Player" instance=ExtResource("1_nir0s")]
-position = Vector2(60, 303)
-collision_layer = 2
