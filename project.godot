@@ -14,10 +14,6 @@ config/name="Cursed Shop"
 run/main_scene="uid://h27sx774f05b"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 
-[autoload]
-
-Signals="*res://Code/Scripts/Global/signals.gd"
-
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/AS2P/plugin.cfg")
