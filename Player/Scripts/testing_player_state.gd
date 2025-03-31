@@ -1,4 +1,4 @@
-class_name RunningPlayerState
+class_name TestingPlayerState
 extends State
 
 func enter() -> void:
@@ -6,7 +6,6 @@ func enter() -> void:
 
 func exit() -> void:
 	pass
-
 func update(delta: float) -> void:
 	var input_vector = entity.get_input_vector()
 	
@@ -19,12 +18,9 @@ func update(delta: float) -> void:
 	#States transition:
 	if input_vector.x == 0:
 		transition.emit("IdlePlayerState")
-	
+		
 	if Input.is_action_just_pressed("Jump") and owner.is_on_floor():
 		transition.emit("JumpPlayerState")
-	
-	if entity.velocity.y > 10.0:
-		transition.emit("FallPlayerState")
 		
 func physics_update(delta: float) -> void:
 	pass

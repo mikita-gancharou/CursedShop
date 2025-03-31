@@ -1,4 +1,4 @@
-[gd_scene load_steps=106 format=3 uid="uid://cwnm8oamm0nog"]
+[gd_scene load_steps=108 format=3 uid="uid://cwnm8oamm0nog"]
 
 [ext_resource type="Script" uid="uid://b17tbcvaf4npi" path="res://Player/Scripts/player.gd" id="1_btcbx"]
 [ext_resource type="Texture2D" uid="uid://c0o3j8vpuro5j" path="res://Player/Sprites/char_blue_1.png" id="1_l8h54"]
@@ -6,6 +6,8 @@
 [ext_resource type="Script" uid="uid://b4ys66rqrn15q" path="res://Player/Scripts/player_state_machine.gd" id="4_gwnis"]
 [ext_resource type="Script" uid="uid://d08exwv2aonsq" path="res://Player/Scripts/idle_player_state.gd" id="5_k53q1"]
 [ext_resource type="Script" uid="uid://dlcx33e7tbbs5" path="res://Player/Scripts/running_player_state.gd" id="6_fhl08"]
+[ext_resource type="Script" uid="uid://nbwkk1m2sr0y" path="res://Player/Scripts/jump_player_state.gd" id="7_vtle1"]
+[ext_resource type="Script" uid="uid://vwhdfriafkdd" path="res://Player/Scripts/fall_player_state.gd" id="8_od3ui"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_od3ui"]
 size = Vector2(15, 31)
@@ -1025,6 +1027,22 @@ radius = 5.0
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_btcbx")
 
+[node name="PlayerStateMachine" type="Node" parent="." node_paths=PackedStringArray("current_state")]
+script = ExtResource("4_gwnis")
+current_state = NodePath("IdlePlayerState")
+
+[node name="IdlePlayerState" type="Node" parent="PlayerStateMachine"]
+script = ExtResource("5_k53q1")
+
+[node name="RunningPlayerState" type="Node" parent="PlayerStateMachine"]
+script = ExtResource("6_fhl08")
+
+[node name="JumpPlayerState" type="Node" parent="PlayerStateMachine"]
+script = ExtResource("7_vtle1")
+
+[node name="FallPlayerState" type="Node" parent="PlayerStateMachine"]
+script = ExtResource("8_od3ui")
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
 position = Vector2(-2.5, 12.5)
@@ -1051,23 +1069,17 @@ drag_bottom_margin = 0.15
 [node name="AttackDirection" type="Node2D" parent="."]
 
 [node name="HurtBox" type="Area2D" parent="AttackDirection"]
+collision_layer = 16
+collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackDirection/HurtBox"]
 position = Vector2(-1, 13)
 shape = SubResource("CapsuleShape2D_l8h54")
 
 [node name="HitBox" type="Area2D" parent="AttackDirection"]
+collision_layer = 0
+collision_mask = 32
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackDirection/HitBox"]
 position = Vector2(7, 13)
 shape = SubResource("CircleShape2D_4ntmi")
-
-[node name="PlayerStateMachine" type="Node" parent="." node_paths=PackedStringArray("current_state")]
-script = ExtResource("4_gwnis")
-current_state = NodePath("IdlePlayerState")
-
-[node name="IdlePlayerState" type="Node" parent="PlayerStateMachine"]
-script = ExtResource("5_k53q1")
-
-[node name="RunningPlayerState" type="Node" parent="PlayerStateMachine"]
-script = ExtResource("6_fhl08")

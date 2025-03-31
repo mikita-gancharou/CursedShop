@@ -1,14 +1,12 @@
-class_name PlayerStateMachine
+class_name MushroomStateMachine
 extends Node
 
 @export var current_state: State
 var states: Dictionary = {}
 
 func _ready() -> void:
-	# Ждём, пока владелец (например, Player) будет готов
 	await owner.ready
 
-	# Регистрируем все дочерние узлы, которые являются состояниями
 	for child in get_children():
 		#print("Checking child:", child.name, "Type:", child.get_class())
 		if child is State:
@@ -18,7 +16,6 @@ func _ready() -> void:
 		else:
 			push_warning("State machine contains incompatible child node: " + child.name)
 	
-	# После регистрации вызываем начальное состояние
 	if current_state:
 		#print("Initial state:", current_state.name)
 		current_state.enter()
