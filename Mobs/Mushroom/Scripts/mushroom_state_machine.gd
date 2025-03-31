@@ -11,7 +11,7 @@ func _ready() -> void:
 		#print("Checking child:", child.name, "Type:", child.get_class())
 		if child is State:
 			states[child.name] = child
-			print("Registered state:", child.name)
+			#print("Registered state:", child.name)
 			child.transition.connect(on_child_transition)
 		else:
 			push_warning("State machine contains incompatible child node: " + child.name)

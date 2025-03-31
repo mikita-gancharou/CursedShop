@@ -5,6 +5,7 @@ extends CharacterBody2D
 @export var speed: float = 100.0
 @export var acceleration: float = 0.25
 @export var gravity: float = 500.0
+@export var damage: int = 20
 
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var attack_area: Area2D = $AttackDirection/AttackArea

@@ -215,6 +215,7 @@ height = 38.0
 radius = 117.017
 
 [node name="Mushroom" type="CharacterBody2D"]
+collision_layer = 4
 script = ExtResource("1_1jvsc")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -259,12 +260,16 @@ shape = SubResource("CircleShape2D_yrmjc")
 
 [node name="AttackArea" type="Area2D" parent="AttackDirection"]
 position = Vector2(15.9078, 0)
+collision_layer = 0
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackDirection/AttackArea"]
 shape = SubResource("RectangleShape2D_mh1qi")
 
 [node name="DetectionArea2D" type="Area2D" parent="."]
 visible = false
+collision_layer = 0
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea2D"]
 shape = SubResource("CircleShape2D_1jvsc")
@@ -281,3 +286,5 @@ script = ExtResource("6_3lmv3")
 
 [node name="AttackMushroomState" type="Node" parent="MushroomStateMachine"]
 script = ExtResource("8_rswoi")
+
+[connection signal="area_entered" from="AttackDirection/HitBox" to="MushroomStateMachine/AttackMushroomState" method="_on_hit_box_area_entered"]

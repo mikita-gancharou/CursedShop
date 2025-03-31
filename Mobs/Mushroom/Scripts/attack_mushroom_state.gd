@@ -1,24 +1,40 @@
 class_name AttackMushroomState
 extends State
 
+var has_attacked: bool = false  # Флаг, чтобы атака происходила один раз за анимацию
+
 func enter() -> void:
-	print("Attack")
-	entity.sprite.play("Attack")
 	entity.velocity.x = 0
+	has_attacked = false  # Сбрасываем флаг атаки
+	entity.sprite.play("Attack")  # Запускаем анимацию атаки
 
 func exit() -> void:
-	pass
+	has_attacked = false  # Сбрасываем флаг при выходе
+	entity.sprite.stop()  # Останавливаем анимацию при выходе
 
 func update(delta: float) -> void:
-	if not _is_player_in_attack_range():
-		transition.emit("ChaseMushroomState")
+	# Проверяем завершение анимации атаки
+	if not entity.sprite.is_playing():  
+		# Анимация закончилась
+		if not _is_player_in_attack_range():  
+			transition.emit("ChaseMushroomState")  # Если игрок покинул зону атаки, возвращаемся в погоню
+		else:
+			# Если игрок все еще в зоне атаки, продолжим атаковать
+			has_attacked = false  # Сбрасываем флаг для возможности повторной атаки
+			entity.sprite.play("Attack")  # Перезапускаем анимацию, чтобы она не зависала
 
 func physics_update(delta: float) -> void:
 	entity.apply_gravity(delta)
 	entity.apply_velocity(delta)
 
 func _is_player_in_attack_range() -> bool:
+	# Проверяем, есть ли игрок в области атаки
 	for body in entity.attack_area.get_overlapping_bodies():
 		if body.is_in_group("Player"):
 			return true
 	return false
+
+func _on_hit_box_area_entered(area: Area2D) -> void:
+	print("hitbox area entered")
+	#for body in entity.attack_area.get_overlapping_bodies():
+	Signals.emit_signal("enemy_attack", entity.damage, entity.global_position)

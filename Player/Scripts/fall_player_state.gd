@@ -5,7 +5,7 @@ func enter() -> void:
 	entity.sprite.play("Fall")
 
 func exit() -> void:
-	pass
+	entity.sprite.play("Land")
 
 func update(delta: float) -> void:
 	var input_vector = entity.get_input_vector()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=108 format=3 uid="uid://cwnm8oamm0nog"]
+[gd_scene load_steps=110 format=3 uid="uid://cwnm8oamm0nog"]
 
 [ext_resource type="Script" uid="uid://b17tbcvaf4npi" path="res://Player/Scripts/player.gd" id="1_btcbx"]
 [ext_resource type="Texture2D" uid="uid://c0o3j8vpuro5j" path="res://Player/Sprites/char_blue_1.png" id="1_l8h54"]
@@ -6,8 +6,10 @@
 [ext_resource type="Script" uid="uid://b4ys66rqrn15q" path="res://Player/Scripts/player_state_machine.gd" id="4_gwnis"]
 [ext_resource type="Script" uid="uid://d08exwv2aonsq" path="res://Player/Scripts/idle_player_state.gd" id="5_k53q1"]
 [ext_resource type="Script" uid="uid://dlcx33e7tbbs5" path="res://Player/Scripts/running_player_state.gd" id="6_fhl08"]
+[ext_resource type="Script" uid="uid://clwbu5mocflan" path="res://Player/Scripts/damage_player_state.gd" id="7_00tjw"]
 [ext_resource type="Script" uid="uid://nbwkk1m2sr0y" path="res://Player/Scripts/jump_player_state.gd" id="7_vtle1"]
 [ext_resource type="Script" uid="uid://vwhdfriafkdd" path="res://Player/Scripts/fall_player_state.gd" id="8_od3ui"]
+[ext_resource type="Script" uid="uid://ddjjsli3nanu8" path="res://Player/Scripts/death_player_state.gd" id="8_x3vf3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_od3ui"]
 size = Vector2(15, 31)
@@ -1025,6 +1027,7 @@ radius = 5.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_4ntmi"]
 
 [node name="Player" type="CharacterBody2D"]
+collision_layer = 2
 script = ExtResource("1_btcbx")
 
 [node name="PlayerStateMachine" type="Node" parent="." node_paths=PackedStringArray("current_state")]
@@ -1042,6 +1045,12 @@ script = ExtResource("7_vtle1")
 
 [node name="FallPlayerState" type="Node" parent="PlayerStateMachine"]
 script = ExtResource("8_od3ui")
+
+[node name="DamagePlayerState" type="Node" parent="PlayerStateMachine"]
+script = ExtResource("7_00tjw")
+
+[node name="DeathPlayerState" type="Node" parent="PlayerStateMachine"]
+script = ExtResource("8_x3vf3")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false

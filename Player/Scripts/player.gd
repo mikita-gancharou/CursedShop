@@ -6,6 +6,9 @@ extends CharacterBody2D
 @export var acceleration: float = 0.25
 @export var gravity: float = 500.0
 @export var jump_velocity: float = 200.0
+@export var health: int = 100
+
+var last_enemy_position: Vector2 = Vector2.ZERO #TODO: refactor
 
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 
