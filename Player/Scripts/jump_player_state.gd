@@ -2,7 +2,7 @@ class_name JumpPlayerState
 extends State
 
 func enter() -> void:
-	entity.sprite.play("Jump")
+	entity.animplayer.play("Jump")
 	entity.apply_jump()
 
 func exit() -> void:

@@ -2,7 +2,7 @@ class_name RunningPlayerState
 extends State
 
 func enter() -> void:
-	entity.sprite.play("Run")
+	entity.animplayer.play("Run")
 
 func exit() -> void:
 	pass

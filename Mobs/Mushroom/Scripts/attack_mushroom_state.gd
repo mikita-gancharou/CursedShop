@@ -6,22 +6,22 @@ var has_attacked: bool = false  # Флаг, чтобы атака происхо
 func enter() -> void:
 	entity.velocity.x = 0
 	has_attacked = false  # Сбрасываем флаг атаки
-	entity.sprite.play("Attack")  # Запускаем анимацию атаки
+	entity.animplayer.play("Attack")  # Запускаем анимацию атаки
 
 func exit() -> void:
 	has_attacked = false  # Сбрасываем флаг при выходе
-	entity.sprite.stop()  # Останавливаем анимацию при выходе
+	entity.animplayer.stop()  # Останавливаем анимацию при выходе
 
 func update(delta: float) -> void:
 	# Проверяем завершение анимации атаки
-	if not entity.sprite.is_playing():  
+	if not entity.animplayer.is_playing():  
 		# Анимация закончилась
 		if not _is_player_in_attack_range():  
 			transition.emit("ChaseMushroomState")  # Если игрок покинул зону атаки, возвращаемся в погоню
 		else:
 			# Если игрок все еще в зоне атаки, продолжим атаковать
 			has_attacked = false  # Сбрасываем флаг для возможности повторной атаки
-			entity.sprite.play("Attack")  # Перезапускаем анимацию, чтобы она не зависала
+			entity.animplayer.play("Attack")  # Перезапускаем анимацию, чтобы она не зависала
 
 func physics_update(delta: float) -> void:
 	entity.apply_gravity(delta)

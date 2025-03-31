@@ -2,7 +2,7 @@ class_name IdlePlayerState
 extends State
 
 func enter() -> void:
-	entity.sprite.play("Idle")
+	entity.animplayer.play("Idle")
 	entity.velocity.x = 0
 
 func exit() -> void:

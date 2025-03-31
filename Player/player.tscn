@@ -1,4 +1,4 @@
-[gd_scene load_steps=110 format=3 uid="uid://cwnm8oamm0nog"]
+[gd_scene load_steps=114 format=3 uid="uid://cwnm8oamm0nog"]
 
 [ext_resource type="Script" uid="uid://b17tbcvaf4npi" path="res://Player/Scripts/player.gd" id="1_btcbx"]
 [ext_resource type="Texture2D" uid="uid://c0o3j8vpuro5j" path="res://Player/Sprites/char_blue_1.png" id="1_l8h54"]
@@ -10,6 +10,9 @@
 [ext_resource type="Script" uid="uid://nbwkk1m2sr0y" path="res://Player/Scripts/jump_player_state.gd" id="7_vtle1"]
 [ext_resource type="Script" uid="uid://vwhdfriafkdd" path="res://Player/Scripts/fall_player_state.gd" id="8_od3ui"]
 [ext_resource type="Script" uid="uid://ddjjsli3nanu8" path="res://Player/Scripts/death_player_state.gd" id="8_x3vf3"]
+[ext_resource type="Texture2D" uid="uid://tt5axu5angvi" path="res://Art/UI/HP_bar_under.png" id="11_p5o4e"]
+[ext_resource type="Texture2D" uid="uid://c6svr0rolenor" path="res://Art/UI/HP_bar_over.png" id="12_gu6f8"]
+[ext_resource type="Texture2D" uid="uid://b63l7hq08jm3l" path="res://Art/UI/HP_bar_progress.png" id="13_dkpta"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_od3ui"]
 size = Vector2(15, 31)
@@ -649,6 +652,34 @@ animations = [{
 "speed": 10.0
 }]
 
+[sub_resource type="Animation" id="Animation_p5o4e"]
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["Move"]
+}
+
 [sub_resource type="Animation" id="Animation_btcbx"]
 length = 0.6
 tracks/0/type = "value"
@@ -949,7 +980,7 @@ tracks/1/keys = {
 "values": ["Land"]
 }
 
-[sub_resource type="Animation" id="Animation_p5o4e"]
+[sub_resource type="Animation" id="Animation_lfmf2"]
 length = 0.8
 loop_mode = 1
 tracks/0/type = "value"
@@ -974,7 +1005,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": ["Move"]
+"values": ["Run"]
 }
 
 [sub_resource type="Animation" id="Animation_gu6f8"]
@@ -1018,6 +1049,7 @@ _data = {
 &"Jump": SubResource("Animation_apopc"),
 &"Land": SubResource("Animation_5htga"),
 &"Move": SubResource("Animation_p5o4e"),
+&"Run": SubResource("Animation_lfmf2"),
 &"Slide": SubResource("Animation_gu6f8")
 }
 
@@ -1059,7 +1091,7 @@ shape = SubResource("RectangleShape2D_od3ui")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_dkpta")
-animation = &"Run"
+animation = &"Attack1"
 autoplay = "Idle"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -1092,3 +1124,19 @@ collision_mask = 32
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackDirection/HitBox"]
 position = Vector2(7, 13)
 shape = SubResource("CircleShape2D_4ntmi")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="HealthBar" type="TextureProgressBar" parent="CanvasLayer"]
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 48.0
+offset_bottom = 48.0
+scale = Vector2(6.97953, 1.37352)
+value = 50.0
+nine_patch_stretch = true
+texture_under = ExtResource("11_p5o4e")
+texture_over = ExtResource("12_gu6f8")
+texture_progress = ExtResource("13_dkpta")
+tint_over = Color(0.729412, 0.580392, 0.34902, 1)
+tint_progress = Color(0.723546, 0.203956, 0.145092, 1)

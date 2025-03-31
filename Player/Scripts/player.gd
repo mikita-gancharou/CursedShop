@@ -5,15 +5,22 @@ extends CharacterBody2D
 @export var speed: float = 200.0
 @export var acceleration: float = 0.25
 @export var gravity: float = 500.0
-@export var jump_velocity: float = 200.0
-@export var health: int = 100
+@export var jump_velocity: float = 300.0
+
+@export var health: int
+@export var max_health: int = 100
 
 var last_enemy_position: Vector2 = Vector2.ZERO #TODO: refactor
 
+@onready var animplayer: AnimationPlayer = $AnimationPlayer
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
+@onready var healthbar = $CanvasLayer/HealthBar
 
 func _ready() -> void:
 	add_to_group("Player")
+	health = max_health
+	healthbar.max_value = max_health
+	healthbar.value = health
 
 func _process(delta: float) -> void:
 	pass

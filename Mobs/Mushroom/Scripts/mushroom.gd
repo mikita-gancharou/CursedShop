@@ -7,11 +7,12 @@ extends CharacterBody2D
 @export var gravity: float = 500.0
 @export var damage: int = 20
 
+@onready var animplayer: AnimationPlayer = $AnimationPlayer
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var attack_area: Area2D = $AttackDirection/AttackArea
 
 func _ready() -> void:
-	pass
+	$AttackDirection/HitBox/CollisionShape2D.disabled = true
 
 func _process(delta: float) -> void:
 	pass

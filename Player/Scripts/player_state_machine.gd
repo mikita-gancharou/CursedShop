@@ -2,11 +2,16 @@
 class_name PlayerStateMachine
 extends Node
 
+signal health_changed(new_health)
+
 @export var current_state: State
+
+
+
 var states: Dictionary = {}
 
+
 func _ready() -> void:
-	# Ждем, пока владелец (например, Player) будет готов
 	await owner.ready
 
 	# Регистрируем все дочерние узлы, которые являются состояниями
@@ -50,6 +55,7 @@ func on_child_transition(new_state_name: StringName) -> void:
 
 func _on_damage_received(enemy_damage, enemy_global_position):
 	owner.health -= enemy_damage
+	owner.healthbar.value = owner.health
 	owner.last_enemy_position = enemy_global_position
 	print(owner.health)
 	if owner.health > 0:
@@ -57,4 +63,4 @@ func _on_damage_received(enemy_damage, enemy_global_position):
 	else:
 		owner.health = 0
 		on_child_transition("DeathPlayerState")
-		pass
+	emit_signal("health_changed", owner.health)
