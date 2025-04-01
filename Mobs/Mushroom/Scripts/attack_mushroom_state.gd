@@ -7,11 +7,11 @@ var has_attacked: bool = false  # Флаг, чтобы атака происхо
 func enter() -> void:
 	entity.velocity.x = 0
 	has_attacked = false  # Сбрасываем флаг атаки
-	entity.animplayer.play("Attack")  # Запускаем анимацию атаки
+	entity.animplayer.play("Attack1")  # Запускаем анимацию атаки
 
 func exit() -> void:
 	has_attacked = false  # Сбрасываем флаг при выходе
-	entity.animplayer.stop()  # Останавливаем анимацию при выходе
+	#entity.animplayer.stop()  # Останавливаем анимацию при выходе. Эта строка выдает ошибку
 
 func update(delta: float) -> void:
 	# Проверяем завершение анимации атаки
@@ -22,7 +22,7 @@ func update(delta: float) -> void:
 		else:
 			# Если игрок все еще в зоне атаки, продолжим атаковать
 			has_attacked = false  # Сбрасываем флаг для возможности повторной атаки
-			entity.animplayer.play("Attack")  # Перезапускаем анимацию, чтобы она не зависала
+			entity.animplayer.play("Attack1")  # Перезапускаем анимацию, чтобы она не зависала
 
 func physics_update(delta: float) -> void:
 	entity.apply_gravity(delta)

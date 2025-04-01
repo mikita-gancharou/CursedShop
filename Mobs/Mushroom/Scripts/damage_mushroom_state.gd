@@ -8,11 +8,10 @@ var damage_timer: float = 0.0  # таймер состояния
 func enter() -> void:
 	damage_timer = 0.0
 	entity.animplayer.play("Damage")  # проигрываем анимацию получения урона
+	entity.animplayer.animation_finished.connect(_on_animation_finished)
 	
 	# Вычисляем направление отскока относительно позиции атакующего врага:
-	# Если враг находится слева от игрока, то отскок должен идти вправо, и наоборот.
 	var direction: int = sign(entity.global_position.x - entity.last_player_position.x)
-	# Если вдруг равны или не определено, можно задать направление по умолчанию:
 	if direction == 0:
 		direction = 1
 	var knockback_force: Vector2 = Vector2(knockback_base.x * direction, knockback_base.y)
@@ -20,12 +19,17 @@ func enter() -> void:
 
 func exit() -> void:
 	entity.velocity = Vector2.ZERO  # сбрасываем скорость
+	entity.animplayer.animation_finished.disconnect(_on_animation_finished)
 
 func update(delta: float) -> void:
 	damage_timer += delta
-	if damage_timer >= damage_duration and not entity.animplayer.is_playing():
-		transition.emit("IdleMushroomState") 
+	if damage_timer >= damage_duration:
+		transition.emit("IdleMushroomState")
 
 func physics_update(delta: float) -> void:
 	entity.apply_gravity(delta)
 	entity.apply_velocity(delta)
+
+func _on_animation_finished(anim_name: String) -> void:
+	if anim_name == "Damage":
+		transition.emit("IdleMushroomState")

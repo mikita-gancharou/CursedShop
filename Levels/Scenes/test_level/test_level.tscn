@@ -2625,7 +2625,10 @@ tile_set = SubResource("TileSet_swfa6")
 [node name="Mobs" type="Node2D" parent="."]
 
 [node name="Mushroom" parent="Mobs" instance=ExtResource("9_q4jga")]
-position = Vector2(757, 295)
+position = Vector2(936, 304)
+
+[node name="Mushroom2" parent="Mobs" instance=ExtResource("9_q4jga")]
+position = Vector2(736, 304)
 
 [node name="Player" type="Node2D" parent="."]
 

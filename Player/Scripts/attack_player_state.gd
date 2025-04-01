@@ -13,7 +13,7 @@ func enter() -> void:
 func exit() -> void:
 	# Отложенное отключение сигнала через отдельный метод
 	call_deferred("_deferred_disconnect")
-	entity.animplayer.stop()
+#	entity.animplayer.stop()
 
 func _deferred_disconnect() -> void:
 	if hitbox and hitbox.is_connected("body_entered", Callable(self, "_on_HitBox_body_entered")):

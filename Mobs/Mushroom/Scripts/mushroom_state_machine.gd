@@ -5,6 +5,9 @@ extends Node
 var states: Dictionary = {}
 var health: int = 100  # Пример: здоровье моба
 
+var player_damage
+var player_global_position
+
 func _ready() -> void:
 	await owner.ready
 
@@ -44,14 +47,19 @@ func on_child_transition(new_state_name: StringName) -> void:
 		push_warning("State does not exist: " + str(new_state_name))
 
 func _on_player_attack(damage, global_position) -> void:
-	# Можно добавить проверку расстояния между мобом и атакующим (global_position),
-	# если это требуется для логики столкновения.
-	owner.last_player_position = global_position
-	owner.health -= damage
+	print("on_player_attack")
+	player_damage = damage
+	player_global_position = global_position
+
+func _on_hurt_box_area_entered(area: Area2D) -> void:
+	print("Hurtbox area entered")
+	await get_tree().create_timer(0.05).timeout
+	owner.last_player_position = player_global_position
+	owner.health -= player_damage
 	print("Mob health:", owner.health)
 	
 	if owner.health > 0:
-		on_child_transition("DamageState")
+		on_child_transition("DamageMushroomState")
 	else:
 		owner.health = 0
-		on_child_transition("DeathState")
+		on_child_transition("DeathMushroomState")
