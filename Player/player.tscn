@@ -1243,7 +1243,7 @@ shape = SubResource("RectangleShape2D_od3ui")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_dkpta")
-animation = &"Slide"
+animation = &"Attack1"
 autoplay = "Idle"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
