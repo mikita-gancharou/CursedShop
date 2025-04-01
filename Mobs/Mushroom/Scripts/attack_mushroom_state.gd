@@ -1,3 +1,4 @@
+#attack_mushroom_state.gd
 class_name AttackMushroomState
 extends State
 
@@ -35,6 +36,4 @@ func _is_player_in_attack_range() -> bool:
 	return false
 
 func _on_hit_box_area_entered(area: Area2D) -> void:
-	print("hitbox area entered")
-	#for body in entity.attack_area.get_overlapping_bodies():
 	Signals.emit_signal("enemy_attack", entity.damage, entity.global_position)

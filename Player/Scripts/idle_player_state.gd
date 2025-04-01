@@ -15,14 +15,21 @@ func update(delta: float) -> void:
 	entity.apply_velocity(delta)
 	
 	#States transition:
+	if entity.velocity.y > 10.0:
+		transition.emit("FallPlayerState")
+		
 	if input_vector.x != 0:
 		transition.emit("RunningPlayerState")
 	
 	if Input.is_action_just_pressed("Jump") and owner.is_on_floor():
 		transition.emit("JumpPlayerState")
+		
+	if Input.is_action_just_pressed("Slide") and owner.is_on_floor():
+		transition.emit("SlidePlayerState")
 	
-	if entity.velocity.y > 10.0:
-		transition.emit("FallPlayerState")
+	if Input.is_action_just_pressed("Attack") and owner.is_on_floor():
+		transition.emit("AttackPlayerState")
+	
 	
 func physics_update(delta: float) -> void:
 	pass

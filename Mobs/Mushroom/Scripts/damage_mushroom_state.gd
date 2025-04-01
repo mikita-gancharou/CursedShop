@@ -1,4 +1,4 @@
-class_name DamagePlayerState
+class_name DamageMushroomState
 extends State
 
 var knockback_base: Vector2 = Vector2(75, -150)  # базовая сила отскока (модуль)
@@ -11,7 +11,7 @@ func enter() -> void:
 	
 	# Вычисляем направление отскока относительно позиции атакующего врага:
 	# Если враг находится слева от игрока, то отскок должен идти вправо, и наоборот.
-	var direction: int = sign(entity.global_position.x - entity.last_enemy_position.x)
+	var direction: int = sign(entity.global_position.x - entity.last_player_position.x)
 	# Если вдруг равны или не определено, можно задать направление по умолчанию:
 	if direction == 0:
 		direction = 1
@@ -24,7 +24,7 @@ func exit() -> void:
 func update(delta: float) -> void:
 	damage_timer += delta
 	if damage_timer >= damage_duration and not entity.animplayer.is_playing():
-		transition.emit("RunningPlayerState") 
+		transition.emit("IdleMushroomState") 
 
 func physics_update(delta: float) -> void:
 	entity.apply_gravity(delta)

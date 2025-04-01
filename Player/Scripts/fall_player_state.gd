@@ -20,6 +20,10 @@ func update(delta: float) -> void:
 	if entity.is_on_floor():
 		if Input.is_action_just_pressed("Jump"):
 			transition.emit("JumpPlayerState")
+		if Input.is_action_just_pressed("Slide"):
+			transition.emit("SlidePlayerState")
+		if Input.is_action_just_pressed("Attack"):
+			transition.emit("AttackPlayerState")
 		else:
 			if not landed:
 				landed = true

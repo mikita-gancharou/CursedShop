@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://bcpkwnjjg07wt"]
+[gd_scene load_steps=41 format=3 uid="uid://bcpkwnjjg07wt"]
 
 [ext_resource type="Script" uid="uid://dus0lvtdnh5rw" path="res://Mobs/Mushroom/Scripts/mushroom.gd" id="1_1jvsc"]
 [ext_resource type="Texture2D" uid="uid://l7kdhjv87wn3" path="res://Mobs/Mushroom/Sprites/Idle.png" id="1_abx1l"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://dg7q1mv5vrdyx" path="res://Mobs/Mushroom/Scripts/idle_mushroom_state.gd" id="4_1w5fh"]
 [ext_resource type="Script" uid="uid://bji56wblqisgh" path="res://Mobs/Mushroom/Scripts/chase_mushroom_state.gd" id="6_3lmv3"]
 [ext_resource type="Script" uid="uid://dehsnwdtk7a6e" path="res://Mobs/Mushroom/Scripts/attack_mushroom_state.gd" id="8_rswoi"]
+[ext_resource type="Script" uid="uid://ddvq804fbwgco" path="res://Mobs/Mushroom/Scripts/damage_mushroom_state.gd" id="9_g8mg2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1jvsc"]
 size = Vector2(19, 33)
@@ -372,5 +373,8 @@ script = ExtResource("6_3lmv3")
 
 [node name="AttackMushroomState" type="Node" parent="MushroomStateMachine"]
 script = ExtResource("8_rswoi")
+
+[node name="DamageMushroomState" type="Node" parent="MushroomStateMachine"]
+script = ExtResource("9_g8mg2")
 
 [connection signal="area_entered" from="AttackDirection/HitBox" to="MushroomStateMachine/AttackMushroomState" method="_on_hit_box_area_entered"]

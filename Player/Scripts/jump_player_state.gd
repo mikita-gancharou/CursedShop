@@ -22,7 +22,8 @@ func update(delta: float) -> void:
 		transition.emit("FallPlayerState")
 	
 	if entity.is_on_floor():
-		transition.emit("IdlePlayerState")
+		transition.emit("RunningPlayerState")
+
 
 func physics_update(delta: float) -> void:
 	pass

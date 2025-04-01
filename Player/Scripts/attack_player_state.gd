@@ -1,0 +1,42 @@
+class_name AttackPlayerState
+extends State
+
+@onready var hitbox = $"../../AttackDirection/HitBox"  # Это Area2D
+
+func enter() -> void:
+	entity.velocity.x = 0
+	entity.animplayer.play("Attack1")
+	# Подключаем сигнал хитбокса, если он ещё не подключён
+	if not hitbox.is_connected("body_entered", Callable(self, "_on_HitBox_body_entered")):
+		hitbox.connect("body_entered", Callable(self, "_on_HitBox_body_entered"))
+
+func exit() -> void:
+	# Отложенное отключение сигнала через отдельный метод
+	call_deferred("_deferred_disconnect")
+	entity.animplayer.stop()
+
+func _deferred_disconnect() -> void:
+	if hitbox and hitbox.is_connected("body_entered", Callable(self, "_on_HitBox_body_entered")):
+		hitbox.disconnect("body_entered", Callable(self, "_on_HitBox_body_entered"))
+
+func update(delta: float) -> void:
+	if not entity.animplayer.is_playing():
+		var input_vector = entity.get_input_vector()
+		if abs(input_vector.x) > 0:
+			transition.emit("RunningPlayerState")
+		else:
+			transition.emit("IdlePlayerState")
+	
+	if Input.is_action_just_pressed("Jump") and entity.is_on_floor():
+		transition.emit("JumpPlayerState")
+	
+	if entity.velocity.y > 10.0:
+		transition.emit("FallPlayerState")
+
+func physics_update(delta: float) -> void:
+	entity.apply_gravity(delta)
+	entity.apply_velocity(delta)
+
+func _on_hit_box_area_entered(area: Area2D) -> void:
+	print("Signal sent")
+	Signals.emit_signal("player_attack", entity.damage, entity.global_position)

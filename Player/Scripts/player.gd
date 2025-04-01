@@ -7,8 +7,9 @@ extends CharacterBody2D
 @export var gravity: float = 500.0
 @export var jump_velocity: float = 300.0
 
-@export var health: int
-@export var max_health: int = 100
+var health: int
+var max_health: int = 100
+var damage: int = 50
 
 var last_enemy_position: Vector2 = Vector2.ZERO #TODO: refactor
 
@@ -45,5 +46,7 @@ func apply_jump() -> void:
 func change_direction(direction) -> void:
 	if sign(direction) == -1:
 		sprite.flip_h = true
+		$AttackDirection.rotation_degrees = 180
 	elif sign(direction) == 1:
 		sprite.flip_h = false
+		$AttackDirection.rotation_degrees = 0
