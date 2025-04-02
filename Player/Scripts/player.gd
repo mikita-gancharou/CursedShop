@@ -26,7 +26,7 @@ func _ready() -> void:
 	healthbar.max_value = max_health
 	healthbar.value = health
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	pass
 
 func get_input_vector() -> Vector2:
@@ -37,10 +37,10 @@ func get_input_vector() -> Vector2:
 func apply_gravity(delta: float) -> void:
 	velocity.y += gravity * delta
 
-func apply_movement(input_vector: Vector2, delta: float) -> void:
+func apply_movement(input_vector: Vector2, _delta: float) -> void:
 	velocity.x = lerp(velocity.x, input_vector.x * speed, acceleration)
 
-func apply_velocity(delta: float) -> void:
+func apply_velocity(_delta: float) -> void:
 	move_and_slide()
 
 func apply_jump() -> void:

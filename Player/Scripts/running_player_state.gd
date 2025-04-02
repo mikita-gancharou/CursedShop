@@ -41,5 +41,5 @@ func update(delta: float) -> void:
 	if Input.is_action_just_pressed("Ultimative") and owner.is_on_floor():
 		transition.emit("UltimativePlayerState")
 
-func physics_update(delta: float) -> void:
+func physics_update(_delta: float) -> void:
 	pass

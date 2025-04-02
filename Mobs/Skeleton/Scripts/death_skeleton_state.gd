@@ -17,5 +17,5 @@ func update(delta: float) -> void:
 	entity.apply_velocity(delta)
 
 		
-func physics_update(delta: float) -> void:
+func physics_update(_delta: float) -> void:
 	pass

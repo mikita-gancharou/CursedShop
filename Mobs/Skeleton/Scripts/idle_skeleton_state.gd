@@ -26,5 +26,5 @@ func update(delta: float) -> void:
 	else:
 		push_warning("DetectionArea2D не найден у моба")
 		
-func physics_update(delta: float) -> void:
+func physics_update(_delta: float) -> void:
 	pass

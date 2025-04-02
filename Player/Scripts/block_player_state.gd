@@ -38,5 +38,5 @@ func update(delta: float) -> void:
 		transition.emit("UltimativePlayerState")
 
 
-func physics_update(delta: float) -> void:
+func physics_update(_delta: float) -> void:
 	pass

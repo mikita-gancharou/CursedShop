@@ -13,7 +13,7 @@ func exit() -> void:
 	has_attacked = false  # Сбрасываем флаг при выходе
 	#entity.animplayer.stop()  # Останавливаем анимацию при выходе. Эта строка выдает ошибку
 
-func update(delta: float) -> void:
+func update(_delta: float) -> void:
 	# Проверяем завершение анимации атаки
 	if not entity.animplayer.is_playing():  
 		# Анимация закончилась
@@ -35,5 +35,5 @@ func _is_player_in_attack_range() -> bool:
 			return true
 	return false
 
-func _on_hit_box_area_entered(area: Area2D) -> void:
+func _on_hit_box_area_entered(_area: Area2D) -> void:
 	Signals.emit_signal("enemy_attack", entity.damage, entity.global_position)

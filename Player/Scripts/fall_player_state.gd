@@ -35,5 +35,5 @@ func update(delta: float) -> void:
 			elif landed and not entity.animplayer.is_playing():
 				transition.emit("RunningPlayerState")
 
-func physics_update(delta: float) -> void:
+func physics_update(_delta: float) -> void:
 	pass

@@ -2535,3 +2535,12 @@ scale = Vector2(0.948626, 0.978754)
 
 [node name="HealthItemFull" parent="." instance=ExtResource("8_t468d")]
 position = Vector2(592, 320)
+
+[node name="HealthItemFull2" parent="." instance=ExtResource("8_t468d")]
+position = Vector2(1168, 320)
+
+[node name="HealthItemFull3" parent="." instance=ExtResource("8_t468d")]
+position = Vector2(304, 216)
+
+[node name="HealthItemFull4" parent="." instance=ExtResource("8_t468d")]
+position = Vector2(224, 216)

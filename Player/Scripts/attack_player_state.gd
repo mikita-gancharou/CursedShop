@@ -27,7 +27,7 @@ func _deferred_disconnect() -> void:
 	if hitbox and hitbox.is_connected("body_entered", Callable(self, "_on_HitBox_body_entered")):
 		hitbox.disconnect("body_entered", Callable(self, "_on_HitBox_body_entered"))
 
-func update(delta: float) -> void:
+func update(_delta: float) -> void:
 	if Input.is_action_just_pressed("Attack"):
 		combo_requested = true
 
@@ -61,7 +61,7 @@ func physics_update(delta: float) -> void:
 	entity.apply_gravity(delta)
 	entity.apply_velocity(delta)
 
-func _on_hit_box_area_entered(area: Area2D) -> void:
+func _on_hit_box_area_entered(_area: Area2D) -> void:
 	Signals.emit_signal("player_attack", entity.damage, entity.global_position)
 
 func _play_attack_animation() -> void:

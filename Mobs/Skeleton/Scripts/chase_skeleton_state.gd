@@ -25,7 +25,7 @@ func update(delta: float) -> void:
 		transition.emit("IdleSkeletonState")
 		return
 
-func physics_update(delta: float) -> void:
+func physics_update(_delta: float) -> void:
 	pass
 
 func _on_attack_area_entered(body: Node2D) -> void:

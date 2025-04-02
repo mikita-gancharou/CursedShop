@@ -50,7 +50,7 @@ func _on_player_attack(damage, global_position) -> void:
 	player_damage = damage
 	player_global_position = global_position
 
-func _on_hurt_box_area_entered(area: Area2D) -> void:
+func _on_hurt_box_area_entered(_area: Area2D) -> void:
 	print("Hurtbox area entered")
 	await get_tree().create_timer(0.05).timeout
 	owner.last_player_position = player_global_position
@@ -64,5 +64,5 @@ func _on_hurt_box_area_entered(area: Area2D) -> void:
 		on_child_transition("DeathSkeletonState")
 
 
-func _on_hit_box_area_entered(area: Area2D) -> void:
+func _on_hit_box_area_entered(_area: Area2D) -> void:
 	pass # Replace with function body.
