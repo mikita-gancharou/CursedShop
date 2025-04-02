@@ -47,7 +47,6 @@ func on_child_transition(new_state_name: StringName) -> void:
 		push_warning("State does not exist: " + str(new_state_name))
 
 func _on_player_attack(damage, global_position) -> void:
-	print("on_player_attack")
 	player_damage = damage
 	player_global_position = global_position
 

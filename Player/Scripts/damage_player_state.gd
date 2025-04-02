@@ -17,10 +17,8 @@ func enter() -> void:
 	else:
 		entity.animplayer.play("Damage")
 
-	# Вычисляем направление отскока относительно позиции атакующего врага:
-	# Если враг находится слева от игрока, то отскок должен идти вправо, и наоборот.
-	print("Player: ",entity.global_position.x)
-	print("Enemy: ", entity.last_enemy_position.x)
+	#print("Player: ",entity.global_position.x)
+	#print("Enemy: ", entity.last_enemy_position.x)
 	var direction: int = sign(entity.global_position.x - entity.last_enemy_position.x)
 	# Если вдруг равны или не определено, можно задать направление по умолчанию:
 	if direction == 0:

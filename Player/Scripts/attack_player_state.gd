@@ -50,6 +50,10 @@ func update(delta: float) -> void:
 	if Input.is_action_just_pressed("Block") and owner.is_on_floor():
 		transition.emit("BlockPlayerState")
 	
+	if Input.is_action_just_pressed("Ultimative") and owner.is_on_floor():
+		transition.emit("UltimativePlayerState")
+
+	
 	if entity.velocity.y > 10.0:
 		transition.emit("FallPlayerState")
 
@@ -58,7 +62,6 @@ func physics_update(delta: float) -> void:
 	entity.apply_velocity(delta)
 
 func _on_hit_box_area_entered(area: Area2D) -> void:
-	print("Signal sent")
 	Signals.emit_signal("player_attack", entity.damage, entity.global_position)
 
 func _play_attack_animation() -> void:

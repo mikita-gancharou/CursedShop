@@ -37,7 +37,7 @@ func _process(delta: float) -> void:
 		current_state.update(delta)
 	
 func _physics_process(delta: float) -> void:
-	print(current_state)
+	#print(current_state)
 	if current_state:
 		current_state.physics_update(delta)
 
@@ -67,3 +67,10 @@ func _on_damage_received(enemy_damage, enemy_global_position):
 	else:
 		owner.health = 0
 		on_child_transition("DeathPlayerState")
+
+func add_health(healing) -> void:
+		owner.health += healing
+		if owner.health > owner.max_health:
+			owner.health = owner.max_health
+			owner.healthbar.value = owner.health
+			emit_signal("health_changed", owner.health)

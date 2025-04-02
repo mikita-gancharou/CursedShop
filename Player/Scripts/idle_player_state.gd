@@ -35,6 +35,9 @@ func update(delta: float) -> void:
 		
 	if Input.is_action_pressed("Block") and owner.is_on_floor():
 		transition.emit("BlockPlayerState")
-	
+		
+	if Input.is_action_just_pressed("Ultimative") and owner.is_on_floor():
+		transition.emit("UltimativePlayerState")
+
 func physics_update(delta: float) -> void:
 	pass
