@@ -10,9 +10,12 @@ func enter() -> void:
 	var slide_direction = -1 if entity.sprite.flip_h else 1
 	var slide_speed = 350.0  # Настраивайте под баланс игры
 	slide_velocity = Vector2(slide_speed * slide_direction, 0)
+	
+	entity.is_blocking = false
+	entity.is_sliding = true
 
 func exit() -> void:
-	pass
+	entity.is_sliding = false
 
 func update(delta: float) -> void:
 	# Применяем сохранённую скорость скольжения

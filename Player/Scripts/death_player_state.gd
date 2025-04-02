@@ -5,6 +5,9 @@ func enter() -> void:
 	print("Player is dead, gameover")
 	entity.animplayer.play("Death")
 	entity.velocity.x = 0
+	
+	entity.is_blocking = false
+	entity.is_sliding = false
 
 func exit() -> void:
 	#queue_free()

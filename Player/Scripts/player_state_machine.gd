@@ -35,8 +35,9 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if current_state:
 		current_state.update(delta)
-
+	
 func _physics_process(delta: float) -> void:
+	print(current_state)
 	if current_state:
 		current_state.physics_update(delta)
 
@@ -54,13 +55,15 @@ func on_child_transition(new_state_name: StringName) -> void:
 
 
 func _on_damage_received(enemy_damage, enemy_global_position):
-	owner.health -= enemy_damage
-	owner.healthbar.value = owner.health
 	owner.last_enemy_position = enemy_global_position
-	print(owner.health)
+	
+	if owner.is_sliding == false and owner.is_blocking == false:
+		owner.health -= enemy_damage
+		owner.healthbar.value = owner.health
+		emit_signal("health_changed", owner.health)
+	
 	if owner.health > 0:
 		on_child_transition("DamagePlayerState")
 	else:
 		owner.health = 0
 		on_child_transition("DeathPlayerState")
-	emit_signal("health_changed", owner.health)

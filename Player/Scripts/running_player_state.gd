@@ -3,7 +3,10 @@ extends State
 
 func enter() -> void:
 	entity.animplayer.play("Run")
-
+	
+	entity.is_blocking = false
+	entity.is_sliding = false
+	
 func exit() -> void:
 	pass
 
@@ -32,5 +35,8 @@ func update(delta: float) -> void:
 	if Input.is_action_just_pressed("Attack") and owner.is_on_floor():
 		transition.emit("AttackPlayerState")
 	
+	if Input.is_action_just_pressed("Block") and owner.is_on_floor():
+		transition.emit("BlockPlayerState")
+
 func physics_update(delta: float) -> void:
 	pass

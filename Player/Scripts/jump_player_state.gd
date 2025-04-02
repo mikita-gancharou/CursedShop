@@ -4,6 +4,9 @@ extends State
 func enter() -> void:
 	entity.animplayer.play("Jump")
 	entity.apply_jump()
+	
+	entity.is_blocking = false
+	entity.is_sliding = false
 
 func exit() -> void:
 	pass

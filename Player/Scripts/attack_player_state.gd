@@ -3,32 +3,52 @@ extends State
 
 @onready var hitbox = $"../../AttackDirection/HitBox"  # Это Area2D
 
+const ATTACK_ANIMATIONS = ["Attack1", "Attack2", "Attack3"]
+var combo_index: int = 0
+var combo_requested: bool = false  # Флаг для запроса комбо
+
 func enter() -> void:
 	entity.velocity.x = 0
-	entity.animplayer.play("Attack1")
+	combo_index = 0
+	combo_requested = false
+	_play_attack_animation()
+	
 	# Подключаем сигнал хитбокса, если он ещё не подключён
 	if not hitbox.is_connected("body_entered", Callable(self, "_on_HitBox_body_entered")):
 		hitbox.connect("body_entered", Callable(self, "_on_HitBox_body_entered"))
+	
+	entity.is_blocking = false
+	entity.is_sliding = false
 
 func exit() -> void:
-	# Отложенное отключение сигнала через отдельный метод
 	call_deferred("_deferred_disconnect")
-#	entity.animplayer.stop()
 
 func _deferred_disconnect() -> void:
 	if hitbox and hitbox.is_connected("body_entered", Callable(self, "_on_HitBox_body_entered")):
 		hitbox.disconnect("body_entered", Callable(self, "_on_HitBox_body_entered"))
 
 func update(delta: float) -> void:
+	if Input.is_action_just_pressed("Attack"):
+		combo_requested = true
+
 	if not entity.animplayer.is_playing():
-		var input_vector = entity.get_input_vector()
-		if abs(input_vector.x) > 0:
-			transition.emit("RunningPlayerState")
+		if combo_requested and combo_index < ATTACK_ANIMATIONS.size() - 1:
+			combo_index += 1
+			combo_requested = false
+			_play_attack_animation()
 		else:
-			transition.emit("IdlePlayerState")
+			var input_vector = entity.get_input_vector()
+			if abs(input_vector.x) > 0:
+				transition.emit("RunningPlayerState")
+			else:
+				transition.emit("IdlePlayerState")
 	
+	# Переходы в другие состояния
 	if Input.is_action_just_pressed("Jump") and entity.is_on_floor():
 		transition.emit("JumpPlayerState")
+	
+	if Input.is_action_just_pressed("Block") and owner.is_on_floor():
+		transition.emit("BlockPlayerState")
 	
 	if entity.velocity.y > 10.0:
 		transition.emit("FallPlayerState")
@@ -40,3 +60,7 @@ func physics_update(delta: float) -> void:
 func _on_hit_box_area_entered(area: Area2D) -> void:
 	print("Signal sent")
 	Signals.emit_signal("player_attack", entity.damage, entity.global_position)
+
+func _play_attack_animation() -> void:
+	var anim_name = ATTACK_ANIMATIONS[combo_index]
+	entity.animplayer.play(anim_name)

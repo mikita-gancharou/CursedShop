@@ -36,4 +36,6 @@ func _is_player_in_attack_range() -> bool:
 	return false
 
 func _on_hit_box_area_entered(area: Area2D) -> void:
+	print("_______________________")
+	print("Enemy sending signal: ", entity.global_position)
 	Signals.emit_signal("enemy_attack", entity.damage, entity.global_position)

@@ -1,7 +1,7 @@
 class_name DamageSkeletonState
 extends State
 
-var knockback_base: Vector2 = Vector2(75, -150)  # базовая сила отскока (модуль)
+var knockback_base: Vector2 = Vector2(20, -50)  # базовая сила отскока (модуль)
 var damage_duration: float = 0.5  # длительность состояния урона (секунд)
 var damage_timer: float = 0.0  # таймер состояния
 

@@ -13,6 +13,7 @@ var health: int = 100
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var attack_area: Area2D = $AttackDirection/AttackArea
 
+var direction
 var last_player_position: Vector2 = Vector2.ZERO
 
 func _ready() -> void:

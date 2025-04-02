@@ -11,6 +11,9 @@ var health: int
 var max_health: int = 100
 var damage: int = 50
 
+var is_sliding: bool = false
+var is_blocking: bool = false
+
 var last_enemy_position: Vector2 = Vector2.ZERO #TODO: refactor
 
 @onready var animplayer: AnimationPlayer = $AnimationPlayer

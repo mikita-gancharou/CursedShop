@@ -24,6 +24,8 @@ func update(delta: float) -> void:
 			transition.emit("SlidePlayerState")
 		if Input.is_action_just_pressed("Attack"):
 			transition.emit("AttackPlayerState")
+		if Input.is_action_pressed("Block") and owner.is_on_floor():
+			transition.emit("BlockPlayerState")
 		else:
 			if not landed:
 				landed = true
