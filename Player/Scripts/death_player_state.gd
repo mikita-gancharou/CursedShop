@@ -2,7 +2,6 @@ class_name DeathPlayerState
 extends State
 
 func enter() -> void:
-	print("Player is dead, gameover")
 	entity.animplayer.play("Death")
 	entity.velocity.x = 0
 	

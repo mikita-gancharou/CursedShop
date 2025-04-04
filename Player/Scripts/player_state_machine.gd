@@ -72,5 +72,5 @@ func add_health(healing) -> void:
 		owner.health += healing
 		if owner.health > owner.max_health:
 			owner.health = owner.max_health
-			owner.healthbar.value = owner.health
 			emit_signal("health_changed", owner.health)
+		owner.healthbar.value = owner.health

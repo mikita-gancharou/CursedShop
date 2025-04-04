@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Cursed Shop"
-run/main_scene="uid://h27sx774f05b"
+run/main_scene="uid://ck4i3hu5wfhmq"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 
 [autoload]

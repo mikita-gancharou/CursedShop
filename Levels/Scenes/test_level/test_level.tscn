@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://bcpkwnjjg07wt" path="res://Mobs/Mushroom/mushroom.tscn" id="9_q4jga"]
 [ext_resource type="PackedScene" uid="uid://cwnm8oamm0nog" path="res://Player/player.tscn" id="10_8mh8q"]
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wvl1i"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_t468d"]
 texture = ExtResource("5_ah5sb")
 texture_region_size = Vector2i(8, 8)
 0:0/0 = 0
@@ -2479,7 +2479,7 @@ texture_region_size = Vector2i(8, 8)
 [sub_resource type="TileSet" id="TileSet_swfa6"]
 tile_size = Vector2i(8, 8)
 physics_layer_0/collision_layer = 1
-sources/0 = SubResource("TileSetAtlasSource_wvl1i")
+sources/0 = SubResource("TileSetAtlasSource_t468d")
 
 [node name="TestLevel" type="Node2D"]
 

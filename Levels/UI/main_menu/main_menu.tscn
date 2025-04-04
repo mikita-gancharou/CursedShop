@@ -1,0 +1,65 @@
+[gd_scene load_steps=5 format=3 uid="uid://ck4i3hu5wfhmq"]
+
+[ext_resource type="Script" uid="uid://b2fn3ljgitji" path="res://Levels/UI/main_menu/main_menu.gd" id="1_40ti8"]
+[ext_resource type="Texture2D" uid="uid://bktc2ebwpqfbf" path="res://Art/Background/background_layer_1.png" id="2_r27vl"]
+[ext_resource type="Texture2D" uid="uid://c8fa340g4s3nk" path="res://Art/Background/background_layer_2.png" id="3_n0wkq"]
+[ext_resource type="Texture2D" uid="uid://dxsudnvvfcmso" path="res://Art/Background/background_layer_3.png" id="4_0vtto"]
+
+[node name="MainMenu" type="Node2D"]
+script = ExtResource("1_40ti8")
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer1" type="ParallaxLayer" parent="ParallaxBackground"]
+position = Vector2(1152, 320)
+scale = Vector2(3.60127, 3.60127)
+motion_scale = Vector2(0.2, 0.2)
+motion_mirroring = Vector2(640, 0)
+
+[node name="BackgroundLayer1" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer1"]
+position = Vector2(-2.28882e-05, 0)
+texture = ExtResource("2_r27vl")
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground"]
+position = Vector2(1152, 320)
+scale = Vector2(3.60127, 3.60127)
+motion_scale = Vector2(0.5, 0.5)
+motion_mirroring = Vector2(640, 0)
+
+[node name="BackgroundLayer2" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer2"]
+position = Vector2(0, 7.62939e-06)
+texture = ExtResource("3_n0wkq")
+
+[node name="ParallaxLayer3" type="ParallaxLayer" parent="ParallaxBackground"]
+position = Vector2(1152, 320)
+scale = Vector2(3.60127, 3.60127)
+motion_mirroring = Vector2(640, 0)
+
+[node name="BackgroundLayer3" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer3"]
+texture = ExtResource("4_0vtto")
+
+[node name="TestLevel" type="Button" parent="."]
+offset_left = 448.0
+offset_top = 64.0
+offset_right = 704.0
+offset_bottom = 128.0
+text = "TestLevel
+"
+
+[node name="Play" type="Button" parent="."]
+offset_left = 448.0
+offset_top = 192.0
+offset_right = 704.0
+offset_bottom = 256.0
+text = "Play"
+
+[node name="Exit" type="Button" parent="."]
+offset_left = 448.0
+offset_top = 320.0
+offset_right = 704.0
+offset_bottom = 384.0
+text = "Exit"
+
+[connection signal="pressed" from="TestLevel" to="." method="_on_test_level_pressed"]
+[connection signal="pressed" from="Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="Exit" to="." method="_on_exit_pressed"]

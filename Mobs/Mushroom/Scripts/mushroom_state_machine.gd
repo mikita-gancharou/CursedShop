@@ -51,11 +51,9 @@ func _on_player_attack(damage, global_position) -> void:
 	player_global_position = global_position
 
 func _on_hurt_box_area_entered(_area: Area2D) -> void:
-	print("Hurtbox area entered")
 	await get_tree().create_timer(0.05).timeout
 	owner.last_player_position = player_global_position
 	owner.health -= player_damage
-	print("Mob health:", owner.health)
 	
 	if owner.health > 0:
 		on_child_transition("DamageMushroomState")
