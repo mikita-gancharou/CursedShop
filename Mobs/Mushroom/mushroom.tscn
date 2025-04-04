@@ -48,13 +48,13 @@ region = Rect2(900, 0, 150, 150)
 atlas = ExtResource("2_3lmv3")
 region = Rect2(1050, 0, 150, 150)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_mh1qi"]
-atlas = ExtResource("3_v4nd4")
-region = Rect2(0, 0, 150, 150)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_tgt7e"]
 atlas = ExtResource("3_v4nd4")
 region = Rect2(150, 0, 150, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mh1qi"]
+atlas = ExtResource("3_v4nd4")
+region = Rect2(0, 0, 150, 150)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_klg6y"]
 atlas = ExtResource("3_v4nd4")
@@ -193,10 +193,10 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_mh1qi")
+"texture": SubResource("AtlasTexture_tgt7e")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_tgt7e")
+"texture": SubResource("AtlasTexture_mh1qi")
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_klg6y")
@@ -210,10 +210,10 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_bb082")
+"texture": SubResource("AtlasTexture_tgt7e")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_tgt7e")
+"texture": SubResource("AtlasTexture_bb082")
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_n2i4w")
@@ -304,6 +304,33 @@ animations = [{
 "speed": 10.0
 }]
 
+[sub_resource type="Animation" id="Animation_v4nd4"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AttackDirection/HitBox/CollisionShape2D:disabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:modulate:a")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+
 [sub_resource type="Animation" id="Animation_bbi1o"]
 length = 0.8
 tracks/0/type = "value"
@@ -391,10 +418,10 @@ tracks/0/path = NodePath("AnimatedSprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [0, 1, 2, 3, 4]
+"values": [0, 1, 2, 3, 4, 4]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -419,6 +446,18 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("AnimatedSprite2D:modulate:a")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.4, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_vlg1j"]
@@ -455,21 +494,6 @@ tracks/2/path = NodePath("AttackDirection/HitBox/CollisionShape2D:disabled")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-
-[sub_resource type="Animation" id="Animation_v4nd4"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("AttackDirection/HitBox/CollisionShape2D:disabled")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
@@ -588,7 +612,7 @@ shape = SubResource("RectangleShape2D_1jvsc")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.880071, 0.880071)
 sprite_frames = SubResource("SpriteFrames_g8mg2")
-animation = &"Run"
+animation = &"Death"
 autoplay = "Idle"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
