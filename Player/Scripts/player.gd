@@ -1,4 +1,7 @@
 # player.gd
+
+#TODO: check footsteps in animation player
+
 class_name Player
 extends CharacterBody2D
 
