@@ -6,6 +6,8 @@ extends State
 #?гриб падает за пределы экрана?
 func enter() -> void:
 	entity.animplayer.play("Death")
+	$"../../SFX/DeathAudio2D".play_death()
+	
 	entity.velocity.x = 0
 
 func exit() -> void:

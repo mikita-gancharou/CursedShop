@@ -1,14 +1,21 @@
-[gd_scene load_steps=63 format=3 uid="uid://bcpkwnjjg07wt"]
+[gd_scene load_steps=70 format=3 uid="uid://bcpkwnjjg07wt"]
 
 [ext_resource type="Script" uid="uid://dus0lvtdnh5rw" path="res://Mobs/Mushroom/Scripts/mushroom.gd" id="1_1jvsc"]
 [ext_resource type="Texture2D" uid="uid://l7kdhjv87wn3" path="res://Mobs/Mushroom/Sprites/Idle.png" id="1_abx1l"]
 [ext_resource type="Texture2D" uid="uid://qurd2glg4uv3" path="res://Mobs/Mushroom/Sprites/Attack1.png" id="2_3lmv3"]
+[ext_resource type="Script" uid="uid://bswjxndys3ncm" path="res://Audio/SFX/Player/Sword/attack_audio_2d.gd" id="2_mi0g7"]
 [ext_resource type="Script" uid="uid://eolcnc27oaqi" path="res://Mobs/Mushroom/Scripts/mushroom_state_machine.gd" id="3_1jvsc"]
 [ext_resource type="Texture2D" uid="uid://dpy075nxhwqhh" path="res://Mobs/Mushroom/Sprites/Run.png" id="3_bnbq2"]
 [ext_resource type="Texture2D" uid="uid://dhsmd3aa4wefm" path="res://Mobs/Mushroom/Sprites/Damage.png" id="3_v4nd4"]
+[ext_resource type="AudioStream" uid="uid://yrymmregptjb" path="res://Audio/SFX/Mobs/Mushroom/Attack/mushroom_attack_01.mp3" id="3_xsx4f"]
 [ext_resource type="Script" uid="uid://dg7q1mv5vrdyx" path="res://Mobs/Mushroom/Scripts/idle_mushroom_state.gd" id="4_1w5fh"]
 [ext_resource type="Texture2D" uid="uid://rmc02flgwoph" path="res://Mobs/Mushroom/Sprites/Death.png" id="4_bbi1o"]
+[ext_resource type="Script" uid="uid://dnh0m16ohyydg" path="res://Audio/SFX/Player/Death/death_audio_2d.gd" id="4_xsx4f"]
+[ext_resource type="AudioStream" uid="uid://bbv1l8hutscms" path="res://Audio/SFX/Mobs/Mushroom/Death/mushroom_death_01.mp3" id="5_isjtg"]
 [ext_resource type="Script" uid="uid://bji56wblqisgh" path="res://Mobs/Mushroom/Scripts/chase_mushroom_state.gd" id="6_3lmv3"]
+[ext_resource type="Script" uid="uid://thw23noko053" path="res://Audio/SFX/Player/Damage/damage_audio_2d.gd" id="6_krkps"]
+[ext_resource type="AudioStream" uid="uid://dk1a6c7p1d2w5" path="res://Audio/SFX/Mobs/Mushroom/Damage/mushroom_damage_01.mp3" id="7_g63p5"]
+[ext_resource type="AudioStream" uid="uid://pjc4hfimqquk" path="res://Audio/SFX/Mobs/Mushroom/Footstep/mushroom_footstep_01.wav" id="7_yrmjc"]
 [ext_resource type="Script" uid="uid://dehsnwdtk7a6e" path="res://Mobs/Mushroom/Scripts/attack_mushroom_state.gd" id="8_rswoi"]
 [ext_resource type="Script" uid="uid://ddvq804fbwgco" path="res://Mobs/Mushroom/Scripts/damage_mushroom_state.gd" id="9_g8mg2"]
 [ext_resource type="Script" uid="uid://chcjifneprgoc" path="res://Mobs/Mushroom/Scripts/death_mushroom_state.gd" id="12_bbi1o"]
@@ -342,6 +349,20 @@ tracks/2/keys = {
 "update": 1,
 "values": [true, false, true]
 }
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("SFX/AttackAudio2D")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [0],
+"method": &"play_attack"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_yrmjc"]
 length = 0.4
@@ -578,6 +599,25 @@ tracks/2/keys = {
 "update": 1,
 "values": [true]
 }
+tracks/3/type = "audio"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("SFX/FootstepAudio2D")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("7_yrmjc")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("7_yrmjc")
+}],
+"times": PackedFloat32Array(0.09, 0.49)
+}
+tracks/3/use_blend = true
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_v4nd4"]
 _data = {
@@ -605,6 +645,33 @@ radius = 117.017
 collision_layer = 4
 script = ExtResource("1_1jvsc")
 
+[node name="SFX" type="Node2D" parent="."]
+
+[node name="FootstepAudio2D" type="AudioStreamPlayer2D" parent="SFX"]
+volume_db = -32.0
+pitch_scale = 1.2
+
+[node name="AttackAudio2D" type="AudioStreamPlayer2D" parent="SFX"]
+volume_db = -24.0
+pitch_scale = 1.2
+script = ExtResource("2_mi0g7")
+attack_sounds = Array[AudioStream]([ExtResource("3_xsx4f")])
+metadata/_custom_type_script = "uid://bswjxndys3ncm"
+
+[node name="DeathAudio2D" type="AudioStreamPlayer2D" parent="SFX"]
+volume_db = -16.0
+pitch_scale = 1.2
+script = ExtResource("4_xsx4f")
+death_sounds = Array[AudioStream]([ExtResource("5_isjtg")])
+metadata/_custom_type_script = "uid://dnh0m16ohyydg"
+
+[node name="DamageAudio2D" type="AudioStreamPlayer2D" parent="SFX"]
+volume_db = -16.0
+pitch_scale = 1.2
+script = ExtResource("6_krkps")
+damage_sounds = Array[AudioStream]([ExtResource("7_g63p5")])
+metadata/_custom_type_script = "uid://thw23noko053"
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 6.5)
 shape = SubResource("RectangleShape2D_1jvsc")
@@ -612,7 +679,7 @@ shape = SubResource("RectangleShape2D_1jvsc")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.880071, 0.880071)
 sprite_frames = SubResource("SpriteFrames_g8mg2")
-animation = &"Death"
+animation = &"Attack1"
 autoplay = "Idle"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

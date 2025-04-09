@@ -6,8 +6,10 @@ var damage_duration: float = 0.5  # длительность состояния 
 var damage_timer: float = 0.0  # таймер состояния
 
 func enter() -> void:
+	entity.animplayer.play("Damage")
+	$"../../SFX/DamageAudio2D".play_damage()
+	
 	damage_timer = 0.0
-	entity.animplayer.play("Damage")  # проигрываем анимацию получения урона
 	entity.animplayer.animation_finished.connect(_on_animation_finished)
 	
 	# Вычисляем направление отскока относительно позиции атакующего врага:
