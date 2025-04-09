@@ -3,6 +3,8 @@ extends State
 
 func enter() -> void:
 	entity.animplayer.play("Ultimative")
+	$"../../SFX/UltimativeAudio2D".play()
+	
 	entity.velocity.x = 0
 
 	entity.is_blocking = false

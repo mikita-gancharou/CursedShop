@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://d3yv308j8r7it"]
+
+[ext_resource type="AudioStream" uid="uid://c5gj282sgxa80" path="res://Audio/SFX/Ultimative/ultimative_01.wav" id="1_ghbho"]
+
+[node name="UltimativeAudio2D" type="AudioStreamPlayer2D"]
+stream = ExtResource("1_ghbho")
+volume_db = -32.0

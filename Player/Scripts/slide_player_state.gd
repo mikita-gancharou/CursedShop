@@ -5,6 +5,7 @@ var slide_velocity := Vector2.ZERO
 
 func enter() -> void:
 	entity.animplayer.play("Slide")
+	$"../../SFX/SlideAudio2D".play()
 	
 	# Определяем направление по свойству flip_h спрайта
 	var slide_direction = -1 if entity.sprite.flip_h else 1
@@ -13,6 +14,8 @@ func enter() -> void:
 	
 	entity.is_blocking = false
 	entity.is_sliding = true
+	
+
 
 func exit() -> void:
 	entity.is_sliding = false

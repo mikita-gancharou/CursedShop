@@ -3,12 +3,14 @@ extends State
 
 func enter() -> void:
 	entity.animplayer.play("Block")
+	$"../../SFX/ShieldAudio2D".play()
+	
 	entity.velocity.x = 0
 	
 	entity.is_blocking = true
 	entity.is_sliding = false
 	
-	$"../../SFX/ShieldAudio2D".play()
+
 	
 func exit() -> void:
 	pass
