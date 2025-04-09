@@ -16,7 +16,7 @@ func enter() -> void:
 		damage_duration = 0.1
 	else:
 		entity.animplayer.play("Damage")
-
+		$"../../SFX/DamageAudio2D".play_damage()
 	#print("Player: ",entity.global_position.x)
 	#print("Enemy: ", entity.last_enemy_position.x)
 	var direction: int = sign(entity.global_position.x - entity.last_enemy_position.x)

@@ -8,6 +8,8 @@ func enter() -> void:
 	entity.is_blocking = true
 	entity.is_sliding = false
 	
+	$"../../SFX/ShieldAudio2D".play()
+	
 func exit() -> void:
 	pass
 	

@@ -1,3 +1,0 @@
-[gd_scene format=3 uid="uid://j82mjk5sj71x"]
-
-[node name="JumpAudio2D" type="AudioStreamPlayer2D"]

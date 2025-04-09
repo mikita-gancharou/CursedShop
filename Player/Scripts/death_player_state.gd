@@ -7,6 +7,9 @@ func enter() -> void:
 	
 	entity.is_blocking = false
 	entity.is_sliding = false
+	
+	$"../../SFX/DeathAudio2D".play_death()
+
 
 func exit() -> void:
 	#queue_free()
