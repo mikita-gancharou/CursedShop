@@ -1242,7 +1242,7 @@ script = ExtResource("1_btcbx")
 [node name="FootstepAudio2D" parent="." instance=ExtResource("18_b1ygp")]
 position = Vector2(0, 30)
 
-[node name="SFX" type="Node" parent="."]
+[node name="SFX" type="Node2D" parent="."]
 
 [node name="AttackAudio2D" parent="SFX" instance=ExtResource("3_n471f")]
 
