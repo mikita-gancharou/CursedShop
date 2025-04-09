@@ -3853,5 +3853,5 @@ position = Vector2(3624, 952)
 position = Vector2(72, 296)
 
 [node name="Player" parent="Player" instance=ExtResource("7_3q0io")]
-position = Vector2(0.00012207, 7.99997)
+position = Vector2(3464, -192)
 scale = Vector2(0.948626, 0.978754)

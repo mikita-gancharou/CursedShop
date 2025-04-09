@@ -1,13 +1,21 @@
-[gd_scene load_steps=71 format=3 uid="uid://bhd8w7wam0ylm"]
+[gd_scene load_steps=80 format=3 uid="uid://bhd8w7wam0ylm"]
 
 [ext_resource type="Texture2D" uid="uid://s63v6dohts8d" path="res://Mobs/Skeleton/Sprites/Attack.png" id="1_a1moq"]
 [ext_resource type="Script" uid="uid://nefdj6ed0oll" path="res://Mobs/Skeleton/Scripts/skeleton.gd" id="1_pfjha"]
+[ext_resource type="Script" uid="uid://thw23noko053" path="res://Audio/SFX/Player/Damage/damage_audio_2d.gd" id="2_cpykj"]
 [ext_resource type="Texture2D" uid="uid://d12joni4qe84v" path="res://Mobs/Skeleton/Sprites/Attack2.png" id="2_pfjha"]
+[ext_resource type="Script" uid="uid://dnh0m16ohyydg" path="res://Audio/SFX/Player/Death/death_audio_2d.gd" id="3_coshe"]
 [ext_resource type="Texture2D" uid="uid://ddlk7pq5d4he4" path="res://Mobs/Skeleton/Sprites/Take Hit.png" id="3_dtso3"]
+[ext_resource type="AudioStream" uid="uid://dgjoyn045o3uk" path="res://Audio/SFX/Mobs/Skeleton/Damage/skeleton_damage_01.mp3" id="3_y5cgq"]
+[ext_resource type="AudioStream" uid="uid://bhahopnx6nm46" path="res://Audio/SFX/Mobs/Skeleton/Damage/skeleton_damage_02.mp3" id="4_1cm0u"]
 [ext_resource type="Texture2D" uid="uid://dhmnuc8p2s6f4" path="res://Mobs/Skeleton/Sprites/Death.png" id="4_uqbr8"]
+[ext_resource type="Script" uid="uid://bswjxndys3ncm" path="res://Audio/SFX/Player/Sword/attack_audio_2d.gd" id="5_4qsp2"]
 [ext_resource type="Texture2D" uid="uid://rabswei3xbva" path="res://Mobs/Skeleton/Sprites/Idle.png" id="5_bpspg"]
+[ext_resource type="AudioStream" uid="uid://f6lcy1fw6aq4" path="res://Audio/SFX/Mobs/Skeleton/Death/skeleton_death_01.mp3" id="6_2owxj"]
 [ext_resource type="Texture2D" uid="uid://cnkbaon0obyw4" path="res://Mobs/Skeleton/Sprites/Walk.png" id="6_o0wmh"]
 [ext_resource type="Texture2D" uid="uid://dj7pxnbpde4j1" path="res://Mobs/Skeleton/Sprites/Shield.png" id="7_uu01r"]
+[ext_resource type="Script" uid="uid://5xbe0yupbrwg" path="res://Audio/SFX/Mobs/Skeleton/Footstep/footstep_audio_2d.gd" id="8_4qsp2"]
+[ext_resource type="AudioStream" uid="uid://bimt08ge3is54" path="res://Audio/SFX/Mobs/Skeleton/Footstep/skeleton_footstep.ogg" id="8_idg4w"]
 [ext_resource type="Script" uid="uid://oggy7i423rhe" path="res://Mobs/Skeleton/Scripts/skeleton_state_machine.gd" id="9_dtso3"]
 [ext_resource type="Script" uid="uid://biuo7wpu6wt3i" path="res://Mobs/Skeleton/Scripts/idle_skeleton_state.gd" id="10_bpspg"]
 [ext_resource type="Script" uid="uid://bboj7t7ruqfs3" path="res://Mobs/Skeleton/Scripts/chase_skeleton_state.gd" id="11_o0wmh"]
@@ -15,6 +23,10 @@
 [ext_resource type="Script" uid="uid://c047brcq86088" path="res://Mobs/Skeleton/Scripts/damage_skeleton_state.gd" id="13_i18sh"]
 [ext_resource type="Script" uid="uid://c2olw1t2ya5fn" path="res://Mobs/Skeleton/Scripts/death_skeleton_state.gd" id="14_5e4x2"]
 [ext_resource type="Script" uid="uid://bjbf1au5w13c5" path="res://Mobs/Skeleton/Scripts/recovery_skeleton_state.gd" id="15_i18sh"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_y5cgq"]
+random_pitch = 1.1
+random_volume_offset_db = 2.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fn7ex"]
 size = Vector2(18.3429, 50.0576)
@@ -589,6 +601,20 @@ tracks/2/keys = {
 "update": 1,
 "values": [true]
 }
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("SFX/FootstepAudio2D")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"play_footstep"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_coshe"]
 length = 0.4
@@ -658,6 +684,28 @@ radius = 117.017
 collision_layer = 4
 script = ExtResource("1_pfjha")
 
+[node name="SFX" type="Node2D" parent="."]
+
+[node name="DamageAudio2D" type="AudioStreamPlayer2D" parent="SFX"]
+script = ExtResource("2_cpykj")
+damage_sounds = Array[AudioStream]([ExtResource("3_y5cgq"), ExtResource("4_1cm0u")])
+metadata/_custom_type_script = "uid://thw23noko053"
+
+[node name="DeathAudio2D" type="AudioStreamPlayer2D" parent="SFX"]
+script = ExtResource("3_coshe")
+death_sounds = Array[AudioStream]([ExtResource("6_2owxj")])
+metadata/_custom_type_script = "uid://dnh0m16ohyydg"
+
+[node name="AttackAudio2D" type="AudioStreamPlayer2D" parent="SFX"]
+script = ExtResource("5_4qsp2")
+metadata/_custom_type_script = "uid://bswjxndys3ncm"
+
+[node name="FootstepAudio2D" type="AudioStreamPlayer2D" parent="SFX"]
+stream = SubResource("AudioStreamRandomizer_y5cgq")
+volume_db = -8.0
+script = ExtResource("8_4qsp2")
+footstep_sound = ExtResource("8_idg4w")
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(2, 0)
 scale = Vector2(0.59931, 0.59931)
@@ -666,7 +714,7 @@ shape = SubResource("RectangleShape2D_fn7ex")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.59931, 0.59931)
 sprite_frames = SubResource("SpriteFrames_ekdya")
-animation = &"Death"
+animation = &"Run"
 autoplay = "Idle"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
