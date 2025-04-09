@@ -19,6 +19,8 @@ func enter() -> void:
 	
 	entity.is_blocking = false
 	entity.is_sliding = false
+	
+	$"../../SFX/AttackAudio2D".play_attack(combo_index)
 
 func exit() -> void:
 	call_deferred("_deferred_disconnect")
@@ -30,6 +32,7 @@ func _deferred_disconnect() -> void:
 func update(_delta: float) -> void:
 	if Input.is_action_just_pressed("Attack"):
 		combo_requested = true
+		$"../../SFX/AttackAudio2D".play_attack(combo_index)
 
 	if not entity.animplayer.is_playing():
 		if combo_requested and combo_index < ATTACK_ANIMATIONS.size() - 1:

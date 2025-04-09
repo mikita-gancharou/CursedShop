@@ -7,6 +7,8 @@ func enter() -> void:
 	
 	entity.is_blocking = false
 	entity.is_sliding = false
+	
+	$"../../SFX/JumpAudio2D".play()
 
 func exit() -> void:
 	pass

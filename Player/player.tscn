@@ -1,8 +1,10 @@
-[gd_scene load_steps=119 format=3 uid="uid://cwnm8oamm0nog"]
+[gd_scene load_steps=122 format=3 uid="uid://cwnm8oamm0nog"]
 
 [ext_resource type="Script" uid="uid://b17tbcvaf4npi" path="res://Player/Scripts/player.gd" id="1_btcbx"]
 [ext_resource type="Texture2D" uid="uid://c0o3j8vpuro5j" path="res://Player/Sprites/char_blue_1.png" id="1_l8h54"]
 [ext_resource type="Texture2D" uid="uid://b6b0g2hanj8rq" path="res://Player/Sprites/char_blue_2.png" id="3_00tjw"]
+[ext_resource type="PackedScene" uid="uid://bvo35axl0jh8i" path="res://Audio/SFX/Sword/attack_audio_2D.tscn" id="3_n471f"]
+[ext_resource type="AudioStream" uid="uid://d4byilt8qp2l2" path="res://Audio/SFX/Jump/jump_01.wav" id="3_o28un"]
 [ext_resource type="Script" uid="uid://b4ys66rqrn15q" path="res://Player/Scripts/player_state_machine.gd" id="4_gwnis"]
 [ext_resource type="Script" uid="uid://d08exwv2aonsq" path="res://Player/Scripts/idle_player_state.gd" id="5_k53q1"]
 [ext_resource type="Script" uid="uid://dlcx33e7tbbs5" path="res://Player/Scripts/running_player_state.gd" id="6_fhl08"]
@@ -18,6 +20,10 @@
 [ext_resource type="Script" uid="uid://3aecfmxy10us" path="res://Player/Scripts/ultimative_player_state.gd" id="12_pisgm"]
 [ext_resource type="Texture2D" uid="uid://b63l7hq08jm3l" path="res://Art/UI/HP_bar_progress.png" id="13_dkpta"]
 [ext_resource type="PackedScene" uid="uid://stp8rmlu0x5m" path="res://Audio/SFX/Footsteps/footstep_audio_2D.tscn" id="18_b1ygp"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_qemgg"]
+streams_count = 1
+stream_0/stream = ExtResource("3_o28un")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_od3ui"]
 size = Vector2(15, 31)
@@ -1052,6 +1058,20 @@ tracks/2/keys = {
 "update": 1,
 "values": [true]
 }
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("FootstepAudio2D")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"play_footstep"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_pisgm"]
 length = 0.001
@@ -1222,6 +1242,13 @@ script = ExtResource("1_btcbx")
 [node name="FootstepAudio2D" parent="." instance=ExtResource("18_b1ygp")]
 position = Vector2(0, 30)
 
+[node name="SFX" type="Node" parent="."]
+
+[node name="AttackAudio2D" parent="SFX" instance=ExtResource("3_n471f")]
+
+[node name="JumpAudio2D" type="AudioStreamPlayer2D" parent="SFX"]
+stream = SubResource("AudioStreamRandomizer_qemgg")
+
 [node name="PlayerStateMachine" type="Node" parent="." node_paths=PackedStringArray("current_state")]
 script = ExtResource("4_gwnis")
 current_state = NodePath("IdlePlayerState")
@@ -1263,7 +1290,7 @@ shape = SubResource("RectangleShape2D_od3ui")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_dkpta")
-animation = &"Land"
+animation = &"Block"
 autoplay = "Idle"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
