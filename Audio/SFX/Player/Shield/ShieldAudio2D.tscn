@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://5s41y2leywoy"]
+
+[ext_resource type="AudioStream" uid="uid://cninp5cgucyxk" path="res://Audio/SFX/Player/Shield/shield-01.ogg" id="1_75ymy"]
+
+[node name="ShieldAudio2D" type="AudioStreamPlayer2D"]
+stream = ExtResource("1_75ymy")

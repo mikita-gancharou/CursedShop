@@ -1,0 +1,17 @@
+[gd_scene load_steps=12 format=3 uid="uid://v1qu4tkpi7td"]
+
+[ext_resource type="Script" uid="uid://thw23noko053" path="res://Audio/SFX/Player/Damage/damage_audio_2d.gd" id="1_mbrbf"]
+[ext_resource type="AudioStream" uid="uid://c6uocpptyq2eg" path="res://Audio/SFX/Player/Damage/pain-01.ogg" id="2_g612y"]
+[ext_resource type="AudioStream" uid="uid://bqewilbm683i7" path="res://Audio/SFX/Player/Damage/pain-02.ogg" id="3_m4h38"]
+[ext_resource type="AudioStream" uid="uid://b1p7d2e1w7nb2" path="res://Audio/SFX/Player/Damage/pain-03.ogg" id="4_d6voi"]
+[ext_resource type="AudioStream" uid="uid://cec4lggh81j3e" path="res://Audio/SFX/Player/Damage/pain-04.ogg" id="5_b3rkt"]
+[ext_resource type="AudioStream" uid="uid://doxrrjrn7t4mk" path="res://Audio/SFX/Player/Damage/pain-05.ogg" id="6_5at5o"]
+[ext_resource type="AudioStream" uid="uid://ie3imfy55xif" path="res://Audio/SFX/Player/Damage/pain-06.ogg" id="7_1cr0u"]
+[ext_resource type="AudioStream" uid="uid://dwh4v32uvlo24" path="res://Audio/SFX/Player/Damage/pain-07.ogg" id="8_o3kvg"]
+[ext_resource type="AudioStream" uid="uid://cowhketk83a7g" path="res://Audio/SFX/Player/Damage/pain-08.ogg" id="9_yq2fl"]
+[ext_resource type="AudioStream" uid="uid://dcmfj3sldxiu" path="res://Audio/SFX/Player/Damage/pain-09.ogg" id="10_6fo01"]
+[ext_resource type="AudioStream" uid="uid://ceiqen1o5h7jl" path="res://Audio/SFX/Player/Damage/pain-10.ogg" id="11_8eprx"]
+
+[node name="DamageAudio2D" type="AudioStreamPlayer2D"]
+script = ExtResource("1_mbrbf")
+damage_sounds = Array[AudioStream]([ExtResource("2_g612y"), ExtResource("3_m4h38"), ExtResource("4_d6voi"), ExtResource("5_b3rkt"), ExtResource("6_5at5o"), ExtResource("7_1cr0u"), ExtResource("8_o3kvg"), ExtResource("9_yq2fl"), ExtResource("10_6fo01"), ExtResource("11_8eprx")])
