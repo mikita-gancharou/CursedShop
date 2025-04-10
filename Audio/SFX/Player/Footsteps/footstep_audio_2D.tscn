@@ -1,9 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://stp8rmlu0x5m"]
+[gd_scene load_steps=3 format=3 uid="uid://stp8rmlu0x5m"]
 
-[ext_resource type="AudioStream" uid="uid://bjpe0tuawgeof" path="res://Audio/SFX/Player/Footsteps/footstep_03.wav" id="1_xbp3t"]
 [ext_resource type="Script" uid="uid://b37xu3w4g6x82" path="res://Audio/SFX/Player/Footsteps/footstep_audio_2d.gd" id="2_0qxhn"]
-[ext_resource type="AudioStream" uid="uid://ber2s7wpil2oy" path="res://Audio/SFX/Player/Footsteps/footstep_02.wav" id="3_t7b8x"]
-[ext_resource type="AudioStream" uid="uid://c7dxltf6mppw2" path="res://Audio/SFX/Player/Footsteps/footstep_01.wav" id="4_dv8oc"]
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_t7b8x"]
 random_pitch = 1.13
@@ -14,4 +11,4 @@ streams_count = 1
 stream = SubResource("AudioStreamRandomizer_t7b8x")
 volume_db = -16.0
 script = ExtResource("2_0qxhn")
-footstep_variants = Array[AudioStream]([ExtResource("1_xbp3t"), ExtResource("3_t7b8x"), ExtResource("4_dv8oc")])
+footstep_variants = Array[AudioStream]([])
