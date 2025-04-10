@@ -1,7 +1,8 @@
-[gd_scene load_steps=127 format=3 uid="uid://cwnm8oamm0nog"]
+[gd_scene load_steps=128 format=3 uid="uid://cwnm8oamm0nog"]
 
 [ext_resource type="Script" uid="uid://b17tbcvaf4npi" path="res://Player/Scripts/player.gd" id="1_btcbx"]
 [ext_resource type="Texture2D" uid="uid://c0o3j8vpuro5j" path="res://Player/Sprites/char_blue_1.png" id="1_l8h54"]
+[ext_resource type="PackedScene" uid="uid://dx2j33l8gmtbl" path="res://Audio/Music/bg_music.tscn" id="2_8viyr"]
 [ext_resource type="Texture2D" uid="uid://b6b0g2hanj8rq" path="res://Player/Sprites/char_blue_2.png" id="3_00tjw"]
 [ext_resource type="PackedScene" uid="uid://k8r2iwgtwyuv" path="res://Audio/SFX/Player/Slide/SlideAudio2D.tscn" id="3_8mwp6"]
 [ext_resource type="PackedScene" uid="uid://5s41y2leywoy" path="res://Audio/SFX/Player/Shield/ShieldAudio2D.tscn" id="3_gpjlu"]
@@ -1244,8 +1245,12 @@ radius = 13.0
 collision_layer = 2
 script = ExtResource("1_btcbx")
 
+[node name="BgMusic" parent="." instance=ExtResource("2_8viyr")]
+volume_db = -16.0
+
 [node name="FootstepAudio2D" parent="." instance=ExtResource("18_b1ygp")]
 position = Vector2(0, 30)
+volume_db = -24.0
 
 [node name="SFX" type="Node2D" parent="."]
 

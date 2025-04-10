@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://biwtwg8n2853w"
+path="res://.godot/imported/oliver siimon - epic cinematic background music 1 a major 85.mp3-35ab1eb9f7bc69e783fa8e6023926f44.mp3str"
+
+[deps]
+
+source_file="res://Audio/Music/oliver siimon - epic cinematic background music 1 a major 85.mp3"
+dest_files=["res://.godot/imported/oliver siimon - epic cinematic background music 1 a major 85.mp3-35ab1eb9f7bc69e783fa8e6023926f44.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

@@ -28,6 +28,7 @@ func _ready() -> void:
 	health = max_health
 	healthbar.max_value = max_health
 	healthbar.value = health
+	$BgMusic.play()
 
 func _process(_delta: float) -> void:
 	pass

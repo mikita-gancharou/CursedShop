@@ -1,0 +1,12 @@
+[gd_scene load_steps=4 format=3 uid="uid://dx2j33l8gmtbl"]
+
+[ext_resource type="AudioStream" uid="uid://biwtwg8n2853w" path="res://Audio/Music/oliver siimon - epic cinematic background music 1 a major 85.mp3" id="1_ahaj5"]
+[ext_resource type="AudioStream" uid="uid://dtviwmu37tfv7" path="res://Audio/Music/oliver siimon - epic cinematic background music 2 a major 85.mp3" id="2_8jb4s"]
+
+[sub_resource type="AudioStreamPlaylist" id="AudioStreamPlaylist_0w8rj"]
+stream_count = 2
+stream_0 = ExtResource("1_ahaj5")
+stream_1 = ExtResource("2_8jb4s")
+
+[node name="BgMusic" type="AudioStreamPlayer2D"]
+stream = SubResource("AudioStreamPlaylist_0w8rj")

@@ -18,4 +18,7 @@ func _process(delta: float) -> void:
 func _on_body_entered(body: CharacterBody2D) -> void:
 	if body is Player:
 		body.get_node("PlayerStateMachine").add_health(healing)
-		call_deferred("queue_free")
+		$PotionUsedAudio2D.play()
+		$CollisionShape2D.set_deferred("disabled", true)
+		$AnimatedSprite2D.visible = false
+		$PotionUsedAudio2D.connect("finished", Callable(self, "queue_free"))

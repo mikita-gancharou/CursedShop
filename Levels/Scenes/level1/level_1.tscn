@@ -1,5 +1,6 @@
-[gd_scene load_steps=11 format=4 uid="uid://csfhx52d646s"]
+[gd_scene load_steps=12 format=4 uid="uid://csfhx52d646s"]
 
+[ext_resource type="Script" uid="uid://omkpfhwqb53j" path="res://Levels/Scenes/level1/level_1.gd" id="1_1fhym"]
 [ext_resource type="Texture2D" uid="uid://bktc2ebwpqfbf" path="res://Art/Background/background_layer_1.png" id="1_ven3y"]
 [ext_resource type="Texture2D" uid="uid://c8fa340g4s3nk" path="res://Art/Background/background_layer_2.png" id="2_hkn7c"]
 [ext_resource type="Texture2D" uid="uid://dxsudnvvfcmso" path="res://Art/Background/background_layer_3.png" id="3_1fhym"]
@@ -3695,6 +3696,7 @@ custom_data_layer_0/type = 2
 sources/0 = SubResource("TileSetAtlasSource_hui07")
 
 [node name="Level1" type="Node2D"]
+script = ExtResource("1_1fhym")
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
@@ -3822,9 +3824,6 @@ position = Vector2(3272, 304)
 [node name="Skeleton" parent="Mobs" instance=ExtResource("6_3rk4s")]
 position = Vector2(3312, 672)
 
-[node name="Skeleton2" parent="Mobs" instance=ExtResource("6_3rk4s")]
-position = Vector2(2992, 944)
-
 [node name="Skeleton3" parent="Mobs" instance=ExtResource("6_3rk4s")]
 position = Vector2(2880, 840)
 
@@ -3835,16 +3834,13 @@ position = Vector2(2736, 840)
 position = Vector2(2592, 840)
 
 [node name="Skeleton6" parent="Mobs" instance=ExtResource("6_3rk4s")]
-position = Vector2(2512, 952)
+position = Vector2(2456, 952)
 
 [node name="Skeleton7" parent="Mobs" instance=ExtResource("6_3rk4s")]
-position = Vector2(3512, 952)
+position = Vector2(3120, 952)
 
 [node name="Skeleton8" parent="Mobs" instance=ExtResource("6_3rk4s")]
-position = Vector2(3568, 952)
-
-[node name="Skeleton9" parent="Mobs" instance=ExtResource("6_3rk4s")]
-position = Vector2(2936, 944)
+position = Vector2(3064, 952)
 
 [node name="Skeleton10" parent="Mobs" instance=ExtResource("6_3rk4s")]
 position = Vector2(3624, 952)
@@ -3853,5 +3849,5 @@ position = Vector2(3624, 952)
 position = Vector2(72, 296)
 
 [node name="Player" parent="Player" instance=ExtResource("7_3q0io")]
-position = Vector2(3464, -192)
+position = Vector2(-16, 8)
 scale = Vector2(0.948626, 0.978754)
