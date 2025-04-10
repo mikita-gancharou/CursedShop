@@ -38,14 +38,6 @@ motion_mirroring = Vector2(640, 0)
 [node name="BackgroundLayer3" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer3"]
 texture = ExtResource("4_0vtto")
 
-[node name="TestLevel" type="Button" parent="."]
-offset_left = 448.0
-offset_top = 64.0
-offset_right = 704.0
-offset_bottom = 128.0
-text = "TestLevel
-"
-
 [node name="Play" type="Button" parent="."]
 offset_left = 448.0
 offset_top = 192.0
@@ -60,6 +52,5 @@ offset_right = 704.0
 offset_bottom = 384.0
 text = "Exit"
 
-[connection signal="pressed" from="TestLevel" to="." method="_on_test_level_pressed"]
 [connection signal="pressed" from="Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="Exit" to="." method="_on_exit_pressed"]

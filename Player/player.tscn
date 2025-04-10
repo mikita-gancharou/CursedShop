@@ -1,4 +1,4 @@
-[gd_scene load_steps=128 format=3 uid="uid://cwnm8oamm0nog"]
+[gd_scene load_steps=132 format=3 uid="uid://cwnm8oamm0nog"]
 
 [ext_resource type="Script" uid="uid://b17tbcvaf4npi" path="res://Player/Scripts/player.gd" id="1_btcbx"]
 [ext_resource type="Texture2D" uid="uid://c0o3j8vpuro5j" path="res://Player/Sprites/char_blue_1.png" id="1_l8h54"]
@@ -8,11 +8,13 @@
 [ext_resource type="PackedScene" uid="uid://5s41y2leywoy" path="res://Audio/SFX/Player/Shield/ShieldAudio2D.tscn" id="3_gpjlu"]
 [ext_resource type="PackedScene" uid="uid://v1qu4tkpi7td" path="res://Audio/SFX/Player/Damage/DamageAudio2D.tscn" id="3_hshwv"]
 [ext_resource type="PackedScene" uid="uid://bvo35axl0jh8i" path="res://Audio/SFX/Player/Sword/attack_audio_2D.tscn" id="3_n471f"]
-[ext_resource type="AudioStream" uid="uid://d4byilt8qp2l2" path="res://Audio/SFX/Player/Jump/jump_01.wav" id="3_o28un"]
+[ext_resource type="AudioStream" uid="uid://cfcdp4g2vt154" path="res://Audio/SFX/Player/Footsteps/footstep_03.ogg" id="4_755ss"]
 [ext_resource type="Script" uid="uid://b4ys66rqrn15q" path="res://Player/Scripts/player_state_machine.gd" id="4_gwnis"]
 [ext_resource type="PackedScene" uid="uid://bkgtluo257aje" path="res://Audio/SFX/Player/Death/DeathAudio2d.tscn" id="5_7emwf"]
+[ext_resource type="AudioStream" uid="uid://devqhcbcwtp7s" path="res://Audio/SFX/Player/Footsteps/footstep_02.ogg" id="5_bbimk"]
 [ext_resource type="Script" uid="uid://d08exwv2aonsq" path="res://Player/Scripts/idle_player_state.gd" id="5_k53q1"]
 [ext_resource type="Script" uid="uid://dlcx33e7tbbs5" path="res://Player/Scripts/running_player_state.gd" id="6_fhl08"]
+[ext_resource type="AudioStream" uid="uid://ei1o3mwgsdsi" path="res://Audio/SFX/Player/Footsteps/footstep_01.ogg" id="6_m0h3t"]
 [ext_resource type="Script" uid="uid://clwbu5mocflan" path="res://Player/Scripts/damage_player_state.gd" id="7_00tjw"]
 [ext_resource type="Script" uid="uid://nbwkk1m2sr0y" path="res://Player/Scripts/jump_player_state.gd" id="7_vtle1"]
 [ext_resource type="Script" uid="uid://vwhdfriafkdd" path="res://Player/Scripts/fall_player_state.gd" id="8_od3ui"]
@@ -20,16 +22,18 @@
 [ext_resource type="Script" uid="uid://bggew3txrrqni" path="res://Player/Scripts/attack_player_state.gd" id="9_gu6f8"]
 [ext_resource type="PackedScene" uid="uid://d3yv308j8r7it" path="res://Audio/SFX/Player/Ultimative/UltimativeAudio2D.tscn" id="9_qemgg"]
 [ext_resource type="Script" uid="uid://klrwdguusfdk" path="res://Player/Scripts/slide_player_state.gd" id="10_dkpta"]
+[ext_resource type="AudioStream" uid="uid://bwmqqhu6dbanh" path="res://Audio/SFX/Player/Jump/jump_01.ogg" id="11_i4o1l"]
 [ext_resource type="Script" uid="uid://ckhfpapcu7pw0" path="res://Player/Scripts/block_player_state.gd" id="11_lfmf2"]
 [ext_resource type="Texture2D" uid="uid://tt5axu5angvi" path="res://Art/UI/HP_bar_under.png" id="11_p5o4e"]
 [ext_resource type="Texture2D" uid="uid://c6svr0rolenor" path="res://Art/UI/HP_bar_over.png" id="12_gu6f8"]
 [ext_resource type="Script" uid="uid://3aecfmxy10us" path="res://Player/Scripts/ultimative_player_state.gd" id="12_pisgm"]
 [ext_resource type="Texture2D" uid="uid://b63l7hq08jm3l" path="res://Art/UI/HP_bar_progress.png" id="13_dkpta"]
+[ext_resource type="AudioStream" uid="uid://cnhtt3mn665a1" path="res://Audio/SFX/Player/Ultimative/ultimative_01.ogg" id="14_j2n6q"]
 [ext_resource type="PackedScene" uid="uid://stp8rmlu0x5m" path="res://Audio/SFX/Player/Footsteps/footstep_audio_2D.tscn" id="18_b1ygp"]
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_qemgg"]
 streams_count = 1
-stream_0/stream = ExtResource("3_o28un")
+stream_0/stream = ExtResource("11_i4o1l")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_od3ui"]
 size = Vector2(15, 31)
@@ -1251,6 +1255,7 @@ volume_db = -16.0
 [node name="FootstepAudio2D" parent="." instance=ExtResource("18_b1ygp")]
 position = Vector2(0, 30)
 volume_db = -24.0
+footstep_variants = Array[AudioStream]([ExtResource("4_755ss"), ExtResource("5_bbimk"), ExtResource("6_m0h3t")])
 
 [node name="SFX" type="Node2D" parent="."]
 
@@ -1272,6 +1277,7 @@ stream = SubResource("AudioStreamRandomizer_qemgg")
 [node name="DeathAudio2D" parent="SFX" instance=ExtResource("5_7emwf")]
 
 [node name="UltimativeAudio2D" parent="SFX" instance=ExtResource("9_qemgg")]
+stream = ExtResource("14_j2n6q")
 volume_db = -16.0
 
 [node name="PlayerStateMachine" type="Node" parent="." node_paths=PackedStringArray("current_state")]
