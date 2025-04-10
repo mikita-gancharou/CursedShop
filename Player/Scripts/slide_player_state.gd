@@ -1,0 +1,53 @@
+class_name SlidePlayerState
+extends State
+
+var slide_velocity := Vector2.ZERO
+
+func enter() -> void:
+	entity.animplayer.play("Slide")
+	$"../../SFX/SlideAudio2D".play()
+	
+	# Определяем направление по свойству flip_h спрайта
+	var slide_direction = -1 if entity.sprite.flip_h else 1
+	var slide_speed = 350.0  # Настраивайте под баланс игры
+	slide_velocity = Vector2(slide_speed * slide_direction, 0)
+	
+	entity.is_blocking = false
+	entity.is_sliding = true
+	
+
+
+func exit() -> void:
+	entity.is_sliding = false
+
+func update(delta: float) -> void:
+	# Применяем сохранённую скорость скольжения
+	entity.velocity.x = slide_velocity.x
+	
+	entity.apply_gravity(delta)
+	entity.apply_velocity(delta)
+	
+	# Симуляция трения: постепенно замедляем персонажа
+	slide_velocity.x = move_toward(slide_velocity.x, 0, 500 * delta)
+	
+	# Если скорость скольжения становится очень низкой — переходим в idle
+	if abs(slide_velocity.x) < 10.0:
+		transition.emit("IdlePlayerState")
+	
+	# Переход в прыжок, если нажата кнопка прыжка и персонаж на земле
+	if Input.is_action_just_pressed("Jump") and entity.is_on_floor():
+		transition.emit("JumpPlayerState")
+	
+	# Если падаем, переключаемся в состояние падения
+	if entity.velocity.y > 10.0:
+		transition.emit("FallPlayerState")
+	
+	if Input.is_action_just_pressed("Attack") and owner.is_on_floor():
+		transition.emit("AttackPlayerState")
+			
+	if Input.is_action_just_pressed("Ultimative") and owner.is_on_floor():
+		transition.emit("UltimativePlayerState")
+
+
+func physics_update(_delta: float) -> void:
+	pass

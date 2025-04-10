@@ -1,0 +1,106 @@
+[gd_scene load_steps=16 format=3 uid="uid://cftd8mgvnbfgh"]
+
+[ext_resource type="Script" uid="uid://d0x5u202320v3" path="res://Code/Collectibles/health_item_full.gd" id="1_uu3f5"]
+[ext_resource type="Texture2D" uid="uid://c0706cijrj4aa" path="res://Art/Collectibles/Full red.png" id="1_xvjlo"]
+[ext_resource type="AudioStream" uid="uid://1ut02bc5s7oh" path="res://Audio/SFX/Collectibles/potion_drink.wav" id="3_xd4mi"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uu3f5"]
+atlas = ExtResource("1_xvjlo")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xd4mi"]
+atlas = ExtResource("1_xvjlo")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qtlfk"]
+atlas = ExtResource("1_xvjlo")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gsbqu"]
+atlas = ExtResource("1_xvjlo")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ovp71"]
+atlas = ExtResource("1_xvjlo")
+region = Rect2(16, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8hgct"]
+atlas = ExtResource("1_xvjlo")
+region = Rect2(32, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bpe3l"]
+atlas = ExtResource("1_xvjlo")
+region = Rect2(0, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xvu6b"]
+atlas = ExtResource("1_xvjlo")
+region = Rect2(16, 32, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_mub16"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uu3f5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xd4mi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qtlfk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gsbqu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ovp71")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8hgct")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bpe3l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xvu6b")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_euseh"]
+
+[sub_resource type="Gradient" id="Gradient_xd4mi"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_qtlfk"]
+gradient = SubResource("Gradient_xd4mi")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 0)
+
+[node name="HealthItemFull" type="Area2D"]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("1_uu3f5")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.813847, 0.813847)
+sprite_frames = SubResource("SpriteFrames_mub16")
+animation = &"Idle"
+autoplay = "Idle"
+frame_progress = 0.403634
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(0.813847, 0.813847)
+shape = SubResource("CircleShape2D_euseh")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+scale = Vector2(0.261, 0.261)
+texture = SubResource("GradientTexture2D_qtlfk")
+
+[node name="PotionUsedAudio2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_xd4mi")
+volume_db = -8.0
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
