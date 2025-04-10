@@ -4,19 +4,19 @@
 [ext_resource type="Script" uid="uid://nefdj6ed0oll" path="res://Mobs/Skeleton/Scripts/skeleton.gd" id="1_pfjha"]
 [ext_resource type="Script" uid="uid://thw23noko053" path="res://Audio/SFX/Player/Damage/damage_audio_2d.gd" id="2_cpykj"]
 [ext_resource type="Texture2D" uid="uid://d12joni4qe84v" path="res://Mobs/Skeleton/Sprites/Attack2.png" id="2_pfjha"]
+[ext_resource type="AudioStream" uid="uid://d0ne6pvxmt1vw" path="res://Audio/SFX/Mobs/Skeleton/Damage/skeleton_damage_01.ogg" id="3_1cm0u"]
 [ext_resource type="Script" uid="uid://dnh0m16ohyydg" path="res://Audio/SFX/Player/Death/death_audio_2d.gd" id="3_coshe"]
 [ext_resource type="Texture2D" uid="uid://ddlk7pq5d4he4" path="res://Mobs/Skeleton/Sprites/Take Hit.png" id="3_dtso3"]
-[ext_resource type="AudioStream" uid="uid://dgjoyn045o3uk" path="res://Audio/SFX/Mobs/Skeleton/Damage/skeleton_damage_01.mp3" id="3_y5cgq"]
-[ext_resource type="AudioStream" uid="uid://bhahopnx6nm46" path="res://Audio/SFX/Mobs/Skeleton/Damage/skeleton_damage_02.mp3" id="4_1cm0u"]
+[ext_resource type="AudioStream" uid="uid://dcxguea34vlg7" path="res://Audio/SFX/Mobs/Skeleton/Damage/skeleton_damage_02.ogg" id="4_2owxj"]
 [ext_resource type="Texture2D" uid="uid://dhmnuc8p2s6f4" path="res://Mobs/Skeleton/Sprites/Death.png" id="4_uqbr8"]
 [ext_resource type="Script" uid="uid://bswjxndys3ncm" path="res://Audio/SFX/Player/Sword/attack_audio_2d.gd" id="5_4qsp2"]
 [ext_resource type="Texture2D" uid="uid://rabswei3xbva" path="res://Mobs/Skeleton/Sprites/Idle.png" id="5_bpspg"]
-[ext_resource type="AudioStream" uid="uid://f6lcy1fw6aq4" path="res://Audio/SFX/Mobs/Skeleton/Death/skeleton_death_01.mp3" id="6_2owxj"]
+[ext_resource type="AudioStream" uid="uid://b45wndkcfyv35" path="res://Audio/SFX/Mobs/Skeleton/Death/skeleton_death_01.ogg" id="6_idg4w"]
 [ext_resource type="Texture2D" uid="uid://cnkbaon0obyw4" path="res://Mobs/Skeleton/Sprites/Walk.png" id="6_o0wmh"]
 [ext_resource type="Texture2D" uid="uid://dj7pxnbpde4j1" path="res://Mobs/Skeleton/Sprites/Shield.png" id="7_uu01r"]
-[ext_resource type="AudioStream" uid="uid://crs53868mv5g3" path="res://Audio/SFX/Mobs/Skeleton/Attack/skeleton_attack_01.mp3" id="8_1cm0u"]
 [ext_resource type="Script" uid="uid://5xbe0yupbrwg" path="res://Audio/SFX/Mobs/Skeleton/Footstep/footstep_audio_2d.gd" id="8_4qsp2"]
 [ext_resource type="AudioStream" uid="uid://bimt08ge3is54" path="res://Audio/SFX/Mobs/Skeleton/Footstep/skeleton_footstep.ogg" id="8_idg4w"]
+[ext_resource type="AudioStream" uid="uid://surphwih7ha7" path="res://Audio/SFX/Mobs/Skeleton/Attack/skeleton_attack_01.ogg" id="8_onxha"]
 [ext_resource type="Script" uid="uid://oggy7i423rhe" path="res://Mobs/Skeleton/Scripts/skeleton_state_machine.gd" id="9_dtso3"]
 [ext_resource type="Script" uid="uid://biuo7wpu6wt3i" path="res://Mobs/Skeleton/Scripts/idle_skeleton_state.gd" id="10_bpspg"]
 [ext_resource type="Script" uid="uid://bboj7t7ruqfs3" path="res://Mobs/Skeleton/Scripts/chase_skeleton_state.gd" id="11_o0wmh"]
@@ -704,18 +704,18 @@ script = ExtResource("1_pfjha")
 [node name="DamageAudio2D" type="AudioStreamPlayer2D" parent="SFX"]
 volume_db = -8.0
 script = ExtResource("2_cpykj")
-damage_sounds = Array[AudioStream]([ExtResource("3_y5cgq"), ExtResource("4_1cm0u")])
+damage_sounds = Array[AudioStream]([ExtResource("3_1cm0u"), ExtResource("4_2owxj")])
 metadata/_custom_type_script = "uid://thw23noko053"
 
 [node name="DeathAudio2D" type="AudioStreamPlayer2D" parent="SFX"]
 volume_db = -16.0
 script = ExtResource("3_coshe")
-death_sounds = Array[AudioStream]([ExtResource("6_2owxj")])
+death_sounds = Array[AudioStream]([ExtResource("6_idg4w")])
 metadata/_custom_type_script = "uid://dnh0m16ohyydg"
 
 [node name="AttackAudio2D" type="AudioStreamPlayer2D" parent="SFX"]
 script = ExtResource("5_4qsp2")
-attack_sounds = Array[AudioStream]([ExtResource("8_1cm0u")])
+attack_sounds = Array[AudioStream]([ExtResource("8_onxha")])
 metadata/_custom_type_script = "uid://bswjxndys3ncm"
 
 [node name="FootstepAudio2D" type="AudioStreamPlayer2D" parent="SFX"]
