@@ -734,7 +734,7 @@ shape = SubResource("RectangleShape2D_gx3d2")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.714529, 0.714529)
 sprite_frames = SubResource("SpriteFrames_aa2c4")
-animation = &"Run"
+animation = &"Attack1"
 autoplay = "Idle"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
