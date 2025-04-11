@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=4 uid="uid://csfhx52d646s"]
+[gd_scene load_steps=13 format=4 uid="uid://csfhx52d646s"]
 
 [ext_resource type="Script" uid="uid://omkpfhwqb53j" path="res://Levels/Scenes/level1/level_1.gd" id="1_1fhym"]
 [ext_resource type="Texture2D" uid="uid://bktc2ebwpqfbf" path="res://Art/Background/background_layer_1.png" id="1_ven3y"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://bhd8w7wam0ylm" path="res://Mobs/Skeleton/skeleton.tscn" id="6_3rk4s"]
 [ext_resource type="PackedScene" uid="uid://cwnm8oamm0nog" path="res://Player/player.tscn" id="7_3q0io"]
 [ext_resource type="PackedScene" uid="uid://cftd8mgvnbfgh" path="res://Code/Collectibles/health_item_full.tscn" id="8_ygp5s"]
+[ext_resource type="PackedScene" uid="uid://c2p5keinypbve" path="res://Mobs/Goblin/goblin.tscn" id="10_1fhym"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_hui07"]
 texture = ExtResource("4_dfqae")
@@ -3812,8 +3813,11 @@ position = Vector2(3192, 680)
 
 [node name="Mobs" type="Node2D" parent="."]
 
+[node name="Goblin" parent="Mobs" instance=ExtResource("10_1fhym")]
+position = Vector2(736, 224)
+
 [node name="Mushroom" parent="Mobs" instance=ExtResource("5_isyqc")]
-position = Vector2(2056, 304)
+position = Vector2(992, 224)
 
 [node name="Mushroom2" parent="Mobs" instance=ExtResource("5_isyqc")]
 position = Vector2(3232, 304)
@@ -3843,7 +3847,7 @@ position = Vector2(3120, 952)
 position = Vector2(3064, 952)
 
 [node name="Skeleton10" parent="Mobs" instance=ExtResource("6_3rk4s")]
-position = Vector2(3624, 952)
+position = Vector2(1224, 232)
 
 [node name="Player" type="Node2D" parent="."]
 position = Vector2(72, 296)

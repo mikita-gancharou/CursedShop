@@ -1,4 +1,4 @@
-class_name IdleSkeletonState
+class_name IdleGoblinState
 extends State
 
 func enter() -> void:
@@ -21,7 +21,7 @@ func update(delta: float) -> void:
 		for body in bodies:
 			# Если обнаружен игрок, инициируем переход в состояние погони
 			if body is Player:
-				transition.emit("ChaseSkeletonState")
+				transition.emit("ChaseGoblinState")
 				return  # Завершаем, чтобы не вызывать переход несколько раз
 	else:
 		push_warning("DetectionArea didn't found")

@@ -25,10 +25,6 @@
 [ext_resource type="Script" uid="uid://c2olw1t2ya5fn" path="res://Mobs/Skeleton/Scripts/death_skeleton_state.gd" id="14_5e4x2"]
 [ext_resource type="Script" uid="uid://bjbf1au5w13c5" path="res://Mobs/Skeleton/Scripts/recovery_skeleton_state.gd" id="15_i18sh"]
 
-[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_y5cgq"]
-random_pitch = 1.1
-random_volume_offset_db = 2.0
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fn7ex"]
 size = Vector2(18.3429, 50.0576)
 
@@ -695,9 +691,94 @@ size = Vector2(37.2705, 20)
 [sub_resource type="CircleShape2D" id="CircleShape2D_4gvmp"]
 radius = 117.017
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_y5cgq"]
+random_pitch = 1.1
+random_volume_offset_db = 2.0
+
 [node name="Skeleton" type="CharacterBody2D"]
 collision_layer = 4
 script = ExtResource("1_pfjha")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(2, 0)
+scale = Vector2(0.59931, 0.59931)
+shape = SubResource("RectangleShape2D_fn7ex")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.59931, 0.59931)
+sprite_frames = SubResource("SpriteFrames_ekdya")
+animation = &"Attack1"
+autoplay = "Idle"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_luhbs")
+}
+
+[node name="SkeletonStateMachine" type="Node" parent="." node_paths=PackedStringArray("current_state")]
+script = ExtResource("9_dtso3")
+current_state = NodePath("IdleSkeletonState")
+
+[node name="IdleSkeletonState" type="Node" parent="SkeletonStateMachine"]
+script = ExtResource("10_bpspg")
+
+[node name="ChaseSkeletonState" type="Node" parent="SkeletonStateMachine"]
+script = ExtResource("11_o0wmh")
+
+[node name="AttackSkeletonState" type="Node" parent="SkeletonStateMachine"]
+script = ExtResource("12_fn7ex")
+
+[node name="DamageSkeletonState" type="Node" parent="SkeletonStateMachine"]
+script = ExtResource("13_i18sh")
+
+[node name="DeathSkeletonState" type="Node" parent="SkeletonStateMachine"]
+script = ExtResource("14_5e4x2")
+
+[node name="RecoverySkeletonState" type="Node" parent="SkeletonStateMachine"]
+script = ExtResource("15_i18sh")
+
+[node name="AttackDirection" type="Node2D" parent="."]
+position = Vector2(2, 0)
+scale = Vector2(0.880071, 0.880071)
+
+[node name="HurtBox" type="Area2D" parent="AttackDirection"]
+position = Vector2(1.0842e-19, 0)
+scale = Vector2(1.04545, 1)
+collision_layer = 32
+collision_mask = 32
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackDirection/HurtBox"]
+position = Vector2(-8.69956e-13, 4.76837e-07)
+shape = SubResource("CapsuleShape2D_uroli")
+
+[node name="HitBox" type="Area2D" parent="AttackDirection"]
+position = Vector2(24.998, 1.13687e-13)
+scale = Vector2(1.76752, 1.76752)
+collision_layer = 16
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackDirection/HitBox"]
+position = Vector2(3.8147e-06, 0)
+shape = SubResource("CircleShape2D_3fx2d")
+disabled = true
+
+[node name="AttackArea" type="Area2D" parent="AttackDirection"]
+position = Vector2(15.9078, 0)
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackDirection/AttackArea"]
+position = Vector2(8.63527, 0)
+shape = SubResource("RectangleShape2D_gkg76")
+
+[node name="DetectionArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
+visible = false
+scale = Vector2(0.851896, 0.851896)
+shape = SubResource("CircleShape2D_4gvmp")
 
 [node name="SFX" type="Node2D" parent="."]
 
@@ -724,86 +805,6 @@ volume_db = -8.0
 max_distance = 400.0
 script = ExtResource("8_4qsp2")
 footstep_sound = ExtResource("8_idg4w")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(2, 0)
-scale = Vector2(0.59931, 0.59931)
-shape = SubResource("RectangleShape2D_fn7ex")
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-scale = Vector2(0.59931, 0.59931)
-sprite_frames = SubResource("SpriteFrames_ekdya")
-animation = &"Attack1"
-autoplay = "Idle"
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_luhbs")
-}
-
-[node name="AttackDirection" type="Node2D" parent="."]
-position = Vector2(2, 0)
-scale = Vector2(0.880071, 0.880071)
-
-[node name="HurtBox" type="Area2D" parent="AttackDirection"]
-position = Vector2(1.0842e-19, 0)
-scale = Vector2(1.04545, 1)
-collision_layer = 32
-collision_mask = 64
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackDirection/HurtBox"]
-position = Vector2(-8.69956e-13, 4.76837e-07)
-shape = SubResource("CapsuleShape2D_uroli")
-
-[node name="HitBox" type="Area2D" parent="AttackDirection"]
-position = Vector2(24.998, 1.13687e-13)
-scale = Vector2(1.76752, 1.76752)
-collision_layer = 0
-collision_mask = 16
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackDirection/HitBox"]
-position = Vector2(3.8147e-06, 0)
-shape = SubResource("CircleShape2D_3fx2d")
-disabled = true
-
-[node name="AttackArea" type="Area2D" parent="AttackDirection"]
-position = Vector2(15.9078, 0)
-collision_layer = 0
-collision_mask = 2
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackDirection/AttackArea"]
-position = Vector2(8.63527, 0)
-shape = SubResource("RectangleShape2D_gkg76")
-
-[node name="DetectionArea2D" type="Area2D" parent="."]
-visible = false
-collision_layer = 0
-collision_mask = 2
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea2D"]
-shape = SubResource("CircleShape2D_4gvmp")
-
-[node name="SkeletonStateMachine" type="Node" parent="." node_paths=PackedStringArray("current_state")]
-script = ExtResource("9_dtso3")
-current_state = NodePath("IdleSkeletonState")
-
-[node name="IdleSkeletonState" type="Node" parent="SkeletonStateMachine"]
-script = ExtResource("10_bpspg")
-
-[node name="ChaseSkeletonState" type="Node" parent="SkeletonStateMachine"]
-script = ExtResource("11_o0wmh")
-
-[node name="AttackSkeletonState" type="Node" parent="SkeletonStateMachine"]
-script = ExtResource("12_fn7ex")
-
-[node name="DamageSkeletonState" type="Node" parent="SkeletonStateMachine"]
-script = ExtResource("13_i18sh")
-
-[node name="DeathSkeletonState" type="Node" parent="SkeletonStateMachine"]
-script = ExtResource("14_5e4x2")
-
-[node name="RecoverySkeletonState" type="Node" parent="SkeletonStateMachine"]
-script = ExtResource("15_i18sh")
 
 [connection signal="area_entered" from="AttackDirection/HurtBox" to="SkeletonStateMachine" method="_on_hurt_box_area_entered"]
 [connection signal="area_entered" from="AttackDirection/HitBox" to="SkeletonStateMachine/AttackSkeletonState" method="_on_hit_box_area_entered"]
