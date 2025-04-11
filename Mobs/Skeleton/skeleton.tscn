@@ -744,8 +744,8 @@ scale = Vector2(0.880071, 0.880071)
 [node name="HurtBox" type="Area2D" parent="AttackDirection"]
 position = Vector2(1.0842e-19, 0)
 scale = Vector2(1.04545, 1)
-collision_layer = 32
-collision_mask = 32
+collision_layer = 0
+collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackDirection/HurtBox"]
 position = Vector2(-8.69956e-13, 4.76837e-07)
@@ -754,7 +754,7 @@ shape = SubResource("CapsuleShape2D_uroli")
 [node name="HitBox" type="Area2D" parent="AttackDirection"]
 position = Vector2(24.998, 1.13687e-13)
 scale = Vector2(1.76752, 1.76752)
-collision_layer = 16
+collision_layer = 0
 collision_mask = 16
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackDirection/HitBox"]
