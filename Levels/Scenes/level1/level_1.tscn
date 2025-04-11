@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=4 uid="uid://csfhx52d646s"]
+[gd_scene load_steps=14 format=4 uid="uid://csfhx52d646s"]
 
 [ext_resource type="Script" uid="uid://omkpfhwqb53j" path="res://Levels/Scenes/level1/level_1.gd" id="1_1fhym"]
 [ext_resource type="Texture2D" uid="uid://bktc2ebwpqfbf" path="res://Art/Background/background_layer_1.png" id="1_ven3y"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://cwnm8oamm0nog" path="res://Player/player.tscn" id="7_3q0io"]
 [ext_resource type="PackedScene" uid="uid://cftd8mgvnbfgh" path="res://Code/Collectibles/health_item_full.tscn" id="8_ygp5s"]
 [ext_resource type="PackedScene" uid="uid://c2p5keinypbve" path="res://Mobs/Goblin/goblin.tscn" id="10_1fhym"]
+[ext_resource type="PackedScene" uid="uid://cne2emagavecc" path="res://Mobs/FlyingEye/FlyingEye.tscn" id="11_dfqae"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_hui07"]
 texture = ExtResource("4_dfqae")
@@ -3855,3 +3856,6 @@ position = Vector2(72, 296)
 [node name="Player" parent="Player" instance=ExtResource("7_3q0io")]
 position = Vector2(-16, 8)
 scale = Vector2(0.948626, 0.978754)
+
+[node name="FlyingEye" parent="." instance=ExtResource("11_dfqae")]
+position = Vector2(168, 304)

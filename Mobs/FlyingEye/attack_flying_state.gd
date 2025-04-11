@@ -1,5 +1,5 @@
-#attack_Goblin_state.gd
-class_name AttackGoblinState
+#attack_Flying_state.gd
+class_name AttackFlyingState
 extends State
 
 var has_attacked: bool = false  # Флаг, чтобы атака происходила один раз за анимацию
@@ -18,7 +18,7 @@ func update(_delta: float) -> void:
 	if not entity.animplayer.is_playing():  
 		# Анимация закончилась
 		if not _is_player_in_attack_range():  
-			transition.emit("ChaseGoblinState")  # Если игрок покинул зону атаки, возвращаемся в погоню
+			transition.emit("ChaseFlyingState")  # Если игрок покинул зону атаки, возвращаемся в погоню
 		else:
 			# Если игрок все еще в зоне атаки, продолжим атаковать
 			has_attacked = false  # Сбрасываем флаг для возможности повторной атаки
