@@ -25,10 +25,6 @@
 [ext_resource type="Script" uid="uid://c2olw1t2ya5fn" path="res://Mobs/Skeleton/Scripts/death_skeleton_state.gd" id="14_5e4x2"]
 [ext_resource type="Script" uid="uid://bjbf1au5w13c5" path="res://Mobs/Skeleton/Scripts/recovery_skeleton_state.gd" id="15_i18sh"]
 
-[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_y5cgq"]
-random_pitch = 1.1
-random_volume_offset_db = 2.0
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fn7ex"]
 size = Vector2(18.3429, 50.0576)
 
@@ -695,35 +691,13 @@ size = Vector2(37.2705, 20)
 [sub_resource type="CircleShape2D" id="CircleShape2D_4gvmp"]
 radius = 117.017
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_y5cgq"]
+random_pitch = 1.1
+random_volume_offset_db = 2.0
+
 [node name="Skeleton" type="CharacterBody2D"]
 collision_layer = 4
 script = ExtResource("1_pfjha")
-
-[node name="SFX" type="Node2D" parent="."]
-
-[node name="DamageAudio2D" type="AudioStreamPlayer2D" parent="SFX"]
-volume_db = -8.0
-script = ExtResource("2_cpykj")
-damage_sounds = Array[AudioStream]([ExtResource("3_1cm0u"), ExtResource("4_2owxj")])
-metadata/_custom_type_script = "uid://thw23noko053"
-
-[node name="DeathAudio2D" type="AudioStreamPlayer2D" parent="SFX"]
-volume_db = -16.0
-script = ExtResource("3_coshe")
-death_sounds = Array[AudioStream]([ExtResource("6_idg4w")])
-metadata/_custom_type_script = "uid://dnh0m16ohyydg"
-
-[node name="AttackAudio2D" type="AudioStreamPlayer2D" parent="SFX"]
-script = ExtResource("5_4qsp2")
-attack_sounds = Array[AudioStream]([ExtResource("8_onxha")])
-metadata/_custom_type_script = "uid://bswjxndys3ncm"
-
-[node name="FootstepAudio2D" type="AudioStreamPlayer2D" parent="SFX"]
-stream = SubResource("AudioStreamRandomizer_y5cgq")
-volume_db = -8.0
-max_distance = 400.0
-script = ExtResource("8_4qsp2")
-footstep_sound = ExtResource("8_idg4w")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(2, 0)
@@ -740,6 +714,28 @@ autoplay = "Idle"
 libraries = {
 &"": SubResource("AnimationLibrary_luhbs")
 }
+
+[node name="SkeletonStateMachine" type="Node" parent="." node_paths=PackedStringArray("current_state")]
+script = ExtResource("9_dtso3")
+current_state = NodePath("IdleSkeletonState")
+
+[node name="IdleSkeletonState" type="Node" parent="SkeletonStateMachine"]
+script = ExtResource("10_bpspg")
+
+[node name="ChaseSkeletonState" type="Node" parent="SkeletonStateMachine"]
+script = ExtResource("11_o0wmh")
+
+[node name="AttackSkeletonState" type="Node" parent="SkeletonStateMachine"]
+script = ExtResource("12_fn7ex")
+
+[node name="DamageSkeletonState" type="Node" parent="SkeletonStateMachine"]
+script = ExtResource("13_i18sh")
+
+[node name="DeathSkeletonState" type="Node" parent="SkeletonStateMachine"]
+script = ExtResource("14_5e4x2")
+
+[node name="RecoverySkeletonState" type="Node" parent="SkeletonStateMachine"]
+script = ExtResource("15_i18sh")
 
 [node name="AttackDirection" type="Node2D" parent="."]
 position = Vector2(2, 0)
@@ -775,35 +771,40 @@ collision_mask = 2
 position = Vector2(8.63527, 0)
 shape = SubResource("RectangleShape2D_gkg76")
 
-[node name="DetectionArea2D" type="Area2D" parent="."]
-visible = false
+[node name="DetectionArea" type="Area2D" parent="."]
 collision_layer = 0
 collision_mask = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
+visible = false
+scale = Vector2(0.851896, 0.851896)
 shape = SubResource("CircleShape2D_4gvmp")
 
-[node name="SkeletonStateMachine" type="Node" parent="." node_paths=PackedStringArray("current_state")]
-script = ExtResource("9_dtso3")
-current_state = NodePath("IdleSkeletonState")
+[node name="SFX" type="Node2D" parent="."]
 
-[node name="IdleSkeletonState" type="Node" parent="SkeletonStateMachine"]
-script = ExtResource("10_bpspg")
+[node name="DamageAudio2D" type="AudioStreamPlayer2D" parent="SFX"]
+volume_db = -8.0
+script = ExtResource("2_cpykj")
+damage_sounds = Array[AudioStream]([ExtResource("3_1cm0u"), ExtResource("4_2owxj")])
+metadata/_custom_type_script = "uid://thw23noko053"
 
-[node name="ChaseSkeletonState" type="Node" parent="SkeletonStateMachine"]
-script = ExtResource("11_o0wmh")
+[node name="DeathAudio2D" type="AudioStreamPlayer2D" parent="SFX"]
+volume_db = -16.0
+script = ExtResource("3_coshe")
+death_sounds = Array[AudioStream]([ExtResource("6_idg4w")])
+metadata/_custom_type_script = "uid://dnh0m16ohyydg"
 
-[node name="AttackSkeletonState" type="Node" parent="SkeletonStateMachine"]
-script = ExtResource("12_fn7ex")
+[node name="AttackAudio2D" type="AudioStreamPlayer2D" parent="SFX"]
+script = ExtResource("5_4qsp2")
+attack_sounds = Array[AudioStream]([ExtResource("8_onxha")])
+metadata/_custom_type_script = "uid://bswjxndys3ncm"
 
-[node name="DamageSkeletonState" type="Node" parent="SkeletonStateMachine"]
-script = ExtResource("13_i18sh")
-
-[node name="DeathSkeletonState" type="Node" parent="SkeletonStateMachine"]
-script = ExtResource("14_5e4x2")
-
-[node name="RecoverySkeletonState" type="Node" parent="SkeletonStateMachine"]
-script = ExtResource("15_i18sh")
+[node name="FootstepAudio2D" type="AudioStreamPlayer2D" parent="SFX"]
+stream = SubResource("AudioStreamRandomizer_y5cgq")
+volume_db = -8.0
+max_distance = 400.0
+script = ExtResource("8_4qsp2")
+footstep_sound = ExtResource("8_idg4w")
 
 [connection signal="area_entered" from="AttackDirection/HurtBox" to="SkeletonStateMachine" method="_on_hurt_box_area_entered"]
 [connection signal="area_entered" from="AttackDirection/HitBox" to="SkeletonStateMachine/AttackSkeletonState" method="_on_hit_box_area_entered"]

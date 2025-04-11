@@ -13,8 +13,8 @@ func update(delta: float) -> void:
 	entity.apply_gravity(delta)
 	entity.apply_velocity(delta)
 	
-	# Получаем узел DetectionArea2D
-	var detection_area = entity.get_node("DetectionArea2D")
+	# Получаем узел DetectionArea
+	var detection_area = entity.get_node("DetectionArea")
 	if detection_area:
 		# Получаем список тел, пересекающих область
 		var bodies = detection_area.get_overlapping_bodies()
@@ -24,7 +24,7 @@ func update(delta: float) -> void:
 				transition.emit("ChaseMushroomState")
 				return  # Завершаем, чтобы не вызывать переход несколько раз
 	else:
-		push_warning("DetectionArea2D не найден у моба")
+		push_warning("DetectionArea didn't found")
 		
 func physics_update(_delta: float) -> void:
 	pass
