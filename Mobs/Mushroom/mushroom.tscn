@@ -1,4 +1,4 @@
-[gd_scene load_steps=70 format=3 uid="uid://bcpkwnjjg07wt"]
+[gd_scene load_steps=71 format=3 uid="uid://bcpkwnjjg07wt"]
 
 [ext_resource type="Script" uid="uid://dus0lvtdnh5rw" path="res://Mobs/Mushroom/Scripts/mushroom.gd" id="1_1jvsc"]
 [ext_resource type="Texture2D" uid="uid://l7kdhjv87wn3" path="res://Mobs/Mushroom/Sprites/Idle.png" id="1_abx1l"]
@@ -19,6 +19,7 @@
 [ext_resource type="Script" uid="uid://ddvq804fbwgco" path="res://Mobs/Mushroom/Scripts/damage_mushroom_state.gd" id="9_g8mg2"]
 [ext_resource type="Script" uid="uid://chcjifneprgoc" path="res://Mobs/Mushroom/Scripts/death_mushroom_state.gd" id="12_bbi1o"]
 [ext_resource type="AudioStream" uid="uid://ccjjbokn6i0v6" path="res://Audio/SFX/Mobs/Mushroom/Footstep/mushroom_footstep_01.ogg" id="19_xsx4f"]
+[ext_resource type="PackedScene" uid="uid://cdjhkspqydr81" path="res://Mobs/Scripts/mob_health.tscn" id="20_isjtg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1jvsc"]
 size = Vector2(19, 33)
@@ -627,6 +628,7 @@ collision_layer = 4
 script = ExtResource("1_1jvsc")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2(0, 6.5)
 shape = SubResource("RectangleShape2D_1jvsc")
 
@@ -661,6 +663,7 @@ script = ExtResource("9_g8mg2")
 script = ExtResource("12_bbi1o")
 
 [node name="AttackDirection" type="Node2D" parent="."]
+visible = false
 position = Vector2(1, 7)
 scale = Vector2(0.880071, 0.880071)
 
@@ -695,6 +698,7 @@ collision_mask = 2
 shape = SubResource("RectangleShape2D_mh1qi")
 
 [node name="DetectionArea" type="Area2D" parent="."]
+visible = false
 collision_layer = 0
 collision_mask = 2
 
@@ -724,6 +728,10 @@ metadata/_custom_type_script = "uid://thw23noko053"
 
 [node name="FootstepAudio2D" type="AudioStreamPlayer2D" parent="SFX"]
 stream = ExtResource("19_xsx4f")
+
+[node name="MobHealth" parent="." instance=ExtResource("20_isjtg")]
+position = Vector2(0, -14)
+scale = Vector2(0.15, 0.15)
 
 [connection signal="area_entered" from="AttackDirection/HurtBox" to="MushroomStateMachine" method="_on_hurt_box_area_entered"]
 [connection signal="area_entered" from="AttackDirection/HitBox" to="MushroomStateMachine/AttackMushroomState" method="_on_hit_box_area_entered"]

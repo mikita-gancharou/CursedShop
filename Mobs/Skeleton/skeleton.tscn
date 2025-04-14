@@ -1,4 +1,4 @@
-[gd_scene load_steps=81 format=3 uid="uid://bhd8w7wam0ylm"]
+[gd_scene load_steps=82 format=3 uid="uid://bhd8w7wam0ylm"]
 
 [ext_resource type="Texture2D" uid="uid://s63v6dohts8d" path="res://Mobs/Skeleton/Sprites/Attack.png" id="1_a1moq"]
 [ext_resource type="Script" uid="uid://nefdj6ed0oll" path="res://Mobs/Skeleton/Scripts/skeleton.gd" id="1_pfjha"]
@@ -24,6 +24,7 @@
 [ext_resource type="Script" uid="uid://c047brcq86088" path="res://Mobs/Skeleton/Scripts/damage_skeleton_state.gd" id="13_i18sh"]
 [ext_resource type="Script" uid="uid://c2olw1t2ya5fn" path="res://Mobs/Skeleton/Scripts/death_skeleton_state.gd" id="14_5e4x2"]
 [ext_resource type="Script" uid="uid://bjbf1au5w13c5" path="res://Mobs/Skeleton/Scripts/recovery_skeleton_state.gd" id="15_i18sh"]
+[ext_resource type="PackedScene" uid="uid://cdjhkspqydr81" path="res://Mobs/Scripts/mob_health.tscn" id="25_2owxj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fn7ex"]
 size = Vector2(18.3429, 50.0576)
@@ -700,14 +701,15 @@ collision_layer = 4
 script = ExtResource("1_pfjha")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(2, 0)
+visible = false
+position = Vector2(1.78814e-07, 0)
 scale = Vector2(0.59931, 0.59931)
 shape = SubResource("RectangleShape2D_fn7ex")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.59931, 0.59931)
 sprite_frames = SubResource("SpriteFrames_ekdya")
-animation = &"Attack1"
+animation = &"Damage"
 autoplay = "Idle"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -738,7 +740,7 @@ script = ExtResource("14_5e4x2")
 script = ExtResource("15_i18sh")
 
 [node name="AttackDirection" type="Node2D" parent="."]
-position = Vector2(2, 0)
+visible = false
 scale = Vector2(0.880071, 0.880071)
 
 [node name="HurtBox" type="Area2D" parent="AttackDirection"]
@@ -772,11 +774,11 @@ position = Vector2(8.63527, 0)
 shape = SubResource("RectangleShape2D_gkg76")
 
 [node name="DetectionArea" type="Area2D" parent="."]
+visible = false
 collision_layer = 0
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
-visible = false
 scale = Vector2(0.851896, 0.851896)
 shape = SubResource("CircleShape2D_4gvmp")
 
@@ -805,6 +807,10 @@ volume_db = -8.0
 max_distance = 400.0
 script = ExtResource("8_4qsp2")
 footstep_sound = ExtResource("8_idg4w")
+
+[node name="MobHealth" parent="." instance=ExtResource("25_2owxj")]
+position = Vector2(0, -19)
+scale = Vector2(0.15, 0.15)
 
 [connection signal="area_entered" from="AttackDirection/HurtBox" to="SkeletonStateMachine" method="_on_hurt_box_area_entered"]
 [connection signal="area_entered" from="AttackDirection/HitBox" to="SkeletonStateMachine/AttackSkeletonState" method="_on_hit_box_area_entered"]

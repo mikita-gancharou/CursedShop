@@ -1,4 +1,4 @@
-[gd_scene load_steps=86 format=3 uid="uid://c2p5keinypbve"]
+[gd_scene load_steps=87 format=3 uid="uid://c2p5keinypbve"]
 
 [ext_resource type="Texture2D" uid="uid://dvwybac2iw4wt" path="res://Mobs/Goblin/Sprites/Attack.png" id="1_aa2c4"]
 [ext_resource type="Script" uid="uid://qqnordw2eb5i" path="res://Mobs/Goblin/Scripts/goblin.gd" id="1_lmyuw"]
@@ -21,6 +21,7 @@
 [ext_resource type="Script" uid="uid://thw23noko053" path="res://Audio/SFX/Player/Damage/damage_audio_2d.gd" id="19_xrhhs"]
 [ext_resource type="AudioStream" uid="uid://b1p6lug8qtt1w" path="res://Audio/SFX/Mobs/Mushroom/Damage/mushroom_damage_01.ogg" id="20_2eet5"]
 [ext_resource type="AudioStream" uid="uid://ccjjbokn6i0v6" path="res://Audio/SFX/Mobs/Mushroom/Footstep/mushroom_footstep_01.ogg" id="21_gd5bo"]
+[ext_resource type="PackedScene" uid="uid://cdjhkspqydr81" path="res://Mobs/Scripts/mob_health.tscn" id="22_w43wq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gx3d2"]
 size = Vector2(20, 31.9952)
@@ -762,6 +763,7 @@ script = ExtResource("13_w64br")
 script = ExtResource("14_1hqta")
 
 [node name="AttackDirection" type="Node2D" parent="."]
+visible = false
 position = Vector2(0, 6)
 
 [node name="HurtBox" type="Area2D" parent="AttackDirection"]
@@ -820,6 +822,10 @@ metadata/_custom_type_script = "uid://thw23noko053"
 
 [node name="FootstepAudio2D" type="AudioStreamPlayer2D" parent="SFX"]
 stream = ExtResource("21_gd5bo")
+
+[node name="MobHealth" parent="." instance=ExtResource("22_w43wq")]
+position = Vector2(0, -11)
+scale = Vector2(0.15, 0.15)
 
 [connection signal="area_entered" from="AttackDirection/HurtBox" to="GoblinStateMachine" method="_on_hurt_box_area_entered"]
 [connection signal="area_entered" from="AttackDirection/HitBox" to="GoblinStateMachine/AttackGoblinState" method="_on_hit_box_area_entered"]

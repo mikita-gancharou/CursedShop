@@ -3814,6 +3814,9 @@ position = Vector2(3192, 680)
 
 [node name="Mobs" type="Node2D" parent="."]
 
+[node name="FlyingEye" parent="Mobs" instance=ExtResource("11_dfqae")]
+position = Vector2(1131, 225)
+
 [node name="Goblin" parent="Mobs" instance=ExtResource("10_1fhym")]
 position = Vector2(736, 224)
 
@@ -3848,7 +3851,7 @@ position = Vector2(3120, 952)
 position = Vector2(3064, 952)
 
 [node name="Skeleton10" parent="Mobs" instance=ExtResource("6_3rk4s")]
-position = Vector2(1224, 232)
+position = Vector2(870, 227)
 
 [node name="Player" type="Node2D" parent="."]
 position = Vector2(72, 296)
@@ -3856,6 +3859,3 @@ position = Vector2(72, 296)
 [node name="Player" parent="Player" instance=ExtResource("7_3q0io")]
 position = Vector2(-16, 8)
 scale = Vector2(0.948626, 0.978754)
-
-[node name="FlyingEye" parent="." instance=ExtResource("11_dfqae")]
-position = Vector2(168, 304)

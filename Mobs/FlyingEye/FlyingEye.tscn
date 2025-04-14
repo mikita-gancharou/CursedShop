@@ -1,4 +1,4 @@
-[gd_scene load_steps=73 format=3 uid="uid://cne2emagavecc"]
+[gd_scene load_steps=74 format=3 uid="uid://cne2emagavecc"]
 
 [ext_resource type="Texture2D" uid="uid://hc5lb72sp106" path="res://Mobs/FlyingEye/Sprites/Attack.png" id="1_rjbg1"]
 [ext_resource type="Script" uid="uid://djo4tgkhen17u" path="res://Mobs/FlyingEye/Scripts/flying_eye.gd" id="1_vi66q"]
@@ -19,6 +19,7 @@
 [ext_resource type="AudioStream" uid="uid://cmarrqr08eebh" path="res://Audio/SFX/Mobs/Mushroom/Death/mushroom_death_01.ogg" id="17_smwb2"]
 [ext_resource type="Script" uid="uid://thw23noko053" path="res://Audio/SFX/Player/Damage/damage_audio_2d.gd" id="18_imxri"]
 [ext_resource type="AudioStream" uid="uid://b1p6lug8qtt1w" path="res://Audio/SFX/Mobs/Mushroom/Damage/mushroom_damage_01.ogg" id="19_gbhg7"]
+[ext_resource type="PackedScene" uid="uid://cdjhkspqydr81" path="res://Mobs/Scripts/mob_health.tscn" id="20_il51s"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vi66q"]
 size = Vector2(20, 29.1058)
@@ -605,6 +606,7 @@ collision_layer = 4
 script = ExtResource("1_vi66q")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2(0, 11.6213)
 scale = Vector2(0.657577, 0.575742)
 shape = SubResource("RectangleShape2D_vi66q")
@@ -613,7 +615,7 @@ shape = SubResource("RectangleShape2D_vi66q")
 position = Vector2(-4, 0)
 scale = Vector2(0.790455, 0.790455)
 sprite_frames = SubResource("SpriteFrames_tdqrt")
-animation = &"Idle"
+animation = &"Death"
 autoplay = "Idle"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -642,6 +644,7 @@ script = ExtResource("12_eybrg")
 script = ExtResource("13_ljujq")
 
 [node name="AttackDirection" type="Node2D" parent="."]
+visible = false
 position = Vector2(0, 4)
 
 [node name="HurtBox" type="Area2D" parent="AttackDirection"]
@@ -668,6 +671,7 @@ collision_mask = 2
 shape = SubResource("CircleShape2D_mxfs3")
 
 [node name="DetectionArea" type="Area2D" parent="."]
+visible = false
 collision_layer = 0
 collision_mask = 2
 
@@ -697,6 +701,10 @@ pitch_scale = 1.2
 script = ExtResource("18_imxri")
 damage_sounds = Array[AudioStream]([ExtResource("19_gbhg7")])
 metadata/_custom_type_script = "uid://thw23noko053"
+
+[node name="MobHealth" parent="." instance=ExtResource("20_il51s")]
+position = Vector2(0, -13)
+scale = Vector2(0.15, 0.15)
 
 [connection signal="area_entered" from="AttackDirection/HurtBox" to="FlyingStateMachine" method="_on_hurt_box_area_entered"]
 [connection signal="area_entered" from="AttackDirection/HitBox" to="FlyingStateMachine/AttackFlyingState" method="_on_hit_box_area_entered"]

@@ -1,16 +1,21 @@
 class_name FlyingStateMachine
 extends Node
 
+@onready var healthbar: TextureProgressBar = $"../MobHealth/HealthBar"
+var max_health: int = 100
+var health: int = max_health
+
 @export var current_state: State
 var states: Dictionary = {}
-var health: int = 100  
 
 var player_damage
 var player_global_position
 
 func _ready() -> void:
 	await owner.ready
-
+	healthbar.max_value = max_health
+	healthbar.value = health
+	
 	# Регистрируем дочерние состояния
 	for child in get_children():
 		if child is State:
@@ -21,7 +26,6 @@ func _ready() -> void:
 	
 	if current_state:
 		current_state.enter()
-
 	else:
 		push_warning("No initial state set in FlyingStateMachine")
 	
@@ -53,10 +57,14 @@ func _on_player_attack(damage, global_position) -> void:
 func _on_hurt_box_area_entered(_area: Area2D) -> void:
 	await get_tree().create_timer(0.05).timeout
 	owner.last_player_position = player_global_position
-	owner.health -= player_damage
+	health -= player_damage
+	healthbar.value = health
 	
-	if owner.health > 0:
+	if health > 0:
 		on_child_transition("DamageFlyingState")
 	else:
-		owner.health = 0
+		health = 0
 		on_child_transition("DeathFlyingState")
+
+func _on_hit_box_area_entered(_area: Area2D) -> void:
+	pass  

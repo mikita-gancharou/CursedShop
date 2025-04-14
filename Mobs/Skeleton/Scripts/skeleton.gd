@@ -7,7 +7,6 @@ extends CharacterBody2D
 @export var gravity: float = 500.0
 @export var damage: int = 20
 
-var health: int = 100
 var player: Node = null
 
 @onready var animplayer: AnimationPlayer = $AnimationPlayer

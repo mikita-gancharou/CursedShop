@@ -2,7 +2,7 @@ class_name RecoverySkeletonState
 extends State
 
 func enter() -> void:
-	entity.animplayer.play("Recovery")
+	entity.animplayer.play("Shield_up")
 	entity.velocity.x = 0
 
 func exit() -> void:

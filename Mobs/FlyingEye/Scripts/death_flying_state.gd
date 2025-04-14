@@ -7,6 +7,7 @@ extends State
 func enter() -> void:
 	entity.animplayer.play("Death")
 	$"../../SFX/DeathAudio2D".play_death()
+	$"../../MobHealth/AnimationPlayer".play("Healthbar_fadeout")
 	
 	entity.velocity.x = 0
 
