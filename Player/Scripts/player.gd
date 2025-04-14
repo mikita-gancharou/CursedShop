@@ -16,6 +16,7 @@ var damage: int = 50
 
 var is_sliding: bool = false
 var is_blocking: bool = false
+var is_dead: bool = false
 
 var last_enemy_position: Vector2 = Vector2.ZERO #TODO: refactor
 

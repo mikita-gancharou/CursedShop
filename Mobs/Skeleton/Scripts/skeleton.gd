@@ -8,6 +8,7 @@ extends CharacterBody2D
 @export var damage: int = 20
 
 var health: int = 100
+var player: Node = null
 
 @onready var animplayer: AnimationPlayer = $AnimationPlayer
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
@@ -17,6 +18,8 @@ var last_player_position: Vector2 = Vector2.ZERO
 
 func _ready() -> void:
 	$AttackDirection/HitBox/CollisionShape2D.disabled = true
+	# Получаем игрока один раз, так как он всегда должен быть в сцене
+	player = get_node("/root/Level1/Player/Player")
 
 func _process(_delta: float) -> void:
 	pass

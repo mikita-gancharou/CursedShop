@@ -3,7 +3,7 @@ extends Node
 
 @export var current_state: State
 var states: Dictionary = {}
-var health: int = 100  # Пример: здоровье моба
+var health: int = 100  
 
 var player_damage
 var player_global_position

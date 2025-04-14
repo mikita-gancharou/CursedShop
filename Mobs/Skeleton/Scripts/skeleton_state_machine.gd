@@ -21,7 +21,6 @@ func _ready() -> void:
 	
 	if current_state:
 		current_state.enter()
-
 	else:
 		push_warning("No initial state set in SkeletonStateMachine")
 	
@@ -61,6 +60,5 @@ func _on_hurt_box_area_entered(_area: Area2D) -> void:
 		owner.health = 0
 		on_child_transition("DeathSkeletonState")
 
-
 func _on_hit_box_area_entered(_area: Area2D) -> void:
-	pass # Replace with function body.
+	pass  

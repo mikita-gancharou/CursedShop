@@ -14,10 +14,12 @@ var health: int = 100
 @onready var attack_area: Area2D = $AttackDirection/AttackArea
 
 var last_player_position: Vector2 = Vector2.ZERO
+var player: Node = null
 
 func _ready() -> void:
 	$AttackDirection/HitBox/CollisionShape2D.disabled = true
-
+	player = get_node("/root/Level1/Player/Player")
+	
 func _process(_delta: float) -> void:
 	pass
 

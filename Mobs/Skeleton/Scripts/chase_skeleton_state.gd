@@ -9,25 +9,25 @@ func exit() -> void:
 	entity.attack_area.body_entered.disconnect(_on_attack_area_entered)
 
 func update(delta: float) -> void:
+	# Если игрок мёртв, остаёмся в Idle
+	if entity.player.is_dead:
+		transition.emit("IdleSkeletonState")
+		return
+	
+	# Применяем гравитацию и движение
 	entity.apply_gravity(delta)
 	entity.apply_velocity(delta)
 	
-	var players = get_tree().get_nodes_in_group("Player")
-	if players.size() > 0:
-		var player = players[0]
-		var direction = (player.global_position - entity.global_position).normalized()
-		
-		entity.change_direction(direction.x)
-		entity.apply_movement(Vector2(direction.x, 0), delta)
-		
-	else:
-		print("Player not found")
-		transition.emit("IdleSkeletonState")
-		return
+	# Используем ссылку на игрока из скелета
+	var player = entity.player
+	var direction = (player.global_position - entity.global_position).normalized()
+	entity.change_direction(direction.x)
+	entity.apply_movement(Vector2(direction.x, 0), delta)
 
 func physics_update(_delta: float) -> void:
 	pass
 
 func _on_attack_area_entered(body: Node2D) -> void:
-	if body.is_in_group("Player"):
+	# Если входит живой игрок в зону атаки, переключаемся в Attack
+	if body.is_in_group("Player") and not body.is_dead:
 		transition.emit("AttackSkeletonState")
