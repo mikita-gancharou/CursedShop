@@ -2,6 +2,7 @@ class_name ChaseSkeletonState
 extends State
 
 func enter() -> void:
+	owner.is_blocking = false
 	entity.animplayer.play("Run")
 	entity.attack_area.body_entered.connect(_on_attack_area_entered)
 

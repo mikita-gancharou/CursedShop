@@ -1,7 +1,7 @@
 class_name DamagePlayerState
 extends State
 
-var knockback_base: Vector2 = Vector2(75, -150)  # базовая сила отскока (модуль)
+var knockback_base: Vector2 = Vector2(40, -100)  # базовая сила отскока (модуль)
 var damage_duration: float = 0.5  # длительность состояния урона (секунд)
 var damage_timer: float = 0.0  # таймер состояния
 var knockback_multiplier: float = 1.0
@@ -15,10 +15,10 @@ func enter() -> void:
 		knockback_multiplier = 0.2
 		damage_duration = 0.1
 	else:
+		knockback_multiplier = 1
+		damage_duration = 0.5
 		entity.animplayer.play("Damage")
 		$"../../SFX/DamageAudio2D".play_damage()
-	#print("Player: ",entity.global_position.x)
-	#print("Enemy: ", entity.last_enemy_position.x)
 	var direction: int = sign(entity.global_position.x - entity.last_enemy_position.x)
 	# Если вдруг равны или не определено, можно задать направление по умолчанию:
 	if direction == 0:

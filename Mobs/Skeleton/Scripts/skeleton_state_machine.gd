@@ -1,20 +1,14 @@
 class_name SkeletonStateMachine
 extends Node
 
-@onready var healthbar: TextureProgressBar = $"../MobHealth/HealthBar"
-var max_health: int = 100
-var health: int = max_health
-
 @export var current_state: State
 var states: Dictionary = {}
 
-var player_damage
-var player_global_position
+var player_damage: float = 50 #TODO: FIX THAT KOSTYL ASAP
+var player_global_position: Vector2
 
 func _ready() -> void:
 	await owner.ready
-	healthbar.max_value = max_health
-	healthbar.value = health
 	
 	# Регистрируем дочерние состояния
 	for child in get_children():
@@ -47,6 +41,7 @@ func on_child_transition(new_state_name: StringName) -> void:
 			current_state.exit()
 			new_state.enter()
 			current_state = new_state
+			#print(current_state)
 	else:
 		push_warning("State does not exist: " + str(new_state_name))
 
@@ -55,16 +50,23 @@ func _on_player_attack(damage, global_position) -> void:
 	player_global_position = global_position
 
 func _on_hurt_box_area_entered(_area: Area2D) -> void:
+	var current_damage: float = player_damage   
 	await get_tree().create_timer(0.05).timeout
 	owner.last_player_position = player_global_position
-	health -= player_damage
-	healthbar.value = health
 	
-	if health > 0:
+	var player_node = get_node("/root/Level1/Player/Player")
+	if owner.is_blocking:
+		if owner.sprite.flip_h != player_node.sprite.flip_h:
+			current_damage = player_damage / 2
+	
+	owner.health -= current_damage
+	owner.healthbar.value = owner.health
+	
+	if owner.health > 0:
 		on_child_transition("DamageSkeletonState")
 	else:
-		health = 0
+		owner.health = 0
 		on_child_transition("DeathSkeletonState")
 
 func _on_hit_box_area_entered(_area: Area2D) -> void:
-	pass  
+	pass

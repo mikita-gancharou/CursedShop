@@ -4,27 +4,26 @@ extends State
 func enter() -> void:
 	entity.animplayer.play("Shield_up")
 	entity.velocity.x = 0
+	owner.is_blocking = true
+	
+	var player = entity.player
+	var direction = (player.global_position - entity.global_position).normalized()
+	entity.change_direction(direction.x)
 
 func exit() -> void:
-	pass
+	if owner.health == owner.max_health:
+		owner.is_blocking = false
 
 func update(delta: float) -> void:
 	# Применяем гравитацию и движение
 	entity.apply_gravity(delta)
 	entity.apply_velocity(delta)
 	
-	# Получаем узел DetectionArea2D
-	var detection_area = entity.get_node("DetectionArea2D")
-	if detection_area:
-		# Получаем список тел, пересекающих область
-		var bodies = detection_area.get_overlapping_bodies()
-		for body in bodies:
-			# Если обнаружен игрок, инициируем переход в состояние погони
-			if body is Player:
-				transition.emit("ChaseSkeletonState")
-				return  # Завершаем, чтобы не вызывать переход несколько раз
-	else:
-		push_warning("DetectionArea2D не найден у моба")
-		
+	owner.health += 1
+	owner.healthbar.value = owner.health
+	
+	if owner.health == owner.max_health:
+		transition.emit("IdleSkeletonState")
+
 func physics_update(_delta: float) -> void:
 	pass

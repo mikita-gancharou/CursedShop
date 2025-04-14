@@ -2,14 +2,19 @@ class_name AttackSkeletonState
 extends State
 
 var has_attacked: bool = false  # Флаг, чтобы атака происходила один раз за анимацию
+var combo: bool = false
 
 func enter() -> void:
 	entity.velocity.x = 0
-	has_attacked = false  # Сбрасываем флаг атаки
+	
+	
+	has_attacked = false 
+	combo = true
 	entity.animplayer.play("Attack1")  # Запускаем анимацию атаки
 
 func exit() -> void:
-	has_attacked = false  # Сбрасываем флаг при выходе
+	combo = false
+	has_attacked = false
 
 func update(_delta: float) -> void:
 	# Если игрок мёртв, переключаемся в Idle
@@ -23,10 +28,14 @@ func update(_delta: float) -> void:
 		if not _is_player_in_attack_range():
 			transition.emit("ChaseSkeletonState")
 		else:
-			# Если игрок всё ещё в зоне атаки, перезапускаем анимацию атаки
 			has_attacked = false
-			entity.animplayer.play("Attack1")
-
+			if combo:
+				entity.animplayer.play("Attack2")
+				combo = false
+			else: 
+				entity.animplayer.play("Attack1")
+				combo = true
+				
 func physics_update(delta: float) -> void:
 	entity.apply_gravity(delta)
 	entity.apply_velocity(delta)

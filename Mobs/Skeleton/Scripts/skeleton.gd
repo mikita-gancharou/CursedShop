@@ -7,25 +7,32 @@ extends CharacterBody2D
 @export var gravity: float = 500.0
 @export var damage: int = 20
 
-var player: Node = null
-
+@onready var healthbar: TextureProgressBar = $"MobHealth/HealthBar"
 @onready var animplayer: AnimationPlayer = $AnimationPlayer
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var attack_area: Area2D = $AttackDirection/AttackArea
+
+@onready var player = get_node("/root/Level1/Player/Player")
+
+var max_health: float = 100.0
+var health: float = max_health
+
+var is_blocking: bool = false
 
 var last_player_position: Vector2 = Vector2.ZERO
 
 func _ready() -> void:
 	$AttackDirection/HitBox/CollisionShape2D.disabled = true
-	# Получаем игрока один раз, так как он всегда должен быть в сцене
 	player = get_node("/root/Level1/Player/Player")
+	
+	healthbar.max_value = max_health
+	healthbar.value = health
 
 func _process(_delta: float) -> void:
 	pass
 
 func get_input_vector() -> Vector2:
 	var input_vector = Vector2.ZERO
-	#input_vector.x = Input.get_axis("Move_Left", "Move_Right")
 	return input_vector
 
 func apply_gravity(delta: float) -> void:

@@ -3,20 +3,39 @@
 
 _______________________________________________________
 🧪 v0.1.1 — WIP
+
+
 ✨ New
+
 Added new enemies: Goblin and Flying Eye
+
 HP bar now displayed above enemies
 
+Skeleton will raise a shield if his HP is lower 50.
+It will rapidly restore his HP to maximum
+
+Skeleton has new attack animation
+
+
 🐞 Fixes
+
 Attack animation sound now plays correctly
+
 Enemies no longer stay aggressive after the player dies
+
+State machines stability increased
 
 
 _______________________________________________________
 🧪 v0.1.0-alpha — Initial Release
 
+
 🔨 Core Features
+
 Basic game prototype released
+
 Raw level with textures
+
 First mobs: Mushroom and Skeleton
+
 Basic health and damage system
