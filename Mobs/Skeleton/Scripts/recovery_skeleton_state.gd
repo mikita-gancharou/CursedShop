@@ -19,10 +19,13 @@ func update(delta: float) -> void:
 	entity.apply_gravity(delta)
 	entity.apply_velocity(delta)
 	
-	owner.health += 1
+	# Увеличиваем здоровье с учётом delta
+	owner.health += 50 * delta
+	owner.health = min(owner.health, owner.max_health)
 	owner.healthbar.value = owner.health
 	
-	if owner.health == owner.max_health:
+
+	if owner.health >= owner.max_health:
 		transition.emit("IdleSkeletonState")
 
 func physics_update(_delta: float) -> void:

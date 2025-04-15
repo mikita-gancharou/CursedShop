@@ -1,4 +1,4 @@
-[gd_scene load_steps=92 format=3 uid="uid://bcpkwnjjg07wt"]
+[gd_scene load_steps=99 format=3 uid="uid://bcpkwnjjg07wt"]
 
 [ext_resource type="Script" uid="uid://dus0lvtdnh5rw" path="res://Mobs/Mushroom/Scripts/mushroom.gd" id="1_1jvsc"]
 [ext_resource type="Texture2D" uid="uid://l7kdhjv87wn3" path="res://Mobs/Mushroom/Sprites/Idle.png" id="1_abx1l"]
@@ -20,8 +20,11 @@
 [ext_resource type="Script" uid="uid://dehsnwdtk7a6e" path="res://Mobs/Mushroom/Scripts/attack_mushroom_state.gd" id="8_rswoi"]
 [ext_resource type="Script" uid="uid://ddvq804fbwgco" path="res://Mobs/Mushroom/Scripts/damage_mushroom_state.gd" id="9_g8mg2"]
 [ext_resource type="Script" uid="uid://chcjifneprgoc" path="res://Mobs/Mushroom/Scripts/death_mushroom_state.gd" id="12_bbi1o"]
+[ext_resource type="Script" uid="uid://cae6t662w8ui1" path="res://Mobs/Mushroom/Scripts/aoe_attack_mushroom_state.gd" id="15_uiguh"]
 [ext_resource type="AudioStream" uid="uid://ccjjbokn6i0v6" path="res://Audio/SFX/Mobs/Mushroom/Footstep/mushroom_footstep_01.ogg" id="19_xsx4f"]
 [ext_resource type="PackedScene" uid="uid://cdjhkspqydr81" path="res://Mobs/Scripts/mob_health.tscn" id="20_isjtg"]
+[ext_resource type="AudioStream" uid="uid://d2e8j7jho1b58" path="res://Audio/SFX/Mobs/Mushroom/AOE/mushroom_aoe_01.ogg" id="23_fqepb"]
+[ext_resource type="Script" uid="uid://b0fi4ennteou4" path="res://Mobs/Mushroom/Scripts/aoe_audio_2d.gd" id="23_mh1qi"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1jvsc"]
 size = Vector2(19, 33)
@@ -510,6 +513,126 @@ tracks/3/keys = {
 }]
 }
 
+[sub_resource type="Animation" id="Animation_uiguh"]
+length = 0.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["Attack2"]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AttackDirection/HitBox/CollisionShape2D:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, false, true]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("SFX/AttackAudio2D")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [0],
+"method": &"play_attack"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_fqepb"]
+length = 1.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["Attack3"]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AttackDirection/AOEAttack/CollisionShape2D:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.700828, 0.800749),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, false, true]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("SFX/AOEAudio2D")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.666667),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"play_AOE"
+}]
+}
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("MushroomStateMachine/AOEAttackMushroomState")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.8),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"regen"
+}]
+}
+
 [sub_resource type="Animation" id="Animation_yrmjc"]
 length = 0.4
 tracks/0/type = "value"
@@ -548,6 +671,18 @@ tracks/2/keys = {
 "update": 1,
 "values": [true]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("AttackDirection/AOEAttack/CollisionShape2D:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_1u13w"]
 length = 0.5
@@ -558,10 +693,10 @@ tracks/0/path = NodePath("AnimatedSprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 1),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 1,
-"values": [0, 1, 2, 3, 4, 4]
+"values": [0, 1, 2, 3, 4]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -590,14 +725,14 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("AnimatedSprite2D:modulate:a")
+tracks/3/path = NodePath("AttackDirection/AOEAttack/CollisionShape2D:disabled")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0.4, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_vlg1j"]
@@ -657,14 +792,14 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("AnimatedSprite2D:modulate:a")
+tracks/1/path = NodePath("AttackDirection/AOEAttack/CollisionShape2D:disabled")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [1.0]
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_mi0g7"]
@@ -749,6 +884,8 @@ tracks/2/keys = {
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_v4nd4"]
 _data = {
 &"Attack1": SubResource("Animation_bbi1o"),
+&"Attack2": SubResource("Animation_uiguh"),
+&"Attack3": SubResource("Animation_fqepb"),
 &"Damage": SubResource("Animation_yrmjc"),
 &"Death": SubResource("Animation_1u13w"),
 &"Idle": SubResource("Animation_vlg1j"),
@@ -764,6 +901,10 @@ height = 38.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_yrmjc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mh1qi"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_uiguh"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_mh1qi"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1jvsc"]
 radius = 100.0
@@ -782,7 +923,6 @@ scale = Vector2(0.880071, 0.880071)
 sprite_frames = SubResource("SpriteFrames_g8mg2")
 animation = &"Attack3"
 autoplay = "Idle"
-frame = 10
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -808,8 +948,10 @@ script = ExtResource("9_g8mg2")
 [node name="DeathMushroomState" type="Node" parent="MushroomStateMachine"]
 script = ExtResource("12_bbi1o")
 
+[node name="AOEAttackMushroomState" type="Node" parent="MushroomStateMachine"]
+script = ExtResource("15_uiguh")
+
 [node name="AttackDirection" type="Node2D" parent="."]
-visible = false
 position = Vector2(1, 7)
 scale = Vector2(0.880071, 0.880071)
 
@@ -820,7 +962,6 @@ collision_layer = 32
 collision_mask = 64
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackDirection/HurtBox"]
-visible = false
 position = Vector2(-8.69956e-13, 4.76837e-07)
 shape = SubResource("CapsuleShape2D_bbi1o")
 
@@ -842,6 +983,23 @@ collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackDirection/AttackArea"]
 shape = SubResource("RectangleShape2D_mh1qi")
+
+[node name="AOEAttack" type="Area2D" parent="AttackDirection"]
+collision_layer = 0
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackDirection/AOEAttack"]
+scale = Vector2(7.82139, 7.82139)
+shape = SubResource("CircleShape2D_uiguh")
+disabled = true
+
+[node name="AOETrigger" type="Area2D" parent="AttackDirection"]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackDirection/AOETrigger"]
+scale = Vector2(5.50797, 5.50797)
+shape = SubResource("CircleShape2D_mh1qi")
 
 [node name="DetectionArea" type="Area2D" parent="."]
 visible = false
@@ -875,9 +1033,14 @@ metadata/_custom_type_script = "uid://thw23noko053"
 [node name="FootstepAudio2D" type="AudioStreamPlayer2D" parent="SFX"]
 stream = ExtResource("19_xsx4f")
 
+[node name="AOEAudio2D" type="AudioStreamPlayer2D" parent="SFX"]
+script = ExtResource("23_mh1qi")
+AOE_sounds = Array[AudioStream]([ExtResource("23_fqepb")])
+
 [node name="MobHealth" parent="." instance=ExtResource("20_isjtg")]
 position = Vector2(0, -14)
 scale = Vector2(0.15, 0.15)
 
 [connection signal="area_entered" from="AttackDirection/HurtBox" to="MushroomStateMachine" method="_on_hurt_box_area_entered"]
 [connection signal="area_entered" from="AttackDirection/HitBox" to="MushroomStateMachine/AttackMushroomState" method="_on_hit_box_area_entered"]
+[connection signal="area_entered" from="AttackDirection/AOEAttack" to="MushroomStateMachine/AOEAttackMushroomState" method="_on_aoe_attack_area_entered"]

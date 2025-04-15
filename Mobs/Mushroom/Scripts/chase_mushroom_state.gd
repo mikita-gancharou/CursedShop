@@ -30,3 +30,10 @@ func physics_update(_delta: float) -> void:
 func _on_attack_area_entered(body: Node2D) -> void:
 	if body.is_in_group("Player") and not body.is_dead:
 		transition.emit("AttackMushroomState")
+
+#TODO: Check behaviour. Looks unstable here
+func _is_player_in_aoe_range() -> void:
+	for body in entity.aoe_area.get_overlapping_bodies():
+		if body.is_in_group("Player") and not body.is_dead:
+			if entity.health < entity.max_health:
+				transition.emit("AOEAttackMushroomState")

@@ -753,6 +753,7 @@ script = ExtResource("14_5e4x2")
 script = ExtResource("15_i18sh")
 
 [node name="AttackDirection" type="Node2D" parent="."]
+visible = false
 scale = Vector2(0.880071, 0.880071)
 
 [node name="HurtBox" type="Area2D" parent="AttackDirection"]

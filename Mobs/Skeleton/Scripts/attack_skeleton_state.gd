@@ -6,8 +6,6 @@ var combo: bool = false
 
 func enter() -> void:
 	entity.velocity.x = 0
-	
-	
 	has_attacked = false 
 	combo = true
 	entity.animplayer.play("Attack1")  # Запускаем анимацию атаки

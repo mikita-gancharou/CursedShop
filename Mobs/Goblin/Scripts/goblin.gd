@@ -1,4 +1,4 @@
-# goblin.gd
+# Goblin.gd
 class_name Goblin
 extends CharacterBody2D
 
@@ -7,19 +7,28 @@ extends CharacterBody2D
 @export var gravity: float = 500.0
 @export var damage: int = 20
 
-var health: int = 100
-
+@onready var healthbar: TextureProgressBar = $"MobHealth/HealthBar"
 @onready var animplayer: AnimationPlayer = $AnimationPlayer
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var attack_area: Area2D = $AttackDirection/AttackArea
 
+
+@onready var player = get_node("/root/Level1/Player/Player")
+
+var max_health: float = 100.0
+var health: float = max_health
+
+var is_blocking: bool = false
+
 var last_player_position: Vector2 = Vector2.ZERO
-var player: Node = null
 
 func _ready() -> void:
 	$AttackDirection/HitBox/CollisionShape2D.disabled = true
 	player = get_node("/root/Level1/Player/Player")
 	
+	healthbar.max_value = max_health
+	healthbar.value = health
+
 func _process(_delta: float) -> void:
 	pass
 
