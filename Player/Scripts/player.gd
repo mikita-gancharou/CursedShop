@@ -12,7 +12,7 @@ extends CharacterBody2D
 
 var health: int
 var max_health: int = 100
-var damage: int = 40
+var damage: int = 60
 
 var is_sliding: bool = false
 var is_blocking: bool = false

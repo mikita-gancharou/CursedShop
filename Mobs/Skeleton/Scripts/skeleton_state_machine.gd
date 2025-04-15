@@ -4,7 +4,8 @@ extends Node
 @export var current_state: State
 var states: Dictionary = {}
 
-var player_damage: float = 50 #TODO: FIX THAT KOSTYL ASAP
+@onready var player_node = get_node("/root/Level1/Player/Player")
+@onready var player_damage: float = player_node.damage
 var player_global_position: Vector2
 
 func _ready() -> void:
@@ -54,7 +55,7 @@ func _on_hurt_box_area_entered(_area: Area2D) -> void:
 	await get_tree().create_timer(0.05).timeout
 	owner.last_player_position = player_global_position
 	
-	var player_node = get_node("/root/Level1/Player/Player")
+	
 	if owner.is_blocking:
 		if owner.sprite.flip_h != player_node.sprite.flip_h:
 			current_damage = player_damage / 2
