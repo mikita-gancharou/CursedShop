@@ -11,7 +11,7 @@ extends CharacterBody2D
 @onready var animplayer: AnimationPlayer = $AnimationPlayer
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var attack_area: Area2D = $AttackDirection/AttackArea
-
+@onready var attack_area2: Area2D = $AttackDirection/AttackArea2
 
 @onready var player = get_node("/root/Level1/Player/Player")
 

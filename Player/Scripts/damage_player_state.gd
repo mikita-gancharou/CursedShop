@@ -15,8 +15,8 @@ func enter() -> void:
 		knockback_multiplier = 0.2
 		damage_duration = 0.1
 	else:
-		knockback_multiplier = 1
-		damage_duration = 0.5
+		knockback_multiplier = 0.7
+		damage_duration = 0.4
 		entity.animplayer.play("Damage")
 		$"../../SFX/DamageAudio2D".play_damage()
 	var direction: int = sign(entity.global_position.x - entity.last_enemy_position.x)

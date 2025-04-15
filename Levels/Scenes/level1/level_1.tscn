@@ -3819,10 +3819,10 @@ position = Vector2(3192, 680)
 position = Vector2(1131, 225)
 
 [node name="Goblin" parent="Mobs" instance=ExtResource("10_1fhym")]
-position = Vector2(331, 310)
+position = Vector2(310, 299)
 
 [node name="Mushroom" parent="Mobs" instance=ExtResource("5_isyqc")]
-position = Vector2(853, 213)
+position = Vector2(838, 210)
 
 [node name="Mushroom2" parent="Mobs" instance=ExtResource("5_isyqc")]
 position = Vector2(3232, 304)

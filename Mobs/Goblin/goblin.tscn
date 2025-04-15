@@ -1,4 +1,4 @@
-[gd_scene load_steps=87 format=3 uid="uid://c2p5keinypbve"]
+[gd_scene load_steps=89 format=3 uid="uid://c2p5keinypbve"]
 
 [ext_resource type="Texture2D" uid="uid://dvwybac2iw4wt" path="res://Mobs/Goblin/Sprites/Attack.png" id="1_aa2c4"]
 [ext_resource type="Script" uid="uid://qqnordw2eb5i" path="res://Mobs/Goblin/Scripts/goblin.gd" id="1_lmyuw"]
@@ -15,12 +15,13 @@
 [ext_resource type="Script" uid="uid://l86vcw08ho08" path="res://Mobs/Goblin/Scripts/damage_goblin_state.gd" id="13_w64br"]
 [ext_resource type="Script" uid="uid://8xx7bvj7n0f8" path="res://Mobs/Goblin/Scripts/death_goblin_state.gd" id="14_1hqta"]
 [ext_resource type="Script" uid="uid://bswjxndys3ncm" path="res://Audio/SFX/Player/Sword/attack_audio_2d.gd" id="15_1kfv5"]
-[ext_resource type="AudioStream" uid="uid://b65o47y6cyron" path="res://Audio/SFX/Mobs/Mushroom/Attack/mushroom_attack_01.ogg" id="16_w43wq"]
+[ext_resource type="AudioStream" uid="uid://btrnvge40pocl" path="res://Audio/SFX/Mobs/Goblin/Attack/goblin_attack_01.ogg" id="16_w43wq"]
 [ext_resource type="Script" uid="uid://dnh0m16ohyydg" path="res://Audio/SFX/Player/Death/death_audio_2d.gd" id="17_6t3yi"]
-[ext_resource type="AudioStream" uid="uid://cmarrqr08eebh" path="res://Audio/SFX/Mobs/Mushroom/Death/mushroom_death_01.ogg" id="18_5j86g"]
+[ext_resource type="AudioStream" uid="uid://be5ebivof8gy" path="res://Audio/SFX/Mobs/Goblin/Death/goblin_death_01.ogg" id="18_6t3yi"]
 [ext_resource type="Script" uid="uid://thw23noko053" path="res://Audio/SFX/Player/Damage/damage_audio_2d.gd" id="19_xrhhs"]
-[ext_resource type="AudioStream" uid="uid://b1p6lug8qtt1w" path="res://Audio/SFX/Mobs/Mushroom/Damage/mushroom_damage_01.ogg" id="20_2eet5"]
-[ext_resource type="AudioStream" uid="uid://ccjjbokn6i0v6" path="res://Audio/SFX/Mobs/Mushroom/Footstep/mushroom_footstep_01.ogg" id="21_gd5bo"]
+[ext_resource type="Script" uid="uid://dmyypammx5l1o" path="res://Mobs/Goblin/Scripts/footstep_audio_2d.gd" id="20_5j86g"]
+[ext_resource type="AudioStream" uid="uid://cana8oynur2gv" path="res://Audio/SFX/Mobs/Goblin/Damage/goblin_damage_01.ogg" id="20_6t3yi"]
+[ext_resource type="AudioStream" uid="uid://cp7qtxbm8bp8k" path="res://Audio/SFX/Mobs/Goblin/Footstep/goblin_footstep_01.ogg" id="21_xrhhs"]
 [ext_resource type="PackedScene" uid="uid://cdjhkspqydr81" path="res://Mobs/Scripts/mob_health.tscn" id="22_w43wq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gx3d2"]
@@ -445,6 +446,32 @@ tracks/2/keys = {
 "update": 1,
 "values": [true, false, true]
 }
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("SFX/AttackAudio2D")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.466667),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [0],
+"method": &"play_attack"
+}]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("AttackDirection/HitBox/CollisionShape2D:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(16, 0)]
+}
 
 [sub_resource type="Animation" id="Animation_0a0ev"]
 length = 0.8
@@ -479,10 +506,36 @@ tracks/2/path = NodePath("AttackDirection/HitBox/CollisionShape2D:disabled")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.6),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0, 0.6, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
-"values": [true, false]
+"values": [true, false, true]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("SFX/AttackAudio2D")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [0],
+"method": &"play_attack"
+}]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("AttackDirection/HitBox/CollisionShape2D:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.603684, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(14, 0), Vector2(31, 0), Vector2(16, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_xyl05"]
@@ -562,6 +615,18 @@ tracks/2/keys = {
 "update": 1,
 "values": [true]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("AttackDirection/HitBox/CollisionShape2D:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(16, 0)]
+}
 
 [sub_resource type="Animation" id="Animation_x67ol"]
 length = 0.5
@@ -600,6 +665,18 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("AttackDirection/HitBox/CollisionShape2D:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(16, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_giwxp"]
@@ -641,6 +718,18 @@ tracks/2/keys = {
 "update": 1,
 "values": [true]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("AttackDirection/HitBox/CollisionShape2D:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(16, 0)]
+}
 
 [sub_resource type="Animation" id="Animation_kdd1g"]
 length = 0.001
@@ -655,6 +744,18 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AttackDirection/HitBox/CollisionShape2D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(14, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_0sa37"]
@@ -696,6 +797,23 @@ tracks/2/keys = {
 "update": 1,
 "values": [true]
 }
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("SFX/FootstepAudio2D")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.09, 0.49),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"play_footstep"
+}, {
+"args": [],
+"method": &"play_footstep"
+}]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_6vpi7"]
 _data = {
@@ -709,6 +827,9 @@ _data = {
 &"Run": SubResource("Animation_0sa37")
 }
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lmyuw"]
+size = Vector2(28.2258, 30)
+
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_aa2c4"]
 radius = 7.0
 height = 26.0
@@ -716,11 +837,12 @@ height = 26.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_p0d8o"]
 radius = 17.0294
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_lmyuw"]
-size = Vector2(28, 30)
-
 [sub_resource type="CircleShape2D" id="CircleShape2D_106hg"]
 radius = 50.0
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_2eet5"]
+random_pitch = 1.15
+random_volume_offset_db = 2.0
 
 [node name="Goblin" type="CharacterBody2D"]
 collision_layer = 4
@@ -763,8 +885,18 @@ script = ExtResource("13_w64br")
 script = ExtResource("14_1hqta")
 
 [node name="AttackDirection" type="Node2D" parent="."]
-visible = false
 position = Vector2(0, 6)
+
+[node name="AttackArea2" type="Area2D" parent="AttackDirection"]
+unique_name_in_owner = true
+position = Vector2(-3, 0)
+scale = Vector2(1.8, 1.12)
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackDirection/AttackArea2"]
+position = Vector2(14, 0)
+shape = SubResource("RectangleShape2D_lmyuw")
 
 [node name="HurtBox" type="Area2D" parent="AttackDirection"]
 collision_layer = 32
@@ -783,11 +915,14 @@ shape = SubResource("CircleShape2D_p0d8o")
 disabled = true
 
 [node name="AttackArea" type="Area2D" parent="AttackDirection"]
+position = Vector2(-3, 0)
+scale = Vector2(1.2, 1.12)
 collision_layer = 0
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackDirection/AttackArea"]
-position = Vector2(14, 0)
+position = Vector2(14.1129, 0)
+scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_lmyuw")
 
 [node name="DetectionArea" type="Area2D" parent="."]
@@ -811,17 +946,19 @@ metadata/_custom_type_script = "uid://bswjxndys3ncm"
 [node name="DeathAudio2D" type="AudioStreamPlayer2D" parent="SFX"]
 pitch_scale = 1.2
 script = ExtResource("17_6t3yi")
-death_sounds = Array[AudioStream]([ExtResource("18_5j86g")])
+death_sounds = Array[AudioStream]([ExtResource("18_6t3yi")])
 metadata/_custom_type_script = "uid://dnh0m16ohyydg"
 
 [node name="DamageAudio2D" type="AudioStreamPlayer2D" parent="SFX"]
 pitch_scale = 1.2
 script = ExtResource("19_xrhhs")
-damage_sounds = Array[AudioStream]([ExtResource("20_2eet5")])
+damage_sounds = Array[AudioStream]([ExtResource("20_6t3yi")])
 metadata/_custom_type_script = "uid://thw23noko053"
 
 [node name="FootstepAudio2D" type="AudioStreamPlayer2D" parent="SFX"]
-stream = ExtResource("21_gd5bo")
+stream = SubResource("AudioStreamRandomizer_2eet5")
+script = ExtResource("20_5j86g")
+footstep_sound = ExtResource("21_xrhhs")
 
 [node name="MobHealth" parent="." instance=ExtResource("22_w43wq")]
 position = Vector2(0, -11)
