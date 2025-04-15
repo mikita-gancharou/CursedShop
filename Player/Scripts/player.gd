@@ -11,7 +11,7 @@ extends CharacterBody2D
 @export var jump_velocity: float = 300.0
 
 var health: int
-var max_health: int = 1000
+var max_health: int = 100
 var damage: int = 60
 
 var is_sliding: bool = false

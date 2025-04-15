@@ -3813,16 +3813,25 @@ position = Vector2(2264, 320)
 [node name="HealthItemFull2" parent="Collectibles" instance=ExtResource("8_ygp5s")]
 position = Vector2(3192, 680)
 
+[node name="HealthItemFull3" parent="Collectibles" instance=ExtResource("8_ygp5s")]
+position = Vector2(2469, 726)
+
+[node name="HealthItemFull4" parent="Collectibles" instance=ExtResource("8_ygp5s")]
+position = Vector2(3348, 319)
+
 [node name="Mobs" type="Node2D" parent="."]
 
 [node name="FlyingEye" parent="Mobs" instance=ExtResource("11_dfqae")]
-position = Vector2(1131, 225)
+position = Vector2(8, -20)
 
 [node name="Goblin" parent="Mobs" instance=ExtResource("10_1fhym")]
-position = Vector2(310, 299)
+position = Vector2(3157, 948)
+
+[node name="Goblin2" parent="Mobs" instance=ExtResource("10_1fhym")]
+position = Vector2(2464, 949)
 
 [node name="Mushroom" parent="Mobs" instance=ExtResource("5_isyqc")]
-position = Vector2(838, 210)
+position = Vector2(1883, 304)
 
 [node name="Mushroom2" parent="Mobs" instance=ExtResource("5_isyqc")]
 position = Vector2(3232, 304)
@@ -3842,17 +3851,11 @@ position = Vector2(2736, 840)
 [node name="Skeleton5" parent="Mobs" instance=ExtResource("6_3rk4s")]
 position = Vector2(2592, 840)
 
-[node name="Skeleton6" parent="Mobs" instance=ExtResource("6_3rk4s")]
-position = Vector2(2456, 952)
-
 [node name="Skeleton7" parent="Mobs" instance=ExtResource("6_3rk4s")]
 position = Vector2(3120, 952)
 
 [node name="Skeleton8" parent="Mobs" instance=ExtResource("6_3rk4s")]
 position = Vector2(3064, 952)
-
-[node name="Skeleton10" parent="Mobs" instance=ExtResource("6_3rk4s")]
-position = Vector2(1251, 235)
 
 [node name="Player" type="Node2D" parent="."]
 position = Vector2(72, 296)

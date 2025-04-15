@@ -21,7 +21,7 @@ func physics_update(delta: float) -> void:
 	entity.apply_velocity(delta)
 
 func regen() -> void:
-	entity.health += 50
+	entity.health += 150
 	owner.health = min(owner.health, owner.max_health)
 	owner.healthbar.value = owner.health
 

@@ -1,6 +1,10 @@
-[gd_scene load_steps=23 format=3 uid="uid://c18c7qvwk0e68"]
+[gd_scene load_steps=32 format=3 uid="uid://c18c7qvwk0e68"]
 
 [ext_resource type="Texture2D" uid="uid://dqr6gclw3qc28" path="res://Mobs/Goblin/Sprites/Bomb_sprite.png" id="1_54ww7"]
+[ext_resource type="Script" uid="uid://b02i10tqw7v0i" path="res://Mobs/Goblin/Scripts/bomb.gd" id="1_gs652"]
+[ext_resource type="AudioStream" uid="uid://docawayeurpp0" path="res://Audio/SFX/Mobs/Goblin/Bomb/goblin_fuse_01.ogg" id="3_qor4w"]
+[ext_resource type="Script" uid="uid://dxlr66bayxtbh" path="res://Mobs/Goblin/Scripts/explosion_sfx.gd" id="4_66bbp"]
+[ext_resource type="AudioStream" uid="uid://dykp4355uuypn" path="res://Audio/SFX/Mobs/Goblin/Bomb/goblin_bomb_explosion_01.ogg" id="4_dex2q"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gs652"]
 atlas = ExtResource("1_54ww7")
@@ -145,20 +149,191 @@ animations = [{
 }],
 "loop": false,
 "name": &"Explode",
-"speed": 15.0
+"speed": 30.0
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_6a1qp"]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_gs652"]
+radius = 52.0865
+
+[sub_resource type="Animation" id="Animation_qor4w"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ExplosionArea:monitoring")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_gs652"]
+length = 0.2
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0666667, 0.133333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 2]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["Delay"]
+}
+
+[sub_resource type="Animation" id="Animation_a1r2l"]
+length = 1.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.1, 0.133333, 0.166667, 0.2, 0.233333, 0.266667, 0.3, 0.333333, 0.366667, 0.4, 0.433333, 0.466667, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["Explode"]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ExplosionArea:monitoring")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.3, 0.80222),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("SFX/Explosion")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.3),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"play_explosion"
+}]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.532949),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qor4w"]
+_data = {
+&"Delay": SubResource("Animation_gs652"),
+&"Explode": SubResource("Animation_a1r2l"),
+&"RESET": SubResource("Animation_qor4w")
+}
+
 [node name="Bomb" type="RigidBody2D"]
+collision_layer = 0
+script = ExtResource("1_gs652")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(-2, -2)
 sprite_frames = SubResource("SpriteFrames_fb17s")
-animation = &"Delay"
+animation = &"Explode"
 autoplay = "Delay"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 rotation = -3.14159
 scale = Vector2(0.518706, 0.518706)
 shape = SubResource("CircleShape2D_6a1qp")
+
+[node name="ExplosionArea" type="Area2D" parent="."]
+visible = false
+collision_layer = 0
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ExplosionArea"]
+shape = SubResource("CircleShape2D_gs652")
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_qor4w")
+}
+
+[node name="SFX" type="Node2D" parent="."]
+
+[node name="Fuse" type="AudioStreamPlayer2D" parent="SFX"]
+stream = ExtResource("3_qor4w")
+
+[node name="Explosion" type="AudioStreamPlayer2D" parent="SFX"]
+script = ExtResource("4_66bbp")
+explosion_sounds = Array[AudioStream]([ExtResource("4_dex2q")])
+
+[connection signal="area_entered" from="ExplosionArea" to="." method="_on_explosion_area_area_entered"]
