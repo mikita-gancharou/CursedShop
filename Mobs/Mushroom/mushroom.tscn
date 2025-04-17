@@ -975,6 +975,7 @@ script = ExtResource("12_bbi1o")
 script = ExtResource("15_uiguh")
 
 [node name="AttackDirection" type="Node2D" parent="."]
+visible = false
 position = Vector2(1, 7)
 scale = Vector2(0.880071, 0.880071)
 
@@ -1025,7 +1026,6 @@ scale = Vector2(5.50797, 5.50797)
 shape = SubResource("CircleShape2D_mh1qi")
 
 [node name="DetectionArea" type="Area2D" parent="."]
-visible = false
 collision_layer = 0
 collision_mask = 2
 
@@ -1056,6 +1056,7 @@ metadata/_custom_type_script = "uid://thw23noko053"
 [node name="FootstepAudio2D" type="AudioStreamPlayer2D" parent="SFX"]
 stream = SubResource("AudioStreamRandomizer_tgt7e")
 volume_db = -16.0
+max_distance = 400.0
 script = ExtResource("22_tgt7e")
 footstep_sound = ExtResource("19_xsx4f")
 

@@ -974,6 +974,7 @@ metadata/_custom_type_script = "uid://thw23noko053"
 
 [node name="FootstepAudio2D" type="AudioStreamPlayer2D" parent="SFX"]
 stream = SubResource("AudioStreamRandomizer_2eet5")
+max_distance = 400.0
 script = ExtResource("20_5j86g")
 footstep_sound = ExtResource("21_xrhhs")
 

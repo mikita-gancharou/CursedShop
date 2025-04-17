@@ -1,5 +1,5 @@
-# skeleton.gd
-class_name Skeleton
+# Flying.gd
+class_name Flying
 extends CharacterBody2D
 
 @export var speed: float = 100.0

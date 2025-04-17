@@ -26,7 +26,9 @@ func enter() -> void:
 func exit() -> void:
 	entity.velocity = Vector2.ZERO  # сбрасываем скорость
 	owner.is_blocking = false
-
+	$"../../AttackDirection/HurtBox/CollisionShape2D".disabled = true
+	$"../../AttackDirection/HurtBox/CollisionShape2D".disabled = false
+	
 func update(delta: float) -> void:
 		if owner.is_blocking and owner.sprite.flip_h != player.sprite.flip_h:
 			transition.emit("RecoverySkeletonState")

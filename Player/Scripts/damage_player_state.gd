@@ -28,7 +28,9 @@ func enter() -> void:
 
 func exit() -> void:
 	entity.velocity = Vector2.ZERO  # сбрасываем скорость
-
+	$"../../AttackDirection/HurtBox/CollisionShape2D".disabled = true
+	$"../../AttackDirection/HurtBox/CollisionShape2D".disabled = false
+	
 func update(delta: float) -> void:
 	damage_timer += delta
 	if damage_timer >= damage_duration:
