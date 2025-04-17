@@ -4,6 +4,7 @@ extends State
 func enter() -> void:
 	entity.animplayer.play("Attack3")
 	entity.velocity.x = 0
+	entity.is_blocking = true
 
 func exit() -> void:
 	pass
@@ -14,6 +15,7 @@ func update(_delta: float) -> void:
 		return
 	
 	if not entity.animplayer.is_playing():
+		entity.is_blocking = false
 		transition.emit("IdleMushroomState")
 
 func physics_update(delta: float) -> void:

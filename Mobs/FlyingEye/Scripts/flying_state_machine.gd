@@ -55,11 +55,6 @@ func _on_hurt_box_area_entered(_area: Area2D) -> void:
 	await get_tree().create_timer(0.05).timeout
 	owner.last_player_position = player_global_position
 	
-	
-	if owner.is_blocking:
-		if owner.sprite.flip_h != player_node.sprite.flip_h:
-			current_damage = player_damage / 2
-	
 	owner.health -= current_damage
 	owner.healthbar.value = owner.health
 	

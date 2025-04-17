@@ -28,5 +28,6 @@ func physics_update(_delta: float) -> void:
 	pass
 
 func _on_attack_area_entered(body: Node2D) -> void:
-	if body.is_in_group("Player"):
+	# Если входит живой игрок в зону атаки, переключаемся в Attack
+	if body.is_in_group("Player") and not body.is_dead:
 		transition.emit("AttackFlyingState")

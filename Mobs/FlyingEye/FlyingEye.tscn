@@ -615,7 +615,7 @@ shape = SubResource("RectangleShape2D_vi66q")
 position = Vector2(-4, 0)
 scale = Vector2(0.790455, 0.790455)
 sprite_frames = SubResource("SpriteFrames_tdqrt")
-animation = &"Death"
+animation = &"Attack3"
 autoplay = "Idle"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -644,7 +644,6 @@ script = ExtResource("12_eybrg")
 script = ExtResource("13_ljujq")
 
 [node name="AttackDirection" type="Node2D" parent="."]
-visible = false
 position = Vector2(0, 4)
 
 [node name="HurtBox" type="Area2D" parent="AttackDirection"]
@@ -655,6 +654,7 @@ collision_mask = 64
 shape = SubResource("CircleShape2D_46tqd")
 
 [node name="HitBox" type="Area2D" parent="AttackDirection"]
+position = Vector2(1, 0)
 collision_layer = 0
 collision_mask = 16
 

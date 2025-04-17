@@ -2,18 +2,17 @@
 class_name Mushroom
 extends CharacterBody2D
 
-@export var speed: float = 100.0
-@export var acceleration: float = 0.25
-@export var gravity: float = 500.0
-@export var damage: int = 20
-
 @onready var healthbar: TextureProgressBar = $"MobHealth/HealthBar"
 @onready var animplayer: AnimationPlayer = $AnimationPlayer
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var attack_area: Area2D = $AttackDirection/AttackArea
 @onready var aoe_area: Area2D = $AttackDirection/AOETrigger
-
 @onready var player = get_node("/root/Level1/Player/Player")
+
+var speed: float = 100.0
+var acceleration: float = 0.25
+var gravity: float = 500.0
+var damage: int = 20
 
 var max_health: float = 300.0
 var health: float = max_health

@@ -975,7 +975,6 @@ script = ExtResource("12_bbi1o")
 script = ExtResource("15_uiguh")
 
 [node name="AttackDirection" type="Node2D" parent="."]
-visible = false
 position = Vector2(1, 7)
 scale = Vector2(0.880071, 0.880071)
 

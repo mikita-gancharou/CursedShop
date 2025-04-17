@@ -31,7 +31,6 @@ func update(_delta: float) -> void:
 			if body.is_in_group("Player") and not body.is_dead:
 				if not bomb_thrown:
 					entity.animplayer.play("ThrowBomb")
-					#_throw_bomb()
 					bomb_thrown = true
 					return  # Прерываем дальнейшую обработку update
 	
