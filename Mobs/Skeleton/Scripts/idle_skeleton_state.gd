@@ -12,7 +12,7 @@ func update(_delta: float) -> void:
 	if entity.player.is_dead:
 		return
 	
-	if owner.health < 50:
+	if owner.health < 100:
 		transition.emit("RecoverySkeletonState")
 	else:
 		var detection_area = entity.get_node("DetectionArea")
