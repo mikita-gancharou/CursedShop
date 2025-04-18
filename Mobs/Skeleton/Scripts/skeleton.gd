@@ -18,6 +18,7 @@ var max_health: float = 100.0
 var health: float = max_health
 
 var is_blocking: bool = false
+var is_dead: bool = false
 
 var last_player_position: Vector2 = Vector2.ZERO
 

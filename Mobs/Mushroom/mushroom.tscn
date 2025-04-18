@@ -936,7 +936,6 @@ collision_layer = 4
 script = ExtResource("1_1jvsc")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
 position = Vector2(0, 6.5)
 shape = SubResource("RectangleShape2D_1jvsc")
 
@@ -1026,6 +1025,7 @@ scale = Vector2(5.50797, 5.50797)
 shape = SubResource("CircleShape2D_mh1qi")
 
 [node name="DetectionArea" type="Area2D" parent="."]
+visible = false
 collision_layer = 0
 collision_mask = 2
 

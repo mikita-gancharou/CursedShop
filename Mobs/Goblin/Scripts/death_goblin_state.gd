@@ -8,7 +8,7 @@ func enter() -> void:
 	entity.animplayer.play("Death")
 	$"../../SFX/DeathAudio2D".play_death()
 	$"../../MobHealth/AnimationPlayer".play("Healthbar_fadeout")
-	
+	entity.is_dead = true
 	entity.velocity.x = 0
 
 func exit() -> void:
