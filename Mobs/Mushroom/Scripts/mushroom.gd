@@ -1,30 +1,43 @@
-# mushroom.gd
 class_name Mushroom
 extends CharacterBody2D
 
-@export var speed: float = 100.0
+@export var base_speed: float = 100.0
 @export var acceleration: float = 0.25
 @export var gravity: float = 500.0
 @export var damage: int = 20
 
-var health: int = 100
+var speed: float
 
-@onready var animplayer: AnimationPlayer = $AnimationPlayer
-@onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
-@onready var attack_area: Area2D = $AttackDirection/AttackArea
+var max_health: float = 300.0
+var health: float = max_health
+
+var is_blocking: bool = false
+var is_dead: bool = false
 
 var last_player_position: Vector2 = Vector2.ZERO
 
+@onready var healthbar: TextureProgressBar = $"MobHealth/HealthBar"
+@onready var animplayer: AnimationPlayer = $AnimationPlayer
+@onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
+@onready var attack_area: Area2D = $"AttackDirection/AttackArea"
+@onready var aoe_area: Area2D = $"AttackDirection/AOETrigger"
+@onready var player = get_node("/root/Level1/Player/Player")
+
 func _ready() -> void:
 	$AttackDirection/HitBox/CollisionShape2D.disabled = true
+	# Инициализируем вариативную скорость ±10%
+	var rng = RandomNumberGenerator.new()
+	rng.randomize()
+	speed = base_speed * rng.randf_range(0.9, 1.1)
+
+	healthbar.max_value = max_health
+	healthbar.value = health
 
 func _process(_delta: float) -> void:
 	pass
 
 func get_input_vector() -> Vector2:
-	var input_vector = Vector2.ZERO
-	#input_vector.x = Input.get_axis("Move_Left", "Move_Right")
-	return input_vector
+	return Vector2.ZERO
 
 func apply_gravity(delta: float) -> void:
 	velocity.y += gravity * delta

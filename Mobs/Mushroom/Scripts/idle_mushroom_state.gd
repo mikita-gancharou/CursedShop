@@ -8,23 +8,22 @@ func enter() -> void:
 func exit() -> void:
 	pass
 
-func update(delta: float) -> void:
-	# Применяем гравитацию и движение
+func update(_delta: float) -> void:
+	# Если игрок мёртв, остаёмся в Idle
+	if entity.player.is_dead:
+		return
+	
+	var detection_area = entity.get_node("DetectionArea")
+	if detection_area:
+		# Проходим по телам, пересекающим область обнаружения
+		for body in detection_area.get_overlapping_bodies():
+			# Если обнаружен живой игрок, инициируем переход в погоню
+			if body is Player and not body.is_dead:
+				transition.emit("ChaseMushroomState")
+				return
+	else:
+		push_warning("DetectionArea not found in Mushroom")
+		
+func physics_update(delta: float) -> void:
 	entity.apply_gravity(delta)
 	entity.apply_velocity(delta)
-	
-	# Получаем узел DetectionArea2D
-	var detection_area = entity.get_node("DetectionArea2D")
-	if detection_area:
-		# Получаем список тел, пересекающих область
-		var bodies = detection_area.get_overlapping_bodies()
-		for body in bodies:
-			# Если обнаружен игрок, инициируем переход в состояние погони
-			if body is Player:
-				transition.emit("ChaseMushroomState")
-				return  # Завершаем, чтобы не вызывать переход несколько раз
-	else:
-		push_warning("DetectionArea2D не найден у моба")
-		
-func physics_update(_delta: float) -> void:
-	pass

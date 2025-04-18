@@ -12,10 +12,12 @@ extends CharacterBody2D
 
 var health: int
 var max_health: int = 100
-var damage: int = 50
+var damage: int = 60
 
 var is_sliding: bool = false
 var is_blocking: bool = false
+var is_dead: bool = false
+var is_on_lava: bool = false
 
 var last_enemy_position: Vector2 = Vector2.ZERO #TODO: refactor
 

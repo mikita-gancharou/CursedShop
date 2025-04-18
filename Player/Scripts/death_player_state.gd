@@ -5,11 +5,12 @@ func enter() -> void:
 	entity.animplayer.play("Death")
 	$"../../SFX/DeathAudio2D".play_death()
 	
+	
 	entity.velocity.x = 0
 	
 	entity.is_blocking = false
 	entity.is_sliding = false
-	
+	entity.is_dead = true
 
 
 

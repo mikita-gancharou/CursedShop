@@ -11,4 +11,3 @@ streams_count = 1
 stream = SubResource("AudioStreamRandomizer_t7b8x")
 volume_db = -16.0
 script = ExtResource("2_0qxhn")
-footstep_variants = Array[AudioStream]([])

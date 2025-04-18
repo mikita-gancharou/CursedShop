@@ -1,4 +1,4 @@
-[gd_scene load_steps=70 format=4 uid="uid://bcpkwnjjg07wt"]
+[gd_scene load_steps=101 format=3 uid="uid://bcpkwnjjg07wt"]
 
 [ext_resource type="Script" uid="uid://dus0lvtdnh5rw" path="res://Mobs/Mushroom/Scripts/mushroom.gd" id="1_1jvsc"]
 [ext_resource type="Texture2D" uid="uid://l7kdhjv87wn3" path="res://Mobs/Mushroom/Sprites/Idle.png" id="1_abx1l"]
@@ -6,10 +6,12 @@
 [ext_resource type="Script" uid="uid://bswjxndys3ncm" path="res://Audio/SFX/Player/Sword/attack_audio_2d.gd" id="2_mi0g7"]
 [ext_resource type="Script" uid="uid://eolcnc27oaqi" path="res://Mobs/Mushroom/Scripts/mushroom_state_machine.gd" id="3_1jvsc"]
 [ext_resource type="Texture2D" uid="uid://dpy075nxhwqhh" path="res://Mobs/Mushroom/Sprites/Run.png" id="3_bnbq2"]
+[ext_resource type="Texture2D" uid="uid://t1y6tkrrybq" path="res://Mobs/Mushroom/Sprites/Attack2.png" id="3_g63p5"]
 [ext_resource type="AudioStream" uid="uid://b65o47y6cyron" path="res://Audio/SFX/Mobs/Mushroom/Attack/mushroom_attack_01.ogg" id="3_kpt1k"]
 [ext_resource type="Texture2D" uid="uid://dhsmd3aa4wefm" path="res://Mobs/Mushroom/Sprites/Damage.png" id="3_v4nd4"]
 [ext_resource type="Script" uid="uid://dg7q1mv5vrdyx" path="res://Mobs/Mushroom/Scripts/idle_mushroom_state.gd" id="4_1w5fh"]
 [ext_resource type="Texture2D" uid="uid://rmc02flgwoph" path="res://Mobs/Mushroom/Sprites/Death.png" id="4_bbi1o"]
+[ext_resource type="Texture2D" uid="uid://bumdtqe2tixqd" path="res://Mobs/Mushroom/Sprites/Attack3.png" id="4_uiguh"]
 [ext_resource type="Script" uid="uid://dnh0m16ohyydg" path="res://Audio/SFX/Player/Death/death_audio_2d.gd" id="4_xsx4f"]
 [ext_resource type="AudioStream" uid="uid://cmarrqr08eebh" path="res://Audio/SFX/Mobs/Mushroom/Death/mushroom_death_01.ogg" id="5_xsx4f"]
 [ext_resource type="Script" uid="uid://bji56wblqisgh" path="res://Mobs/Mushroom/Scripts/chase_mushroom_state.gd" id="6_3lmv3"]
@@ -18,6 +20,12 @@
 [ext_resource type="Script" uid="uid://dehsnwdtk7a6e" path="res://Mobs/Mushroom/Scripts/attack_mushroom_state.gd" id="8_rswoi"]
 [ext_resource type="Script" uid="uid://ddvq804fbwgco" path="res://Mobs/Mushroom/Scripts/damage_mushroom_state.gd" id="9_g8mg2"]
 [ext_resource type="Script" uid="uid://chcjifneprgoc" path="res://Mobs/Mushroom/Scripts/death_mushroom_state.gd" id="12_bbi1o"]
+[ext_resource type="Script" uid="uid://cae6t662w8ui1" path="res://Mobs/Mushroom/Scripts/aoe_attack_mushroom_state.gd" id="15_uiguh"]
+[ext_resource type="AudioStream" uid="uid://ccjjbokn6i0v6" path="res://Audio/SFX/Mobs/Mushroom/Footstep/mushroom_footstep_01.ogg" id="19_xsx4f"]
+[ext_resource type="PackedScene" uid="uid://cdjhkspqydr81" path="res://Mobs/Scripts/mob_health.tscn" id="20_isjtg"]
+[ext_resource type="Script" uid="uid://t1lrsxtsfnlw" path="res://Mobs/Mushroom/Scripts/footstep_audio_2d.gd" id="22_tgt7e"]
+[ext_resource type="AudioStream" uid="uid://d2e8j7jho1b58" path="res://Audio/SFX/Mobs/Mushroom/AOE/mushroom_aoe_01.ogg" id="23_fqepb"]
+[ext_resource type="Script" uid="uid://b0fi4ennteou4" path="res://Mobs/Mushroom/Scripts/aoe_audio_2d.gd" id="23_mh1qi"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1jvsc"]
 size = Vector2(19, 33)
@@ -53,6 +61,82 @@ region = Rect2(900, 0, 150, 150)
 [sub_resource type="AtlasTexture" id="AtlasTexture_fqepb"]
 atlas = ExtResource("2_3lmv3")
 region = Rect2(1050, 0, 150, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2eylh"]
+atlas = ExtResource("3_g63p5")
+region = Rect2(0, 0, 150, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sfq6m"]
+atlas = ExtResource("3_g63p5")
+region = Rect2(150, 0, 150, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fj8xp"]
+atlas = ExtResource("3_g63p5")
+region = Rect2(300, 0, 150, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l1i5x"]
+atlas = ExtResource("3_g63p5")
+region = Rect2(450, 0, 150, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rex1c"]
+atlas = ExtResource("3_g63p5")
+region = Rect2(600, 0, 150, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k8k48"]
+atlas = ExtResource("3_g63p5")
+region = Rect2(750, 0, 150, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_04wpy"]
+atlas = ExtResource("3_g63p5")
+region = Rect2(900, 0, 150, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mflet"]
+atlas = ExtResource("3_g63p5")
+region = Rect2(1050, 0, 150, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v0j28"]
+atlas = ExtResource("4_uiguh")
+region = Rect2(0, 0, 150, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4df58"]
+atlas = ExtResource("4_uiguh")
+region = Rect2(150, 0, 150, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dtw5n"]
+atlas = ExtResource("4_uiguh")
+region = Rect2(300, 0, 150, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8kghw"]
+atlas = ExtResource("4_uiguh")
+region = Rect2(450, 0, 150, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fun7k"]
+atlas = ExtResource("4_uiguh")
+region = Rect2(600, 0, 150, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hi3jn"]
+atlas = ExtResource("4_uiguh")
+region = Rect2(750, 0, 150, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_owhwb"]
+atlas = ExtResource("4_uiguh")
+region = Rect2(900, 0, 150, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i0y02"]
+atlas = ExtResource("4_uiguh")
+region = Rect2(1050, 0, 150, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v1l48"]
+atlas = ExtResource("4_uiguh")
+region = Rect2(1200, 0, 150, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i6fho"]
+atlas = ExtResource("4_uiguh")
+region = Rect2(1350, 0, 150, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bxoyi"]
+atlas = ExtResource("4_uiguh")
+region = Rect2(1500, 0, 150, 150)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tgt7e"]
 atlas = ExtResource("3_v4nd4")
@@ -195,6 +279,73 @@ animations = [{
 }],
 "loop": false,
 "name": &"Attack1",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2eylh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sfq6m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fj8xp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l1i5x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rex1c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k8k48")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_04wpy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mflet")
+}],
+"loop": false,
+"name": &"Attack2",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v0j28")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4df58")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dtw5n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8kghw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fun7k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hi3jn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_owhwb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i0y02")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v1l48")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i6fho")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bxoyi")
+}],
+"loop": false,
+"name": &"Attack3",
 "speed": 10.0
 }, {
 "frames": [{
@@ -363,6 +514,126 @@ tracks/3/keys = {
 }]
 }
 
+[sub_resource type="Animation" id="Animation_uiguh"]
+length = 0.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["Attack2"]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AttackDirection/HitBox/CollisionShape2D:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, false, true]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("SFX/AttackAudio2D")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [0],
+"method": &"play_attack"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_fqepb"]
+length = 1.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["Attack3"]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AttackDirection/AOEAttack/CollisionShape2D:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.700828, 0.800749),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, false, true]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("SFX/AOEAudio2D")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.666667),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"play_AOE"
+}]
+}
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("MushroomStateMachine/AOEAttackMushroomState")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.8),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"regen"
+}]
+}
+
 [sub_resource type="Animation" id="Animation_yrmjc"]
 length = 0.4
 tracks/0/type = "value"
@@ -401,6 +672,18 @@ tracks/2/keys = {
 "update": 1,
 "values": [true]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("AttackDirection/AOEAttack/CollisionShape2D:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_1u13w"]
 length = 0.5
@@ -411,10 +694,10 @@ tracks/0/path = NodePath("AnimatedSprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 1),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 1,
-"values": [0, 1, 2, 3, 4, 4]
+"values": [0, 1, 2, 3, 4]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -443,14 +726,14 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("AnimatedSprite2D:modulate:a")
+tracks/3/path = NodePath("AttackDirection/AOEAttack/CollisionShape2D:disabled")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0.4, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_vlg1j"]
@@ -510,14 +793,14 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("AnimatedSprite2D:modulate:a")
+tracks/1/path = NodePath("AttackDirection/AOEAttack/CollisionShape2D:disabled")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [1.0]
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_mi0g7"]
@@ -559,11 +842,6 @@ tracks/2/keys = {
 "values": [true]
 }
 
-[sub_resource type="AudioStreamWAV" id="AudioStreamWAV_krkps"]
-data = PackedByteArray("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")
-format = 3
-mix_rate = 48000
-
 [sub_resource type="Animation" id="Animation_g8mg2"]
 length = 0.8
 loop_mode = 1
@@ -603,29 +881,29 @@ tracks/2/keys = {
 "update": 1,
 "values": [true]
 }
-tracks/3/type = "audio"
+tracks/3/type = "method"
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/path = NodePath("SFX/FootstepAudio2D")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"clips": [{
-"end_offset": 0.0,
-"start_offset": 0.0,
-"stream": SubResource("AudioStreamWAV_krkps")
+"times": PackedFloat32Array(0.09, 0.49),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"play_footstep"
 }, {
-"end_offset": 0.0,
-"start_offset": 0.0,
-"stream": SubResource("AudioStreamWAV_krkps")
-}],
-"times": PackedFloat32Array(0.09, 0.49)
+"args": [],
+"method": &"play_footstep"
+}]
 }
-tracks/3/use_blend = true
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_v4nd4"]
 _data = {
 &"Attack1": SubResource("Animation_bbi1o"),
+&"Attack2": SubResource("Animation_uiguh"),
+&"Attack3": SubResource("Animation_fqepb"),
 &"Damage": SubResource("Animation_yrmjc"),
 &"Death": SubResource("Animation_1u13w"),
 &"Idle": SubResource("Animation_vlg1j"),
@@ -642,37 +920,20 @@ height = 38.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mh1qi"]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_uiguh"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_mh1qi"]
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_1jvsc"]
-radius = 117.017
+radius = 100.0
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_tgt7e"]
+random_pitch = 1.1
+random_volume_offset_db = 2.0
 
 [node name="Mushroom" type="CharacterBody2D"]
 collision_layer = 4
 script = ExtResource("1_1jvsc")
-
-[node name="SFX" type="Node2D" parent="."]
-
-[node name="FootstepAudio2D" type="AudioStreamPlayer2D" parent="SFX"]
-volume_db = -16.0
-pitch_scale = 1.2
-
-[node name="AttackAudio2D" type="AudioStreamPlayer2D" parent="SFX"]
-volume_db = -16.0
-pitch_scale = 1.2
-script = ExtResource("2_mi0g7")
-attack_sounds = Array[AudioStream]([ExtResource("3_kpt1k")])
-metadata/_custom_type_script = "uid://bswjxndys3ncm"
-
-[node name="DeathAudio2D" type="AudioStreamPlayer2D" parent="SFX"]
-pitch_scale = 1.2
-script = ExtResource("4_xsx4f")
-death_sounds = Array[AudioStream]([ExtResource("5_xsx4f")])
-metadata/_custom_type_script = "uid://dnh0m16ohyydg"
-
-[node name="DamageAudio2D" type="AudioStreamPlayer2D" parent="SFX"]
-pitch_scale = 1.2
-script = ExtResource("6_krkps")
-damage_sounds = Array[AudioStream]([ExtResource("7_isjtg")])
-metadata/_custom_type_script = "uid://thw23noko053"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 6.5)
@@ -681,15 +942,39 @@ shape = SubResource("RectangleShape2D_1jvsc")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.880071, 0.880071)
 sprite_frames = SubResource("SpriteFrames_g8mg2")
-animation = &"Attack1"
+animation = &"Run"
 autoplay = "Idle"
+frame = 5
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 &"": SubResource("AnimationLibrary_v4nd4")
 }
 
+[node name="MushroomStateMachine" type="Node" parent="." node_paths=PackedStringArray("current_state")]
+script = ExtResource("3_1jvsc")
+current_state = NodePath("IdleMushroomState")
+
+[node name="IdleMushroomState" type="Node" parent="MushroomStateMachine"]
+script = ExtResource("4_1w5fh")
+
+[node name="ChaseMushroomState" type="Node" parent="MushroomStateMachine"]
+script = ExtResource("6_3lmv3")
+
+[node name="AttackMushroomState" type="Node" parent="MushroomStateMachine"]
+script = ExtResource("8_rswoi")
+
+[node name="DamageMushroomState" type="Node" parent="MushroomStateMachine"]
+script = ExtResource("9_g8mg2")
+
+[node name="DeathMushroomState" type="Node" parent="MushroomStateMachine"]
+script = ExtResource("12_bbi1o")
+
+[node name="AOEAttackMushroomState" type="Node" parent="MushroomStateMachine"]
+script = ExtResource("15_uiguh")
+
 [node name="AttackDirection" type="Node2D" parent="."]
+visible = false
 position = Vector2(1, 7)
 scale = Vector2(0.880071, 0.880071)
 
@@ -700,7 +985,6 @@ collision_layer = 32
 collision_mask = 64
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackDirection/HurtBox"]
-visible = false
 position = Vector2(-8.69956e-13, 4.76837e-07)
 shape = SubResource("CapsuleShape2D_bbi1o")
 
@@ -723,33 +1007,67 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackDirection/AttackArea"]
 shape = SubResource("RectangleShape2D_mh1qi")
 
-[node name="DetectionArea2D" type="Area2D" parent="."]
+[node name="AOEAttack" type="Area2D" parent="AttackDirection"]
+collision_layer = 0
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackDirection/AOEAttack"]
+scale = Vector2(7.82139, 7.82139)
+shape = SubResource("CircleShape2D_uiguh")
+disabled = true
+
+[node name="AOETrigger" type="Area2D" parent="AttackDirection"]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackDirection/AOETrigger"]
+scale = Vector2(5.50797, 5.50797)
+shape = SubResource("CircleShape2D_mh1qi")
+
+[node name="DetectionArea" type="Area2D" parent="."]
 visible = false
 collision_layer = 0
 collision_mask = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea2D"]
-visible = false
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
 shape = SubResource("CircleShape2D_1jvsc")
 
-[node name="MushroomStateMachine" type="Node" parent="." node_paths=PackedStringArray("current_state")]
-script = ExtResource("3_1jvsc")
-current_state = NodePath("IdleMushroomState")
+[node name="SFX" type="Node2D" parent="."]
 
-[node name="IdleMushroomState" type="Node" parent="MushroomStateMachine"]
-script = ExtResource("4_1w5fh")
+[node name="AttackAudio2D" type="AudioStreamPlayer2D" parent="SFX"]
+volume_db = -16.0
+pitch_scale = 1.2
+script = ExtResource("2_mi0g7")
+attack_sounds = Array[AudioStream]([ExtResource("3_kpt1k")])
+metadata/_custom_type_script = "uid://bswjxndys3ncm"
 
-[node name="ChaseMushroomState" type="Node" parent="MushroomStateMachine"]
-script = ExtResource("6_3lmv3")
+[node name="DeathAudio2D" type="AudioStreamPlayer2D" parent="SFX"]
+pitch_scale = 1.2
+script = ExtResource("4_xsx4f")
+death_sounds = Array[AudioStream]([ExtResource("5_xsx4f")])
+metadata/_custom_type_script = "uid://dnh0m16ohyydg"
 
-[node name="AttackMushroomState" type="Node" parent="MushroomStateMachine"]
-script = ExtResource("8_rswoi")
+[node name="DamageAudio2D" type="AudioStreamPlayer2D" parent="SFX"]
+pitch_scale = 1.2
+script = ExtResource("6_krkps")
+damage_sounds = Array[AudioStream]([ExtResource("7_isjtg")])
+metadata/_custom_type_script = "uid://thw23noko053"
 
-[node name="DamageMushroomState" type="Node" parent="MushroomStateMachine"]
-script = ExtResource("9_g8mg2")
+[node name="FootstepAudio2D" type="AudioStreamPlayer2D" parent="SFX"]
+stream = SubResource("AudioStreamRandomizer_tgt7e")
+volume_db = -16.0
+max_distance = 400.0
+script = ExtResource("22_tgt7e")
+footstep_sound = ExtResource("19_xsx4f")
 
-[node name="DeathMushroomState" type="Node" parent="MushroomStateMachine"]
-script = ExtResource("12_bbi1o")
+[node name="AOEAudio2D" type="AudioStreamPlayer2D" parent="SFX"]
+script = ExtResource("23_mh1qi")
+AOE_sounds = Array[AudioStream]([ExtResource("23_fqepb")])
+
+[node name="MobHealth" parent="." instance=ExtResource("20_isjtg")]
+position = Vector2(0, -14)
+scale = Vector2(0.15, 0.15)
 
 [connection signal="area_entered" from="AttackDirection/HurtBox" to="MushroomStateMachine" method="_on_hurt_box_area_entered"]
 [connection signal="area_entered" from="AttackDirection/HitBox" to="MushroomStateMachine/AttackMushroomState" method="_on_hit_box_area_entered"]
+[connection signal="area_entered" from="AttackDirection/AOEAttack" to="MushroomStateMachine/AOEAttackMushroomState" method="_on_aoe_attack_area_entered"]

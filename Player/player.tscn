@@ -36,7 +36,7 @@ streams_count = 1
 stream_0/stream = ExtResource("11_i4o1l")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_od3ui"]
-size = Vector2(15, 31)
+size = Vector2(10, 31)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bbimk"]
 atlas = ExtResource("1_l8h54")
@@ -1315,8 +1315,7 @@ script = ExtResource("11_lfmf2")
 script = ExtResource("12_pisgm")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
-position = Vector2(-2.5, 12.5)
+position = Vector2(0, 12.5)
 shape = SubResource("RectangleShape2D_od3ui")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]

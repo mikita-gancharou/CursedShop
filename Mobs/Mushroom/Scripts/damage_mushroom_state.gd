@@ -8,7 +8,6 @@ var damage_timer: float = 0.0  # таймер состояния
 func enter() -> void:
 	entity.animplayer.play("Damage")
 	$"../../SFX/DamageAudio2D".play_damage()
-	
 	damage_timer = 0.0
 	entity.animplayer.animation_finished.connect(_on_animation_finished)
 	
@@ -22,7 +21,9 @@ func enter() -> void:
 func exit() -> void:
 	entity.velocity = Vector2.ZERO  # сбрасываем скорость
 	entity.animplayer.animation_finished.disconnect(_on_animation_finished)
-
+	$"../../AttackDirection/HurtBox/CollisionShape2D".disabled = true
+	$"../../AttackDirection/HurtBox/CollisionShape2D".disabled = false
+	
 func update(delta: float) -> void:
 	damage_timer += delta
 	if damage_timer >= damage_duration:
