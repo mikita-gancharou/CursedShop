@@ -2,53 +2,55 @@ class_name FallPlayerState
 extends State
 
 var landed: bool = false
-var ready_to_land: bool = false
+var fall_initialized: bool = false
 
 func enter() -> void:
 	landed = false
-	ready_to_land = false
-	# Сброс любых предыдущих анимаций и запуск Fall сразу
+	fall_initialized = false
+	# Принудительно сбрасываем и откладываем запуск Fall
 	entity.animplayer.stop()
-	entity.animplayer.play("Fall")
-	# Отложенный флаг, чтобы первый кадр точно отработал
-	call_deferred("_enable_landing")
+	call_deferred("_play_fall")
 
-func _enable_landing() -> void:
-	# Этот флаг позволит начать проверять is_on_floor() только после enter()
-	ready_to_land = true
+func _play_fall() -> void:
+	entity.animplayer.play("Fall", 0.0)
+	fall_initialized = true
 
 func update(delta: float) -> void:
+	# Если по какой-то причине Fall не успел запуститься, форсируем ещё раз
+	if not fall_initialized:
+		entity.animplayer.play("Fall", 0.0)
+		fall_initialized = true
+
 	# Физика движения
-	var input_vector = entity.get_input_vector()
-	entity.apply_movement(input_vector, delta)
-	entity.change_direction(input_vector.x)
+	var iv = entity.get_input_vector()
+	entity.apply_movement(iv, delta)
+	entity.change_direction(iv.x)
 	entity.apply_gravity(delta)
 	entity.apply_velocity(delta)
 
-	# Начинаем проверять попадание на пол только после deferred
-	if ready_to_land and entity.is_on_floor():
-		# Если игрок сразу путает действия, даём приоритет прыжку
+	# Как только коснулись пола, даём приоритет действиям
+	if entity.is_on_floor():
 		if Input.is_action_just_pressed("Jump"):
 			transition.emit("JumpPlayerState")
 			return
-		elif Input.is_action_just_pressed("Slide"):
+		if Input.is_action_just_pressed("Slide"):
 			transition.emit("SlidePlayerState")
 			return
-		elif Input.is_action_just_pressed("Attack"):
+		if Input.is_action_just_pressed("Attack"):
 			transition.emit("AttackPlayerState")
 			return
-		elif Input.is_action_pressed("Block"):
+		if Input.is_action_pressed("Block"):
 			transition.emit("BlockPlayerState")
 			return
-		elif Input.is_action_just_pressed("Ultimative"):
+		if Input.is_action_just_pressed("Ultimative"):
 			transition.emit("UltimativePlayerState")
 			return
 
-		# Если мы впервые приземлились — проигрываем «Land»
+		# Если приземлились впервые — проигрываем Land
 		if not landed:
 			landed = true
-			entity.animplayer.play("Land")
-		# После окончания анимации приземления — в бег
+			entity.animplayer.play("Land", 0.0)
+		# После окончания Land — в бег
 		elif not entity.animplayer.is_playing():
 			transition.emit("RunningPlayerState")
 
