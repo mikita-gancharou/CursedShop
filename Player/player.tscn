@@ -1,4 +1,4 @@
-[gd_scene load_steps=132 format=3 uid="uid://cwnm8oamm0nog"]
+[gd_scene load_steps=133 format=3 uid="uid://cwnm8oamm0nog"]
 
 [ext_resource type="Script" uid="uid://b17tbcvaf4npi" path="res://Player/Scripts/player.gd" id="1_btcbx"]
 [ext_resource type="Texture2D" uid="uid://c0o3j8vpuro5j" path="res://Player/Sprites/char_blue_1.png" id="1_l8h54"]
@@ -30,6 +30,7 @@
 [ext_resource type="Texture2D" uid="uid://b63l7hq08jm3l" path="res://Art/UI/HP_bar_progress.png" id="13_dkpta"]
 [ext_resource type="AudioStream" uid="uid://cnhtt3mn665a1" path="res://Audio/SFX/Player/Ultimative/ultimative_01.ogg" id="14_j2n6q"]
 [ext_resource type="PackedScene" uid="uid://stp8rmlu0x5m" path="res://Audio/SFX/Player/Footsteps/footstep_audio_2D.tscn" id="18_b1ygp"]
+[ext_resource type="Texture2D" uid="uid://v4fvwst5wic4" path="res://Art/UI/one_moneda.png" id="31_bbimk"]
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_qemgg"]
 streams_count = 1
@@ -1371,5 +1372,24 @@ texture_over = ExtResource("12_gu6f8")
 texture_progress = ExtResource("13_dkpta")
 tint_over = Color(0.729412, 0.580392, 0.34902, 1)
 tint_progress = Color(0.723546, 0.203956, 0.145092, 1)
+
+[node name="Gold" type="HBoxContainer" parent="CanvasLayer"]
+offset_left = 15.0
+offset_top = 74.0
+offset_right = 76.0
+offset_bottom = 143.0
+scale = Vector2(2.01327, 0.437356)
+
+[node name="GoldImage" type="TextureRect" parent="CanvasLayer/Gold"]
+layout_mode = 2
+texture = ExtResource("31_bbimk")
+
+[node name="Amount" type="Label" parent="CanvasLayer/Gold"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 32
+text = "100"
+vertical_alignment = 1
 
 [connection signal="area_entered" from="AttackDirection/HitBox" to="PlayerStateMachine/AttackPlayerState" method="_on_hit_box_area_entered"]

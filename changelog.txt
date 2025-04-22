@@ -4,11 +4,18 @@
 
 ✨ New
 
+Coins added.
+Coins can be found on the level and mobs are dropping them on death now
+
 🐞 Fixes
 
 Fixed input delay when registering player attacks — attacks now trigger immediately upon input.
 
 Resolved animation flicker at the peak of jump — player no longer snaps into idle before falling.
+
+Lava sound is always playing now
+
+Mushroom mob from the tutorial part of the level will fall in lava every time.
 
 _______________________________________________________
 🧪 v0.1.1 — 18.04.25

@@ -3,13 +3,13 @@ extends State
 
 
 #TODO: queue free, etc
-#?гриб падает за пределы экрана?
 func enter() -> void:
 	entity.animplayer.play("Death")
 	$"../../SFX/DeathAudio2D".play_death()
 	$"../../MobHealth/AnimationPlayer".play("Healthbar_fadeout")
 	entity.velocity.x = 0
-
+	entity.is_dead = true
+	
 func exit() -> void:
 	pass
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=4 uid="uid://csfhx52d646s"]
+[gd_scene load_steps=16 format=4 uid="uid://csfhx52d646s"]
 
 [ext_resource type="Script" uid="uid://omkpfhwqb53j" path="res://Levels/Scenes/level1/level_1.gd" id="1_1fhym"]
 [ext_resource type="Texture2D" uid="uid://bktc2ebwpqfbf" path="res://Art/Background/background_layer_1.png" id="1_ven3y"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://cftd8mgvnbfgh" path="res://Code/Collectibles/health_item_full.tscn" id="8_ygp5s"]
 [ext_resource type="PackedScene" uid="uid://bgyfrf04bdu1a" path="res://lava_area.tscn" id="10_1fhym"]
 [ext_resource type="PackedScene" uid="uid://bhd8w7wam0ylm" path="res://Mobs/Skeleton/skeleton.tscn" id="10_dfqae"]
+[ext_resource type="Script" uid="uid://csy88f3asljvl" path="res://Levels/Scenes/level1/coins.gd" id="12_3rk4s"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_hui07"]
 texture = ExtResource("4_dfqae")
@@ -4990,6 +4991,9 @@ scale = Vector2(0.948626, 0.978754)
 [node name="Skeleton" parent="Mobs" instance=ExtResource("10_dfqae")]
 position = Vector2(3770, 578)
 
+[node name="Skeleton6" parent="Mobs" instance=ExtResource("10_dfqae")]
+position = Vector2(402, 290)
+
 [node name="Skeleton2" parent="Mobs" instance=ExtResource("10_dfqae")]
 position = Vector2(4417, 456)
 
@@ -5061,6 +5065,29 @@ position = Vector2(5539, 357)
 
 [node name="Mushroom17" parent="Mobs" instance=ExtResource("5_isyqc")]
 position = Vector2(5541, 281)
+
+[node name="Collectibles" type="Node2D" parent="."]
+position = Vector2(2, -1)
+
+[node name="HealthItems" type="Node2D" parent="Collectibles"]
+
+[node name="HealthItemFull2" parent="Collectibles/HealthItems" instance=ExtResource("8_ygp5s")]
+position = Vector2(2897, 82)
+
+[node name="HealthItemFull3" parent="Collectibles/HealthItems" instance=ExtResource("8_ygp5s")]
+position = Vector2(3748, 583)
+
+[node name="HealthItemFull4" parent="Collectibles/HealthItems" instance=ExtResource("8_ygp5s")]
+position = Vector2(4684, 174)
+
+[node name="HealthItemFull5" parent="Collectibles/HealthItems" instance=ExtResource("8_ygp5s")]
+position = Vector2(5733, 507)
+
+[node name="HealthItemFull6" parent="Collectibles/HealthItems" instance=ExtResource("8_ygp5s")]
+position = Vector2(6890, 501)
+
+[node name="Coins" type="Node2D" parent="Collectibles"]
+script = ExtResource("12_3rk4s")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." groups=["tilemaps"]]
 position = Vector2(0, 25)
@@ -5175,23 +5202,6 @@ offset_bottom = 1294.0
 text = "Выход тут, ты молодец!
 Пока что все.
 0.1.1-alpha"
-
-[node name="Collectibles" type="Node2D" parent="."]
-
-[node name="HealthItemFull2" parent="Collectibles" instance=ExtResource("8_ygp5s")]
-position = Vector2(2897, 82)
-
-[node name="HealthItemFull3" parent="Collectibles" instance=ExtResource("8_ygp5s")]
-position = Vector2(3748, 583)
-
-[node name="HealthItemFull4" parent="Collectibles" instance=ExtResource("8_ygp5s")]
-position = Vector2(4684, 174)
-
-[node name="HealthItemFull5" parent="Collectibles" instance=ExtResource("8_ygp5s")]
-position = Vector2(5733, 507)
-
-[node name="HealthItemFull6" parent="Collectibles" instance=ExtResource("8_ygp5s")]
-position = Vector2(6890, 501)
 
 [connection signal="area_entered" from="TileMapLayer/Lava/LavaArea" to="." method="_on_lava_area_area_entered"]
 [connection signal="area_entered" from="TileMapLayer/Lava/LavaArea2" to="." method="_on_lava_area_area_entered"]
