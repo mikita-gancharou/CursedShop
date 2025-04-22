@@ -18,6 +18,11 @@ config/features=PackedStringArray("4.4", "GL Compatibility")
 
 Signals="*res://Code/Scripts/Global/signals.gd"
 
+[display]
+
+window/stretch/mode="viewport"
+window/stretch/aspect="keep_width"
+
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/AS2P/plugin.cfg")

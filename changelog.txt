@@ -1,5 +1,14 @@
 📦 Changelog
 
+🧪 v0.1.2 — 25.04.25
+
+✨ New
+
+🐞 Fixes
+
+Fixed input delay when registering player attacks — attacks now trigger immediately upon input.
+
+Resolved animation flicker at the peak of jump — player no longer snaps into idle before falling.
 
 _______________________________________________________
 🧪 v0.1.1 — 18.04.25
@@ -16,7 +25,7 @@ Added new enemies: Goblin and Flying Eye
 Goblin have two attacks on a different range 
 and can throw a bomb.
 
-Flying Eye has three different attacs
+Flying Eye has three different attacks
 
 HP bar now displayed above enemies
 
