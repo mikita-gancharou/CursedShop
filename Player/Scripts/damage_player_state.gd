@@ -27,9 +27,9 @@ func enter() -> void:
 	entity.velocity = knockback_force
 
 func exit() -> void:
-	entity.velocity = Vector2.ZERO  # сбрасываем скорость
-	$"../../AttackDirection/HurtBox/CollisionShape2D".disabled = true
-	$"../../AttackDirection/HurtBox/CollisionShape2D".disabled = false
+	entity.velocity = Vector2.ZERO
+	$"../../AttackDirection/HurtBox/CollisionShape2D".set_deferred("disabled", true)
+	$"../../AttackDirection/HurtBox/CollisionShape2D".set_deferred("disabled", false)
 	
 func update(delta: float) -> void:
 	damage_timer += delta
