@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://1re6keruptrc"]
+
+[ext_resource type="Script" uid="uid://ds6grpuyh3jm6" path="res://lava_fountain.gd" id="1_l2y5e"]
+[ext_resource type="PackedScene" uid="uid://db6ffd1ddhrqh" path="res://Code/Scripts/lava_particle.tscn" id="2_jfqfy"]
+
+[node name="LavaFountain" type="Node2D"]
+script = ExtResource("1_l2y5e")
+lava_particle_scene = ExtResource("2_jfqfy")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.2
+
+[node name="Marker2D" type="Marker2D" parent="."]

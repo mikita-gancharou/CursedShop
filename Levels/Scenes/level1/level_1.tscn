@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=4 uid="uid://csfhx52d646s"]
+[gd_scene load_steps=17 format=4 uid="uid://csfhx52d646s"]
 
 [ext_resource type="Script" uid="uid://omkpfhwqb53j" path="res://Levels/Scenes/level1/level_1.gd" id="1_1fhym"]
 [ext_resource type="Texture2D" uid="uid://bktc2ebwpqfbf" path="res://Art/Background/background_layer_1.png" id="1_ven3y"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://cftd8mgvnbfgh" path="res://Code/Collectibles/health_item_full.tscn" id="8_ygp5s"]
 [ext_resource type="PackedScene" uid="uid://bgyfrf04bdu1a" path="res://lava_area.tscn" id="10_1fhym"]
 [ext_resource type="PackedScene" uid="uid://bhd8w7wam0ylm" path="res://Mobs/Skeleton/skeleton.tscn" id="10_dfqae"]
+[ext_resource type="PackedScene" uid="uid://1re6keruptrc" path="res://Code/Scripts/lava_fountain.tscn" id="12_3q0io"]
 [ext_resource type="Script" uid="uid://csy88f3asljvl" path="res://Levels/Scenes/level1/coins.gd" id="12_3rk4s"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_hui07"]
@@ -4983,7 +4984,7 @@ tile_set = SubResource("TileSet_w34tu")
 position = Vector2(-1260, 216)
 
 [node name="Player" parent="Player" instance=ExtResource("7_3q0io")]
-position = Vector2(1304, 83)
+position = Vector2(3438, 6.99998)
 scale = Vector2(0.948626, 0.978754)
 
 [node name="Mobs" type="Node2D" parent="."]
@@ -5088,6 +5089,11 @@ position = Vector2(6890, 501)
 
 [node name="Coins" type="Node2D" parent="Collectibles"]
 script = ExtResource("12_3rk4s")
+
+[node name="Particles" type="Node2D" parent="."]
+
+[node name="LavaFountain" parent="Particles" instance=ExtResource("12_3q0io")]
+position = Vector2(2433, 335)
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." groups=["tilemaps"]]
 position = Vector2(0, 25)
