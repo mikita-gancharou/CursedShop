@@ -4990,7 +4990,7 @@ tile_set = SubResource("TileSet_w34tu")
 position = Vector2(-1260, 216)
 
 [node name="Player" parent="Player" instance=ExtResource("7_3q0io")]
-position = Vector2(4060, -21)
+position = Vector2(1320, 77)
 scale = Vector2(0.948626, 0.978754)
 
 [node name="Mobs" type="Node2D" parent="."]

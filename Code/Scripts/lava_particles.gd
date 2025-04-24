@@ -58,5 +58,5 @@ func _physics_process(delta: float) -> void:
 
 func _on_body_entered(body: Node) -> void:
 	if body.is_in_group("Player") and not body.is_dead:
-		Signals.emit_signal("enemy_attack", damage, global_position)
+		Signals.emit_signal("lava_attack", damage, global_position)
 		queue_free()

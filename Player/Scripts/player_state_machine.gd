@@ -25,7 +25,8 @@ func _ready() -> void:
 
 	# Подписка на глобальный сигнал атаки
 	Signals.connect("enemy_attack", Callable (self, "_on_damage_received"))
-
+	Signals.connect("lava_attack", Callable (self, "_on_lava_damage_received"))
+	
 	# После регистрации вызываем начальное состояние
 	if current_state:
 		current_state.enter()
@@ -68,6 +69,20 @@ func _on_damage_received(enemy_damage, enemy_global_position):
 	else:
 		owner.health = 0
 		on_child_transition("DeathPlayerState")
+
+func _on_lava_damage_received(enemy_damage, enemy_global_position):
+	owner.last_enemy_position = enemy_global_position
+	
+	owner.health -= enemy_damage
+	owner.healthbar.value = owner.health
+	emit_signal("health_changed", owner.health)
+	
+	if owner.health > 0:
+		$"../SFX/DamageAudio2D".play_damage()
+	else:
+		owner.health = 0
+		on_child_transition("DeathPlayerState")
+
 
 func add_health(healing) -> void:
 		owner.health += healing
