@@ -69,7 +69,7 @@ func _on_damage_received(enemy_damage, enemy_global_position):
 		owner.health = 0
 		on_child_transition("DeathPlayerState")
 
-func _on_lava_damage_received(enemy_damage, enemy_global_position):
+func _on_lava_damage_received(enemy_damage, _enemy_global_position):
 	var final_damage : int = max(enemy_damage - Global.armor, MIN_DAMAGE)
 	owner.health -= final_damage
 	change_health()
