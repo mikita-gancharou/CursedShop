@@ -21,6 +21,8 @@ func apply_gravity(delta: float) -> void:
 
 func _on_detector_body_entered(_body: Node2D) -> void:
 	if is_on_floor():
+		Global.gold += 1
+		Signals.emit_signal("gold_changed")
 		var tween = get_tree().create_tween()
 		tween.parallel().tween_property(self, "velocity", Vector2(0, -150), 0.3)
 		tween.parallel().tween_property(self, "modulate:a", 0, 0.5)

@@ -26,7 +26,8 @@ func _ready() -> void:
 	# Подписка на глобальный сигнал атаки
 	Signals.connect("enemy_attack", Callable (self, "_on_damage_received"))
 	Signals.connect("lava_attack", Callable (self, "_on_lava_damage_received"))
-	
+	Signals.connect("gold_changed", Callable (self, "_on_gold_changed"))
+	Signals.connect("chest_opened", Callable (self, "_on_chest_opened"))
 	# После регистрации вызываем начальное состояние
 	if current_state:
 		current_state.enter()
@@ -62,6 +63,7 @@ func _on_damage_received(enemy_damage, enemy_global_position):
 	if owner.is_sliding == false and owner.is_blocking == false:
 		owner.health -= enemy_damage
 		owner.healthbar.value = owner.health
+		owner.healthbar_text.text = str(owner.health) + "/" + str(owner.max_health)
 		emit_signal("health_changed", owner.health)
 	
 	if owner.health > 0:
@@ -75,6 +77,7 @@ func _on_lava_damage_received(enemy_damage, enemy_global_position):
 	
 	owner.health -= enemy_damage
 	owner.healthbar.value = owner.health
+	owner.healthbar_text.text = str(owner.health) + "/" + str(owner.max_health)
 	emit_signal("health_changed", owner.health)
 	
 	if owner.health > 0:
@@ -90,3 +93,16 @@ func add_health(healing) -> void:
 			owner.health = owner.max_health
 			emit_signal("health_changed", owner.health)
 		owner.healthbar.value = owner.health
+		owner.healthbar_text.text = str(owner.health) + "/" + str(owner.max_health)
+
+func _on_gold_changed() -> void:
+	owner.gold_label.text = str(Global.gold)
+	
+func _on_chest_opened() -> void:
+	
+	owner.max_health += 10
+	owner.health += 10
+	owner.healthbar.value = owner.health
+	owner.healthbar.max_value = owner.health
+	owner.healthbar_text.text = str(owner.health) + "/" + str(owner.max_health)
+	emit_signal("health_changed", owner.health)

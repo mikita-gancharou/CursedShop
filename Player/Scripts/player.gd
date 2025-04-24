@@ -24,12 +24,15 @@ var last_enemy_position: Vector2 = Vector2.ZERO #TODO: refactor
 @onready var animplayer: AnimationPlayer = $AnimationPlayer
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var healthbar = $CanvasLayer/HealthBar
+@onready var healthbar_text = $CanvasLayer/HealthBar/Label
+@onready var gold_label = $CanvasLayer/Gold/Amount
 
 func _ready() -> void:
 	add_to_group("Player")
 	health = max_health
 	healthbar.max_value = max_health
 	healthbar.value = health
+	healthbar_text.text = str(health) + "/" + str(max_health)
 	$BgMusic.play()
 
 func _process(_delta: float) -> void:

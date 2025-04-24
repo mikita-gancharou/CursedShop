@@ -1373,12 +1373,21 @@ texture_progress = ExtResource("13_dkpta")
 tint_over = Color(0.729412, 0.580392, 0.34902, 1)
 tint_progress = Color(0.723546, 0.203956, 0.145092, 1)
 
+[node name="Label" type="Label" parent="CanvasLayer/HealthBar"]
+layout_mode = 0
+offset_left = 11.4621
+offset_top = 13.105
+offset_right = 73.4621
+offset_bottom = 36.105
+scale = Vector2(0.290772, 0.578227)
+text = "99/99"
+
 [node name="Gold" type="HBoxContainer" parent="CanvasLayer"]
 offset_left = 15.0
 offset_top = 74.0
 offset_right = 76.0
 offset_bottom = 143.0
-scale = Vector2(2.01327, 0.437356)
+scale = Vector2(1.38244, 0.429665)
 
 [node name="GoldImage" type="TextureRect" parent="CanvasLayer/Gold"]
 layout_mode = 2
@@ -1389,7 +1398,7 @@ layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 1
 theme_override_font_sizes/font_size = 32
-text = "100"
+text = "0"
 vertical_alignment = 1
 
 [connection signal="area_entered" from="AttackDirection/HitBox" to="PlayerStateMachine/AttackPlayerState" method="_on_hit_box_area_entered"]

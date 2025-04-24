@@ -11,3 +11,9 @@ signal player_attack(player_damage, player_global_position)
 
 @warning_ignore("unused_signal")
 signal enemy_died(enemy_global_position)
+
+@warning_ignore("unused_signal")
+signal gold_changed()
+
+@warning_ignore("unused_signal")
+signal chest_opened()
