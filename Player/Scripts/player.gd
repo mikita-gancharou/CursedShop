@@ -12,7 +12,6 @@ extends CharacterBody2D
 
 var health: int
 var max_health: int = 100
-var damage: int = 60
 
 var is_sliding: bool = false
 var is_blocking: bool = false
@@ -25,14 +24,25 @@ var last_enemy_position: Vector2 = Vector2.ZERO #TODO: refactor
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var healthbar = $CanvasLayer/HealthBar
 @onready var healthbar_text = $CanvasLayer/HealthBar/Label
-@onready var gold_label = $CanvasLayer/Gold/Amount
+@onready var gold_label = $CanvasLayer/VBoxContainer/Gold/Amount
+@onready var attack_label = $CanvasLayer/VBoxContainer/Attack/Amount
+@onready var armor_label = $CanvasLayer/VBoxContainer/Armor/Amount
 
 func _ready() -> void:
 	add_to_group("Player")
+	
+	Global.gold = 0
+	Global.damage = 50
+	Global.armor = 0
+	
+	max_health = 100
 	health = max_health
 	healthbar.max_value = max_health
 	healthbar.value = health
 	healthbar_text.text = str(health) + "/" + str(max_health)
+	
+	attack_label.text = str(Global.damage)
+	
 	$BgMusic.play()
 
 func _process(_delta: float) -> void:

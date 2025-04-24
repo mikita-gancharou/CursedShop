@@ -5,7 +5,7 @@ extends Node
 var states: Dictionary = {}
 
 @onready var player_node = get_node("/root/Level1/Player/Player")
-@onready var player_damage: float = player_node.damage
+@onready var player_damage: float = Global.damage
 var player_global_position: Vector2
 
 func _ready() -> void:

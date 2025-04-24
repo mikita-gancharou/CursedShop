@@ -14,7 +14,7 @@ func _ready() -> void:
 	cost_label.text = str(cost) + "$"
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if not is_open:
 		if is_close_to_open and Input.is_action_just_pressed("Action"):
 			if Global.gold >= cost:
@@ -31,12 +31,12 @@ func open_chest():
 	cost_label.visible = false
 	Signals.emit_signal("chest_opened")
 	
-func _on_area_2d_body_entered(body: Node2D) -> void:
+func _on_area_2d_body_entered(_body: Node2D) -> void:
 	if not is_open:
 		help_text.visible = true
 		is_close_to_open = true
 
-func _on_area_2d_body_exited(body: Node2D) -> void:
+func _on_area_2d_body_exited(_body: Node2D) -> void:
 	if not is_open:
 		help_text.visible = false
 		is_close_to_open = false

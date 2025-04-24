@@ -1,4 +1,4 @@
-[gd_scene load_steps=133 format=3 uid="uid://cwnm8oamm0nog"]
+[gd_scene load_steps=135 format=3 uid="uid://cwnm8oamm0nog"]
 
 [ext_resource type="Script" uid="uid://b17tbcvaf4npi" path="res://Player/Scripts/player.gd" id="1_btcbx"]
 [ext_resource type="Texture2D" uid="uid://c0o3j8vpuro5j" path="res://Player/Sprites/char_blue_1.png" id="1_l8h54"]
@@ -31,6 +31,8 @@
 [ext_resource type="AudioStream" uid="uid://cnhtt3mn665a1" path="res://Audio/SFX/Player/Ultimative/ultimative_01.ogg" id="14_j2n6q"]
 [ext_resource type="PackedScene" uid="uid://stp8rmlu0x5m" path="res://Audio/SFX/Player/Footsteps/footstep_audio_2D.tscn" id="18_b1ygp"]
 [ext_resource type="Texture2D" uid="uid://v4fvwst5wic4" path="res://Art/UI/one_moneda.png" id="31_bbimk"]
+[ext_resource type="Texture2D" uid="uid://hfd0ir05pm0p" path="res://Art/UI/Attack_Icon.png" id="31_i4o1l"]
+[ext_resource type="Texture2D" uid="uid://chquvvpq4s0qv" path="res://Art/UI/Armor_Icon.png" id="32_j2n6q"]
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_qemgg"]
 streams_count = 1
@@ -1382,23 +1384,58 @@ offset_bottom = 36.105
 scale = Vector2(0.290772, 0.578227)
 text = "99/99"
 
-[node name="Gold" type="HBoxContainer" parent="CanvasLayer"]
-offset_left = 15.0
-offset_top = 74.0
-offset_right = 76.0
-offset_bottom = 143.0
-scale = Vector2(1.38244, 0.429665)
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer"]
+offset_top = 68.0
+offset_right = 40.0
+offset_bottom = 113.0
+scale = Vector2(1.56757, 0.619599)
 
-[node name="GoldImage" type="TextureRect" parent="CanvasLayer/Gold"]
+[node name="Attack" type="HBoxContainer" parent="CanvasLayer/VBoxContainer"]
 layout_mode = 2
-texture = ExtResource("31_bbimk")
+size_flags_horizontal = 0
+alignment = 1
 
-[node name="Amount" type="Label" parent="CanvasLayer/Gold"]
+[node name="AttackImage" type="TextureRect" parent="CanvasLayer/VBoxContainer/Attack"]
+layout_mode = 2
+texture = ExtResource("31_i4o1l")
+
+[node name="Amount" type="Label" parent="CanvasLayer/VBoxContainer/Attack"]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 1
 theme_override_font_sizes/font_size = 32
 text = "0"
+vertical_alignment = 1
+
+[node name="Armor" type="HBoxContainer" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+
+[node name="ArmorImage" type="TextureRect" parent="CanvasLayer/VBoxContainer/Armor"]
+layout_mode = 2
+texture = ExtResource("32_j2n6q")
+
+[node name="Amount" type="Label" parent="CanvasLayer/VBoxContainer/Armor"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 32
+text = "0"
+vertical_alignment = 1
+
+[node name="Gold" type="HBoxContainer" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+
+[node name="GoldImage" type="TextureRect" parent="CanvasLayer/VBoxContainer/Gold"]
+layout_mode = 2
+texture = ExtResource("31_bbimk")
+
+[node name="Amount" type="Label" parent="CanvasLayer/VBoxContainer/Gold"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 32
+text = "0"
+horizontal_alignment = 2
 vertical_alignment = 1
 
 [connection signal="area_entered" from="AttackDirection/HitBox" to="PlayerStateMachine/AttackPlayerState" method="_on_hit_box_area_entered"]

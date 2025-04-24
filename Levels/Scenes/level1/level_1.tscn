@@ -5125,6 +5125,10 @@ position = Vector2(615, 313)
 position = Vector2(3725, 583)
 cost = 5
 
+[node name="Chest10" parent="Collectibles/Chests" instance=ExtResource("13_hui07")]
+position = Vector2(467, 314)
+cost = 1
+
 [node name="Chest2" parent="Collectibles/Chests" instance=ExtResource("13_hui07")]
 position = Vector2(4593, 346)
 cost = 20

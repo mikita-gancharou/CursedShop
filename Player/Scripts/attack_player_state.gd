@@ -67,7 +67,7 @@ func physics_update(delta: float) -> void:
 	entity.apply_velocity(delta)
 
 func _on_hit_box_area_entered(_area: Area2D) -> void:
-	Signals.emit_signal("player_attack", entity.damage, entity.global_position)
+	Signals.emit_signal("player_attack", Global.damage, entity.global_position)
 
 func _play_attack_animation() -> void:
 	# Выбираем название анимации по текущему индексу комбо
