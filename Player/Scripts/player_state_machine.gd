@@ -94,13 +94,8 @@ func attack_change() -> void:
 func armor_change() -> void:
 	owner.armor_label.text = str(Global.armor)
 
-func _on_chest_opened() -> void:
-	var options := [0, 1]
-	if Global.armor < 10:
-		options.append(2)
-
-	var choice : int = options[randi() % options.size()]
-
+func _on_chest_opened(choice) -> void:
+	print("Chest opened", choice)
 	match choice:
 		0:
 			owner.max_health += 10
@@ -112,8 +107,6 @@ func _on_chest_opened() -> void:
 		2:
 			Global.armor += 1
 			armor_change()
-
-
 
 func change_health():
 	if owner.health > owner.max_health:

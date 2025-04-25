@@ -16,4 +16,4 @@ signal enemy_died(enemy_global_position)
 signal gold_changed()
 
 @warning_ignore("unused_signal")
-signal chest_opened()
+signal chest_opened(boost_type)

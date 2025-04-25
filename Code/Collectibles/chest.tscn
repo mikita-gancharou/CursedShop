@@ -1,7 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://d1bon5qicvfhj"]
+[gd_scene load_steps=11 format=3 uid="uid://d1bon5qicvfhj"]
 
 [ext_resource type="Script" uid="uid://cffhivlehv2ko" path="res://Code/Collectibles/chest.gd" id="1_a7u42"]
 [ext_resource type="Texture2D" uid="uid://bjf1x562asx1s" path="res://Art/Collectibles/chestsAll.png" id="1_owu04"]
+[ext_resource type="AudioStream" uid="uid://c4cevjtxcoxw1" path="res://Audio/SFX/Collectibles/chest_open.ogg" id="3_xt78l"]
+[ext_resource type="Texture2D" uid="uid://dtoey7ugpcyxc" path="res://Art/UI/fb611.png" id="4_855o4"]
+[ext_resource type="Texture2D" uid="uid://k2ofbt1y3p5l" path="res://Art/UI/fb641.png" id="5_j2n44"]
+[ext_resource type="Texture2D" uid="uid://b7xtvse2mxn5y" path="res://Art/UI/fb644.png" id="6_yuetd"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_a7u42"]
 atlas = ExtResource("1_owu04")
@@ -69,6 +73,31 @@ scale = Vector2(0.73796, 0.73796)
 text = "20"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="ChestOpenAudio2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_xt78l")
+volume_db = 4.0
+
+[node name="Sprites" type="Node2D" parent="."]
+position = Vector2(0, -15)
+
+[node name="HealthSprite" type="Sprite2D" parent="Sprites"]
+visible = false
+position = Vector2(0.167164, 0.167164)
+scale = Vector2(0.447948, 0.447948)
+texture = ExtResource("4_855o4")
+
+[node name="AttackSprite" type="Sprite2D" parent="Sprites"]
+visible = false
+position = Vector2(0.167164, 0.167164)
+scale = Vector2(0.447948, 0.447948)
+texture = ExtResource("5_j2n44")
+
+[node name="ArmorSprite" type="Sprite2D" parent="Sprites"]
+visible = false
+position = Vector2(0.167164, 0.167164)
+scale = Vector2(0.447948, 0.447948)
+texture = ExtResource("6_yuetd")
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
