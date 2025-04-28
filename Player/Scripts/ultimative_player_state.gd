@@ -55,3 +55,7 @@ func physics_update(_delta: float) -> void:
 func _on_animation_finished(anim_name: String) -> void:
 	if anim_name == "Ultimative":
 		transition.emit("IdlePlayerState")
+
+
+func _on_ultimate_box_area_entered(_area: Area2D) -> void:
+	Signals.emit_signal("player_attack", Global.damage, entity.global_position)

@@ -6,6 +6,7 @@ extends CharacterBody2D
 @export var acceleration: float = 0.25
 @export var gravity: float = 500.0
 @export var damage: int = 20
+@export var max_health: float = 200.0
 
 @onready var healthbar: TextureProgressBar = $"MobHealth/HealthBar"
 @onready var animplayer: AnimationPlayer = $AnimationPlayer
@@ -14,8 +15,8 @@ extends CharacterBody2D
 
 @onready var player = get_node("/root/Level1/Player/Player")
 
-var max_health: float = 200.0
-var health: float = max_health
+
+var health: float
 
 var is_blocking: bool = false
 var is_dead: bool = false
@@ -27,6 +28,7 @@ func _ready() -> void:
 	$AttackDirection/HitBox/CollisionShape2D.disabled = true
 	player = get_node("/root/Level1/Player/Player")
 	
+	health = max_health
 	healthbar.max_value = max_health
 	healthbar.value = health
 

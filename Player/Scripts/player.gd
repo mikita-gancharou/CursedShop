@@ -17,6 +17,7 @@ var is_sliding: bool = false
 var is_blocking: bool = false
 var is_dead: bool = false
 var is_on_lava: bool = false
+var is_respawn: bool = false
 
 var last_enemy_position: Vector2 = Vector2.ZERO #TODO: refactor
 
@@ -28,15 +29,31 @@ var last_enemy_position: Vector2 = Vector2.ZERO #TODO: refactor
 @onready var attack_label = $CanvasLayer/VBoxContainer/Attack/Amount
 @onready var armor_label = $CanvasLayer/VBoxContainer/Armor/Amount
 
+var spawn_gold: int
+var spawn_damage: int
+var spawn_armor: int
+var spawn_maxhp: int
+var spawn_position
+
+
 func _ready() -> void:
 	add_to_group("Player")
 	
-	Global.gold = 0
-	Global.damage = 50
-	Global.armor = 0
+	if not is_respawn:
+		Global.gold = 0
+		Global.damage = 50
+		Global.armor = 0
+		max_health = 100
+		health = max_health
+	else:
+		Global.gold = spawn_gold
+		Global.damage = spawn_damage
+		Global.armor = spawn_armor
+		max_health = spawn_maxhp
+		health = max_health
+		
+		global_position = spawn_position
 	
-	max_health = 100
-	health = max_health
 	healthbar.max_value = max_health
 	healthbar.value = health
 	healthbar_text.text = str(health) + "/" + str(max_health)
@@ -72,3 +89,12 @@ func change_direction(direction) -> void:
 	elif sign(direction) == 1:
 		sprite.flip_h = false
 		$AttackDirection.rotation_degrees = 0
+
+
+func _on_respawn_area_area_entered(area: Area2D) -> void:
+	
+	spawn_gold = Global.gold
+	spawn_damage = Global.damage
+	spawn_armor = Global.armor
+	spawn_maxhp = max_health
+	spawn_position = $"../../TileMapLayer/Respawns/RespawnArea".global_position
