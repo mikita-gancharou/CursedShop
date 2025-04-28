@@ -4,12 +4,16 @@
 
 ✨ New
 
+Goblins and test bosses added
+
 Coins added.
 Coins can be found on the level and mobs are dropping them on death now
 
 Lava fountains are added. Lava particles deal a damage to the player
 
 Pause menu added
+
+Respawn points added
 
 🐞 Fixes
 
