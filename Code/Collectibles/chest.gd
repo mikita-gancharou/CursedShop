@@ -31,6 +31,8 @@ func open_chest() -> void:
 	cost_label.visible = false
 
 	var options: Array[int] = [0, 1]
+	if Global.damage < 100:
+		options.append(1)
 	if Global.armor < 10:
 		options.append(2)
 
