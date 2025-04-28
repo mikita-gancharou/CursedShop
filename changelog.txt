@@ -9,6 +9,8 @@ Goblins and test bosses added
 Coins added.
 Coins can be found on the level and mobs are dropping them on death now
 
+Chest with boosts added. Now character damage, armor and max hp can be upgraded
+
 Lava fountains are added. Lava particles deal a damage to the player
 
 Pause menu added
