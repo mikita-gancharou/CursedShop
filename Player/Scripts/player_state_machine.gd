@@ -95,7 +95,6 @@ func armor_change() -> void:
 	owner.armor_label.text = str(Global.armor)
 
 func _on_chest_opened(choice) -> void:
-	print("Chest opened", choice)
 	match choice:
 		0:
 			owner.max_health += 10

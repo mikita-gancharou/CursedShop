@@ -1376,6 +1376,7 @@ tint_over = Color(0.729412, 0.580392, 0.34902, 1)
 tint_progress = Color(0.723546, 0.203956, 0.145092, 1)
 
 [node name="Label" type="Label" parent="CanvasLayer/HealthBar"]
+layout_mode = 0
 offset_left = 13.4994
 offset_top = 11.7383
 offset_right = 75.4994

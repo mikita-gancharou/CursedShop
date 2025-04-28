@@ -865,7 +865,6 @@ collision_layer = 4
 script = ExtResource("1_lmyuw")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
 position = Vector2(0, 6.56924)
 scale = Vector2(0.714529, 0.714529)
 shape = SubResource("RectangleShape2D_gx3d2")
@@ -873,9 +872,8 @@ shape = SubResource("RectangleShape2D_gx3d2")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.714529, 0.714529)
 sprite_frames = SubResource("SpriteFrames_aa2c4")
-animation = &"ThrowBomb"
+animation = &"Run"
 autoplay = "Idle"
-frame = 10
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -903,7 +901,6 @@ script = ExtResource("13_w64br")
 script = ExtResource("14_1hqta")
 
 [node name="AttackDirection" type="Node2D" parent="."]
-visible = false
 position = Vector2(0, 6)
 
 [node name="AttackArea2" type="Area2D" parent="AttackDirection"]
