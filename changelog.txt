@@ -1,16 +1,50 @@
 📦 Changelog
 
+🧪 v0.1.2 — 25.04.25
+
+✨ New
+
+Goblins and test bosses added
+
+Coins added.
+Coins can be found on the level and mobs are dropping them on death now
+
+Chest with boosts added. Now character damage, armor and max hp can be upgraded
+
+Lava fountains are added. Lava particles deal a damage to the player
+
+Pause menu added
+
+Respawn points added
+
+🐞 Fixes
+
+Fixed input delay when registering player attacks — attacks now trigger immediately upon input.
+
+Resolved animation flicker at the peak of jump — player no longer snaps into idle before falling.
+
+Lava sound is always playing now
+
+Mushroom mob from the tutorial part of the level will fall in lava every time.
+
+Few more minor fixes
 
 _______________________________________________________
-🧪 v0.1.1 — WIP
+🧪 v0.1.1 — 18.04.25
 
 
 ✨ New
 
+Level Expanded
+
+Lava implemented.
+
 Added new enemies: Goblin and Flying Eye
 
 Goblin have two attacks on a different range 
-and can throw a bomb
+and can throw a bomb.
+
+Flying Eye has three different attacks
 
 HP bar now displayed above enemies
 
@@ -22,6 +56,7 @@ He will take less damage if you hit him in a shield
 
 Mushroom have new attack animation and special ability
 
+Mobs have more HP now
 
 🐞 Fixes
 

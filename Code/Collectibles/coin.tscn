@@ -1,0 +1,84 @@
+[gd_scene load_steps=12 format=3 uid="uid://d2nq0p6bh421l"]
+
+[ext_resource type="Script" uid="uid://cuiuteeit6j47" path="res://Code/Collectibles/coin.gd" id="1_3y0sw"]
+[ext_resource type="Texture2D" uid="uid://b666tug4dt1b6" path="res://Art/Collectibles/monedaD.png" id="1_ko2if"]
+[ext_resource type="AudioStream" uid="uid://d10dc7342inp4" path="res://Audio/SFX/Collectibles/coin.ogg" id="3_6kwgh"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3y0sw"]
+size = Vector2(14, 21)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6kwgh"]
+atlas = ExtResource("1_ko2if")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3brbr"]
+atlas = ExtResource("1_ko2if")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_io20v"]
+atlas = ExtResource("1_ko2if")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_23dgn"]
+atlas = ExtResource("1_ko2if")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ugesj"]
+atlas = ExtResource("1_ko2if")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xnuxu"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6kwgh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3brbr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_io20v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_23dgn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ugesj")
+}],
+"loop": true,
+"name": &"default",
+"speed": 8.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_aufnr"]
+radius = 7.0
+
+[node name="Coin" type="CharacterBody2D"]
+collision_layer = 0
+script = ExtResource("1_3y0sw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 0.5)
+scale = Vector2(0.558215, 0.558215)
+shape = SubResource("RectangleShape2D_3y0sw")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.558215, 0.558215)
+sprite_frames = SubResource("SpriteFrames_xnuxu")
+autoplay = "default"
+frame_progress = 0.119598
+
+[node name="Detector" type="Area2D" parent="."]
+scale = Vector2(0.558215, 0.558215)
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Detector"]
+shape = SubResource("CircleShape2D_aufnr")
+disabled = true
+
+[node name="CoinPickedAudio2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_6kwgh")
+volume_db = -8.0
+
+[connection signal="body_entered" from="Detector" to="." method="_on_detector_body_entered"]

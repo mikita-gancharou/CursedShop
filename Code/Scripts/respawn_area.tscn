@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://2iwlyspcne6u"]
+
+[ext_resource type="Script" uid="uid://cnrjwk8jcv838" path="res://Code/Scripts/respawn_area.gd" id="1_tjhfn"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_sca2r"]
+
+[node name="RespawnArea" type="Area2D"]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_tjhfn")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(5.3375, 5.3375)
+shape = SubResource("CircleShape2D_sca2r")

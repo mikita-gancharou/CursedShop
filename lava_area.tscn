@@ -16,3 +16,4 @@ shape = SubResource("RectangleShape2D_3rk4s")
 stream = ExtResource("1_v83yq")
 autoplay = true
 max_distance = 522.0
+parameters/looping = true

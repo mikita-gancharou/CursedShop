@@ -18,6 +18,7 @@ var max_health: float = 100.0
 var health: float = max_health
 
 var is_dead: bool = false
+var death_processed: bool = false
 
 var last_player_position: Vector2 = Vector2.ZERO
 
@@ -29,7 +30,8 @@ func _ready() -> void:
 	healthbar.value = health
 
 func _process(_delta: float) -> void:
-	pass
+	if is_dead and death_processed == false:
+		death_process()
 
 func get_input_vector() -> Vector2:
 	var input_vector = Vector2.ZERO
@@ -51,3 +53,8 @@ func change_direction(direction) -> void:
 	elif sign(direction) == 1:
 		sprite.flip_h = false
 		$AttackDirection.rotation_degrees = 0
+
+func death_process():
+	for i in randi_range(3,5):
+		Signals.emit_signal("enemy_died", position) #spawn coins
+	death_processed = true
