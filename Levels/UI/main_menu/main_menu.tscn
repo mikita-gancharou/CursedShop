@@ -39,18 +39,26 @@ motion_mirroring = Vector2(640, 0)
 texture = ExtResource("4_0vtto")
 
 [node name="Play" type="Button" parent="."]
-offset_left = 448.0
+offset_left = 450.0
 offset_top = 192.0
-offset_right = 704.0
+offset_right = 706.0
 offset_bottom = 256.0
 text = "Play"
 
 [node name="Exit" type="Button" parent="."]
-offset_left = 448.0
-offset_top = 320.0
-offset_right = 704.0
-offset_bottom = 384.0
+offset_left = 450.0
+offset_top = 364.0
+offset_right = 706.0
+offset_bottom = 428.0
 text = "Exit"
+
+[node name="Credits" type="Button" parent="."]
+offset_left = 450.0
+offset_top = 278.0
+offset_right = 706.0
+offset_bottom = 342.0
+text = "About"
 
 [connection signal="pressed" from="Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="Exit" to="." method="_on_exit_pressed"]
+[connection signal="pressed" from="Credits" to="." method="_on_credits_pressed"]
