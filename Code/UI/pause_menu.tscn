@@ -59,11 +59,6 @@ layout_mode = 2
 text = "Restart
 "
 
-[node name="Options" type="Button" parent="Panel/VBoxContainer"]
-layout_mode = 2
-text = "Options
-"
-
 [node name="Exit" type="Button" parent="Panel/VBoxContainer"]
 layout_mode = 2
 text = "Exit"
