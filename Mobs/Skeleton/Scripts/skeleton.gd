@@ -7,6 +7,7 @@ extends CharacterBody2D
 @export var gravity: float = 500.0
 @export var damage: int = 20
 @export var max_health: float = 200.0
+@export var is_boss: bool = false
 
 @onready var healthbar: TextureProgressBar = $"MobHealth/HealthBar"
 @onready var animplayer: AnimationPlayer = $AnimationPlayer
@@ -58,6 +59,11 @@ func change_direction(direction) -> void:
 		$AttackDirection.rotation_degrees = 0
 
 func death_process():
-	for i in randi_range(3,5):
-		Signals.emit_signal("enemy_died", position) #spawn coins
+	var reward_multiplier = 1
+	if is_boss:
+		reward_multiplier = 3
+
+	for i in randi_range(4, 5) * reward_multiplier:
+		Signals.emit_signal("enemy_died", position) # spawn coins
+
 	death_processed = true

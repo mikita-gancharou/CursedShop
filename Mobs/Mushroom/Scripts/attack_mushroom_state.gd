@@ -1,27 +1,34 @@
 class_name AttackMushroomState
 extends State
 
-var has_attacked: bool = false  # Флаг, чтобы атака происходила один раз за анимацию
+var has_attacked: bool = false
 var combo: bool = false
-
+var played_recover: bool = false
 
 func enter() -> void:
 	entity.velocity.x = 0
-	has_attacked = false 
+	has_attacked = false
 	combo = true
-	entity.animplayer.play("Attack1")  # Запускаем анимацию атаки
+	played_recover = false
+	entity.animplayer.play("Attack1")
 
 func exit() -> void:
-	combo = false
 	has_attacked = false
+	combo = false
+	played_recover = false
 
 func update(_delta: float) -> void:
-	# Если игрок мёртв, переключаемся в Idle
 	if entity.player.is_dead:
 		transition.emit("IdleMushroomState")
 		return
-	
+
 	if not entity.animplayer.is_playing():
+		# Если это босс и Recover ещё не проиграна — проигрываем её
+		if entity.is_boss and not played_recover:
+			entity.animplayer.play("Recover")
+			played_recover = true
+			return
+
 		if not _is_player_in_attack_range():
 			if _is_player_in_aoe_range() and entity.health < entity.max_health:
 				transition.emit("AOEAttackMushroomState")
@@ -32,9 +39,10 @@ func update(_delta: float) -> void:
 			if combo:
 				entity.animplayer.play("Attack2")
 				combo = false
-			else: 
+			else:
 				entity.animplayer.play("Attack1")
 				combo = true
+			played_recover = false  # Сброс флага, чтобы снова проиграть Recover
 
 func physics_update(delta: float) -> void:
 	entity.apply_gravity(delta)

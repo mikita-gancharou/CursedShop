@@ -1,4 +1,4 @@
-[gd_scene load_steps=101 format=3 uid="uid://bcpkwnjjg07wt"]
+[gd_scene load_steps=97 format=3 uid="uid://bcpkwnjjg07wt"]
 
 [ext_resource type="Script" uid="uid://dus0lvtdnh5rw" path="res://Mobs/Mushroom/Scripts/mushroom.gd" id="1_1jvsc"]
 [ext_resource type="Texture2D" uid="uid://l7kdhjv87wn3" path="res://Mobs/Mushroom/Sprites/Idle.png" id="1_abx1l"]
@@ -202,22 +202,6 @@ region = Rect2(300, 0, 150, 150)
 atlas = ExtResource("1_abx1l")
 region = Rect2(450, 0, 150, 150)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_jw85e"]
-atlas = ExtResource("1_abx1l")
-region = Rect2(0, 0, 150, 150)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_e25hr"]
-atlas = ExtResource("1_abx1l")
-region = Rect2(150, 0, 150, 150)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_giitr"]
-atlas = ExtResource("1_abx1l")
-region = Rect2(300, 0, 150, 150)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_mfgsk"]
-atlas = ExtResource("1_abx1l")
-region = Rect2(450, 0, 150, 150)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_g8mg2"]
 atlas = ExtResource("3_bnbq2")
 region = Rect2(0, 0, 150, 150)
@@ -414,22 +398,10 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_cy7b5")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_jw85e")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_e25hr")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_giitr")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_mfgsk")
 }],
 "loop": false,
 "name": &"Recover",
-"speed": 10.0
+"speed": 15.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -460,6 +432,33 @@ animations = [{
 "name": &"Run",
 "speed": 10.0
 }]
+
+[sub_resource type="Animation" id="Animation_v4nd4"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AttackDirection/HitBox/CollisionShape2D:disabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AttackDirection/AOEAttack/CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_bbi1o"]
 length = 0.8
@@ -776,35 +775,8 @@ tracks/2/keys = {
 "values": [true]
 }
 
-[sub_resource type="Animation" id="Animation_v4nd4"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("AttackDirection/HitBox/CollisionShape2D:disabled")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("AttackDirection/AOEAttack/CollisionShape2D:disabled")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-
 [sub_resource type="Animation" id="Animation_mi0g7"]
-length = 0.8
+length = 0.266667
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -812,10 +784,10 @@ tracks/0/path = NodePath("AnimatedSprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.0666667, 0.133333, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
-"values": [0, 1, 2, 3, 4, 5, 6, 7]
+"values": [0, 1, 2, 3]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -943,7 +915,7 @@ shape = SubResource("RectangleShape2D_1jvsc")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.880071, 0.880071)
 sprite_frames = SubResource("SpriteFrames_g8mg2")
-animation = &"Attack2"
+animation = &"Recover"
 autoplay = "Idle"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -974,11 +946,11 @@ script = ExtResource("12_bbi1o")
 script = ExtResource("15_uiguh")
 
 [node name="AttackDirection" type="Node2D" parent="."]
-visible = false
 position = Vector2(1, 7)
 scale = Vector2(0.880071, 0.880071)
 
 [node name="HurtBox" type="Area2D" parent="AttackDirection"]
+visible = false
 position = Vector2(1.0842e-19, 0)
 scale = Vector2(1.04545, 1)
 collision_layer = 32
@@ -989,6 +961,7 @@ position = Vector2(-8.69956e-13, 4.76837e-07)
 shape = SubResource("CapsuleShape2D_bbi1o")
 
 [node name="HitBox" type="Area2D" parent="AttackDirection"]
+visible = false
 position = Vector2(15.9078, -9.53674e-07)
 scale = Vector2(1.45451, 1.45451)
 collision_layer = 0
@@ -1000,6 +973,7 @@ shape = SubResource("CircleShape2D_yrmjc")
 disabled = true
 
 [node name="AttackArea" type="Area2D" parent="AttackDirection"]
+visible = false
 position = Vector2(15.9078, 0)
 collision_layer = 0
 collision_mask = 2
@@ -1008,6 +982,7 @@ collision_mask = 2
 shape = SubResource("RectangleShape2D_mh1qi")
 
 [node name="AOEAttack" type="Area2D" parent="AttackDirection"]
+visible = false
 collision_layer = 0
 collision_mask = 16
 
@@ -1017,6 +992,7 @@ shape = SubResource("CircleShape2D_uiguh")
 disabled = true
 
 [node name="AOETrigger" type="Area2D" parent="AttackDirection"]
+visible = false
 collision_layer = 0
 collision_mask = 2
 
@@ -1025,7 +1001,6 @@ scale = Vector2(5.50797, 5.50797)
 shape = SubResource("CircleShape2D_mh1qi")
 
 [node name="DetectionArea" type="Area2D" parent="."]
-visible = false
 collision_layer = 0
 collision_mask = 2
 

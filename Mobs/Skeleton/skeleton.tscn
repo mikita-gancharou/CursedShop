@@ -1,4 +1,4 @@
-[gd_scene load_steps=82 format=3 uid="uid://bhd8w7wam0ylm"]
+[gd_scene load_steps=83 format=3 uid="uid://bhd8w7wam0ylm"]
 
 [ext_resource type="Texture2D" uid="uid://s63v6dohts8d" path="res://Mobs/Skeleton/Sprites/Attack.png" id="1_a1moq"]
 [ext_resource type="Script" uid="uid://nefdj6ed0oll" path="res://Mobs/Skeleton/Scripts/skeleton.gd" id="1_pfjha"]
@@ -314,6 +314,23 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_81fvd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1yrmf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m5f32")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aovaa")
+}],
+"loop": false,
+"name": &"Recover",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_cd880")
 }, {
 "duration": 1.0,
@@ -346,6 +363,21 @@ animations = [{
 "name": &"Shield_up",
 "speed": 10.0
 }]
+
+[sub_resource type="Animation" id="Animation_luhbs"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AttackDirection/HitBox/CollisionShape2D:disabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_fn7ex"]
 length = 0.8
@@ -572,19 +604,31 @@ tracks/2/keys = {
 "values": [true]
 }
 
-[sub_resource type="Animation" id="Animation_luhbs"]
-length = 0.001
+[sub_resource type="Animation" id="Animation_2owxj"]
+length = 0.4
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("AttackDirection/HitBox/CollisionShape2D:disabled")
+tracks/0/path = NodePath("AnimatedSprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [true]
+"values": ["Recover"]
 }
 
 [sub_resource type="Animation" id="Animation_cpykj"]
@@ -688,6 +732,7 @@ _data = {
 &"Death": SubResource("Animation_cmvrd"),
 &"Idle": SubResource("Animation_e52d4"),
 &"RESET": SubResource("Animation_luhbs"),
+&"Recover": SubResource("Animation_2owxj"),
 &"Run": SubResource("Animation_cpykj"),
 &"Shield_up": SubResource("Animation_coshe")
 }
@@ -722,7 +767,7 @@ shape = SubResource("RectangleShape2D_fn7ex")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.59931, 0.59931)
 sprite_frames = SubResource("SpriteFrames_ekdya")
-animation = &"Attack2"
+animation = &"Attack1"
 autoplay = "Idle"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

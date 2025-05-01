@@ -15,7 +15,7 @@ extends CharacterBody2D
 
 @onready var player = get_node("/root/Level1/Player/Player")
 
-var max_health: float = 200.0
+var max_health: float = 400.0
 var health: float = max_health
 
 var is_blocking: bool = false
