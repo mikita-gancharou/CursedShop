@@ -54,10 +54,10 @@ shape = SubResource("CircleShape2D_xt78l")
 
 [node name="Help" type="Label" parent="."]
 modulate = Color(1, 1, 1, 0.784314)
-offset_left = -34.0
-offset_top = -56.0
-offset_right = 101.0
-offset_bottom = -7.0
+offset_left = -50.0
+offset_top = -51.0
+offset_right = 134.0
+offset_bottom = -2.0
 scale = Vector2(0.543435, 0.543435)
 text = "Press \"F\" 
 to open the chest"

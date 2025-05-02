@@ -27,13 +27,14 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_font_sizes/normal_font_size = 25
 bbcode_enabled = true
 text = "
 
 
 [center]About the Game[/center]
 
-This game was made by [b]Mikita Hancharou[/b].
+This game was made by Mikita Hancharou.
 
 Huge thanks to all the testers and players!
 
@@ -41,7 +42,8 @@ Twitter/X — [url=https://x.com/MH_gamedev]@MH_gamedev[/url]
 
 Assets & Credits
 This game uses assets by:
-brullov, LuizMelo, LaRedGames, Michael Games, ShaneF91, qubodup, Exewin, CUDenverSound, SonoFxAudio, LittleRobotSoundFactory, FairhavenCollection, freesound_community (from Pixabay), Universfield, FreeSoundsxx, Blacis, Jamius, GameCrafter, Fission9
+brullov, LuizMelo, LaRedGames, Michael Games, ShaneF91, qubodup, Exewin, CUDenverSound, SonoFxAudio, LittleRobotSoundFactory, 
+FairhavenCollection, freesound_community (from Pixabay), Universfield, FreeSoundsxx, Blacis, Jamius, GameCrafter, Fission9
 
 Engine & Licenses
 Made with ♥ in [url=https://godotengine.org]Godot Engine[/url] (MIT License)
@@ -49,7 +51,7 @@ Made with ♥ in [url=https://godotengine.org]Godot Engine[/url] (MIT License)
 All assets are used under their respective licenses; please see individual author pages for details. 
 Any CC0-licensed fonts are in the public domain.
 
-[i]Thank you for playing![/i]
+Thank you for playing!
 "
 horizontal_alignment = 1
 

@@ -32,6 +32,10 @@ enabled=PackedStringArray("res://addons/AS2P/plugin.cfg")
 
 tilemaps="Tilemaps wiht footstep sounds, etc"
 
+[gui]
+
+theme/custom="uid://ymaqhdyxbpp2"
+
 [input]
 
 Move_Left={
