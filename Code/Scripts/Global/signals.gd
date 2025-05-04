@@ -17,3 +17,6 @@ signal gold_changed()
 
 @warning_ignore("unused_signal")
 signal chest_opened(boost_type)
+
+@warning_ignore("unused_signal")
+signal group_alert(group_id: int, target_pos: Vector2)

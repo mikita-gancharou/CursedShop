@@ -8,6 +8,7 @@ extends CharacterBody2D
 @export var damage: int = 20
 @export var max_health: float = 200.0
 @export var is_boss: bool = false
+@export var mob_group: int
 
 @onready var healthbar: TextureProgressBar = $"MobHealth/HealthBar"
 @onready var animplayer: AnimationPlayer = $AnimationPlayer
