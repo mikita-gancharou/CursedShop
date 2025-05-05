@@ -817,7 +817,8 @@ collision_layer = 0
 collision_mask = 16
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackDirection/HitBox"]
-position = Vector2(3.8147e-06, 0)
+position = Vector2(-1.9286, -6.43201e-14)
+scale = Vector2(1.09073, 1.09073)
 shape = SubResource("CircleShape2D_3fx2d")
 disabled = true
 

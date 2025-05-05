@@ -7,47 +7,44 @@ func enter() -> void:
 	owner.is_blocking = false
 	entity.animplayer.play("Run")
 
-	# Групповой алерт (однократно)
 	if entity.mob_group != 0 and not entity.has_been_alerted:
 		entity.has_been_alerted = true
 		Signals.emit_signal("group_alert", entity.mob_group, entity.player.global_position)
 
-	# Подключение сигналов, только если ещё не подключены
 	if not entity.attack_area.body_entered.is_connected(_on_attack_area_entered):
 		entity.attack_area.body_entered.connect(_on_attack_area_entered)
 
 	var det = entity.get_node("DetectionArea") as Area2D
-
 	if not det.body_entered.is_connected(_on_detection_area_body_entered):
 		det.body_entered.connect(_on_detection_area_body_entered)
-
 	if not det.body_exited.is_connected(_on_detection_area_body_exited):
 		det.body_exited.connect(_on_detection_area_body_exited)
 
+	if _is_player_in_attack_area():
+		transition.emit("AttackMushroomState")
+
 func exit() -> void:
-	# Отключение сигналов
 	if entity.attack_area.body_entered.is_connected(_on_attack_area_entered):
 		entity.attack_area.body_entered.disconnect(_on_attack_area_entered)
 
 	var det = entity.get_node("DetectionArea") as Area2D
-
 	if det.body_entered.is_connected(_on_detection_area_body_entered):
 		det.body_entered.disconnect(_on_detection_area_body_entered)
-
 	if det.body_exited.is_connected(_on_detection_area_body_exited):
 		det.body_exited.disconnect(_on_detection_area_body_exited)
 
 func update(delta: float) -> void:
-	# Если игрок мёртв — в Idle
 	if entity.player.is_dead:
 		transition.emit("IdleMushroomState")
 		return
 
-	# Физика
+	if _is_player_in_attack_area():
+		transition.emit("AttackMushroomState")
+		return
+
 	entity.apply_gravity(delta)
 	entity.apply_velocity(delta)
 
-	# Преследование
 	var dir = (entity.player.global_position - entity.global_position).normalized()
 	entity.change_direction(dir.x)
 	entity.apply_movement(Vector2(dir.x, 0), delta)
@@ -77,6 +74,12 @@ func _start_idle_timer() -> void:
 func _is_player_in_detection_area() -> bool:
 	var det = entity.get_node("DetectionArea") as Area2D
 	for b in det.get_overlapping_bodies():
+		if b is Player and not b.is_dead:
+			return true
+	return false
+
+func _is_player_in_attack_area() -> bool:
+	for b in entity.attack_area.get_overlapping_bodies():
 		if b is Player and not b.is_dead:
 			return true
 	return false

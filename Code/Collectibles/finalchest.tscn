@@ -64,15 +64,16 @@ horizontal_alignment = 1
 [node name="Final" type="Label" parent="."]
 visible = false
 modulate = Color(1, 1, 1, 0.784314)
-offset_left = -137.0
-offset_top = -96.0
-offset_right = 359.0
-offset_bottom = -21.0
-scale = Vector2(0.543435, 0.543435)
+offset_left = -178.0
+offset_top = -111.0
+offset_right = 1201.0
+offset_bottom = 75.0
+scale = Vector2(0.247222, 0.247222)
 size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 72
 text = "Thank you for playing!
 Made with love by Mikita Hancharou (Twitter/X: @MH_gamedev)
-Subscribe for more upcoming games! "
+Subscribe for upcoming games! "
 horizontal_alignment = 1
 vertical_alignment = 1
 
