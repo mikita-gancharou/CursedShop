@@ -745,7 +745,7 @@ height = 38.0
 radius = 12.4993
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gkg76"]
-size = Vector2(37.2705, 20)
+size = Vector2(42.497, 20)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4gvmp"]
 radius = 117.017
@@ -798,7 +798,6 @@ script = ExtResource("14_5e4x2")
 script = ExtResource("15_i18sh")
 
 [node name="AttackDirection" type="Node2D" parent="."]
-visible = false
 scale = Vector2(0.880071, 0.880071)
 
 [node name="HurtBox" type="Area2D" parent="AttackDirection"]
@@ -828,7 +827,7 @@ collision_layer = 0
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackDirection/AttackArea"]
-position = Vector2(4.5451, 0)
+position = Vector2(3.74951, 0)
 shape = SubResource("RectangleShape2D_gkg76")
 
 [node name="DetectionArea" type="Area2D" parent="."]

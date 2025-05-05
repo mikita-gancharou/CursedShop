@@ -22,11 +22,11 @@ func exit() -> void:
 
 func update(delta: float) -> void:
 	
-	var button_modifier: int = 1000
+	var button_modifier: int = 1500
 	if Input.is_action_pressed("Slide"):
 		button_modifier = 500
 	else:
-		button_modifier = 1000
+		button_modifier = 1500
 		
 	entity.velocity.x = slide_velocity.x
 	
