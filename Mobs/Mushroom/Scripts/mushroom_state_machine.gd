@@ -64,7 +64,8 @@ func _on_hurt_box_area_entered(_area: Area2D) -> void:
 	owner.healthbar.value = owner.health
 	
 	if owner.health > 0:
-		on_child_transition("DamageMushroomState")
+		if not owner.is_boss:
+			on_child_transition("DamageMushroomState")
 	else:
 		owner.health = 0
 		on_child_transition("DeathMushroomState")

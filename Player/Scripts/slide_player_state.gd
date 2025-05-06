@@ -21,14 +21,20 @@ func exit() -> void:
 	entity.is_sliding = false
 
 func update(delta: float) -> void:
-	# Применяем сохранённую скорость скольжения
+	
+	var button_modifier: int = 1500
+	if Input.is_action_pressed("Slide"):
+		button_modifier = 500
+	else:
+		button_modifier = 1500
+		
 	entity.velocity.x = slide_velocity.x
 	
 	entity.apply_gravity(delta)
 	entity.apply_velocity(delta)
 	
 	# Симуляция трения: постепенно замедляем персонажа
-	slide_velocity.x = move_toward(slide_velocity.x, 0, 500 * delta)
+	slide_velocity.x = move_toward(slide_velocity.x, 0, button_modifier * delta)
 	
 	# Если скорость скольжения становится очень низкой — переходим в idle
 	if abs(slide_velocity.x) < 10.0:

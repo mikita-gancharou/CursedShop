@@ -39,18 +39,44 @@ motion_mirroring = Vector2(640, 0)
 texture = ExtResource("4_0vtto")
 
 [node name="Play" type="Button" parent="."]
-offset_left = 448.0
-offset_top = 192.0
-offset_right = 704.0
-offset_bottom = 256.0
+offset_left = 450.0
+offset_top = 296.0
+offset_right = 706.0
+offset_bottom = 360.0
 text = "Play"
 
 [node name="Exit" type="Button" parent="."]
-offset_left = 448.0
-offset_top = 320.0
-offset_right = 704.0
-offset_bottom = 384.0
+offset_left = 450.0
+offset_top = 468.0
+offset_right = 706.0
+offset_bottom = 532.0
 text = "Exit"
+
+[node name="Credits" type="Button" parent="."]
+offset_left = 450.0
+offset_top = 382.0
+offset_right = 706.0
+offset_bottom = 446.0
+text = "About"
+
+[node name="Label" type="Label" parent="."]
+modulate = Color(1, 1, 1, 0.784314)
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 278.0
+offset_top = 52.0
+offset_right = 807.0
+offset_bottom = 171.0
+grow_horizontal = 2
+scale = Vector2(1.15086, 1.04025)
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 144
+text = "UnderEmber"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
 
 [connection signal="pressed" from="Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="Exit" to="." method="_on_exit_pressed"]
+[connection signal="pressed" from="Credits" to="." method="_on_credits_pressed"]

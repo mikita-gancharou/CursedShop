@@ -6,6 +6,7 @@ extends CharacterBody2D
 @export var acceleration: float = 0.25
 @export var gravity: float = 500.0
 @export var damage: int = 20
+@export var mob_group: int = 0   # 0 — вне групп
 
 @onready var healthbar: TextureProgressBar = $"MobHealth/HealthBar"
 @onready var animplayer: AnimationPlayer = $AnimationPlayer
@@ -15,13 +16,13 @@ extends CharacterBody2D
 
 @onready var player = get_node("/root/Level1/Player/Player")
 
-var max_health: float = 200.0
+var max_health: float = 400.0
 var health: float = max_health
 
 var is_blocking: bool = false
 var is_dead: bool = false
 var death_processed: bool = false
-
+var has_been_alerted: bool = false
 var last_player_position: Vector2 = Vector2.ZERO
 
 func _ready() -> void:
@@ -30,7 +31,10 @@ func _ready() -> void:
 	
 	healthbar.max_value = max_health
 	healthbar.value = health
-
+	# подписка на групповой сигнал
+	if mob_group != 0:
+		Signals.connect("group_alert", Callable(self, "_on_group_alert"))
+		
 func _process(_delta: float) -> void:
 	if is_dead and death_processed == false:
 		death_process()
@@ -60,3 +64,8 @@ func death_process():
 	for i in randi_range(3,5):
 		Signals.emit_signal("enemy_died", position) #spawn coins
 	death_processed = true
+	
+# вызывается, когда другой моб из группы агрится
+func _on_group_alert(group_id: int, _target_pos: Vector2) -> void:
+	if mob_group == group_id and not is_dead:
+		$GoblinStateMachine.on_child_transition("ChaseGoblinState")

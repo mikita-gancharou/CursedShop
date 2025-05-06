@@ -1,0 +1,85 @@
+[gd_scene load_steps=8 format=3 uid="uid://das71jdok3y7t"]
+
+[ext_resource type="Script" uid="uid://drnxhp4mi3wug" path="res://Code/Collectibles/finalchest.gd" id="1_2uskq"]
+[ext_resource type="Texture2D" uid="uid://bjf1x562asx1s" path="res://Art/Collectibles/chestsAll.png" id="2_65xm3"]
+[ext_resource type="AudioStream" uid="uid://c4cevjtxcoxw1" path="res://Audio/SFX/Collectibles/chest_open.ogg" id="3_v0kj6"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a7u42"]
+atlas = ExtResource("2_65xm3")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xt78l"]
+atlas = ExtResource("2_65xm3")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4vqfo"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a7u42")
+}],
+"loop": false,
+"name": &"Closed",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xt78l")
+}],
+"loop": true,
+"name": &"Open",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_xt78l"]
+radius = 28.0713
+
+[node name="Chest" type="Node2D"]
+script = ExtResource("1_2uskq")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+z_index = -1
+sprite_frames = SubResource("SpriteFrames_4vqfo")
+animation = &"Open"
+autoplay = "Closed"
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_xt78l")
+
+[node name="Help" type="Label" parent="."]
+modulate = Color(1, 1, 1, 0.784314)
+offset_left = -34.0
+offset_top = -56.0
+offset_right = 101.0
+offset_bottom = -7.0
+scale = Vector2(0.543435, 0.543435)
+text = "Press \"F\" 
+to open the chest"
+horizontal_alignment = 1
+
+[node name="Final" type="Label" parent="."]
+visible = false
+modulate = Color(1, 1, 1, 0.784314)
+offset_left = -178.0
+offset_top = -111.0
+offset_right = 1201.0
+offset_bottom = 75.0
+scale = Vector2(0.247222, 0.247222)
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 72
+text = "Thank you for playing!
+Made with love by Mikita Hancharou (Twitter/X: @MH_gamedev)
+Subscribe for upcoming games! "
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ChestOpenAudio2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_v0kj6")
+volume_db = 4.0
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

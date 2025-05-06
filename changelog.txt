@@ -1,5 +1,17 @@
 📦 Changelog
 
+🧪 v1.0.0 — 06.05.25
+
+✨ New
+Released on itch.io!
+
+Level design pt.1 finished
+
+Balance fixes
+
+🐞 Fixes
+
+
 🧪 v0.1.2 — 25.04.25
 
 ✨ New
