@@ -51,19 +51,32 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("CircleShape2D_xt78l")
 
-[node name="Help" type="Label" parent="."]
+[node name="HelpMobile" type="Label" parent="."]
+visible = false
+offset_left = -37.0
+offset_top = -66.0
+offset_right = 335.0
+offset_bottom = 57.0
+scale = Vector2(0.205152, 0.205152)
+theme_override_font_sizes/font_size = 72
+text = "Press on the chest
+ to open it"
+horizontal_alignment = 1
+
+[node name="HelpPC" type="Label" parent="."]
+visible = false
 modulate = Color(1, 1, 1, 0.784314)
 offset_left = -34.0
 offset_top = -56.0
 offset_right = 101.0
 offset_bottom = -7.0
-scale = Vector2(0.543435, 0.543435)
+scale = Vector2(0.207296, 0.207296)
+theme_override_font_sizes/font_size = 72
 text = "Press \"F\" 
 to open the chest"
 horizontal_alignment = 1
 
 [node name="Final" type="Label" parent="."]
-visible = false
 modulate = Color(1, 1, 1, 0.784314)
 offset_left = -178.0
 offset_top = -111.0

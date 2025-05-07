@@ -1,6 +1,6 @@
 extends Node2D
 
-@onready var help_text: Label = $Help
+@onready var help_text: Label
 @onready var final_text: Label = $Final
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 
@@ -13,7 +13,10 @@ var is_open: bool = false
 var is_spawning: bool = false
 
 func _ready() -> void:
-	help_text.visible = false
+	if Global.is_mobile:
+		help_text = $HelpMobile
+	else:
+		help_text = $HelpPC
 
 func _process(_delta: float) -> void:
 	if not is_open and is_close_to_open and Input.is_action_just_pressed("Action"):
