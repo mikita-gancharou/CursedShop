@@ -1,4 +1,4 @@
-[gd_scene load_steps=136 format=3 uid="uid://cwnm8oamm0nog"]
+[gd_scene load_steps=141 format=3 uid="uid://cwnm8oamm0nog"]
 
 [ext_resource type="Script" uid="uid://b17tbcvaf4npi" path="res://Player/Scripts/player.gd" id="1_btcbx"]
 [ext_resource type="Texture2D" uid="uid://c0o3j8vpuro5j" path="res://Player/Sprites/char_blue_1.png" id="1_l8h54"]
@@ -33,6 +33,11 @@
 [ext_resource type="Texture2D" uid="uid://cpniesxk330f7" path="res://Art/UI/attack_icon.png" id="31_i4o1l"]
 [ext_resource type="Texture2D" uid="uid://i1s6kdji8uwi" path="res://Art/UI/armor_icon.png" id="32_j2n6q"]
 [ext_resource type="Texture2D" uid="uid://bkc8nuqjmg7y6" path="res://Art/UI/gold_icon.png" id="33_c6x0f"]
+[ext_resource type="Texture2D" uid="uid://ttcyiigc2kc7" path="res://Art/UI/Buttons/arrow_button.png" id="34_qs4pp"]
+[ext_resource type="Texture2D" uid="uid://cauakpehoqvai" path="res://Art/UI/Buttons/arrow_button_pressed.png" id="35_f4lon"]
+[ext_resource type="Texture2D" uid="uid://c30mlrixgsklg" path="res://Art/UI/Buttons/slide_button.png" id="35_iyprq"]
+[ext_resource type="Texture2D" uid="uid://by847bbvvv6qb" path="res://Art/UI/Buttons/attack_button.png" id="36_f4lon"]
+[ext_resource type="Texture2D" uid="uid://dq6f7orio3yko" path="res://Art/UI/Buttons/block_button.png" id="37_8ynux"]
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_qemgg"]
 streams_count = 1
@@ -1582,7 +1587,7 @@ offset_left = 13.0
 offset_top = 86.0
 offset_right = 67.0
 offset_bottom = 229.0
-scale = Vector2(1.56757, 0.619599)
+scale = Vector2(1.65608, 0.919258)
 
 [node name="Attack" type="HBoxContainer" parent="CanvasLayer/VBoxContainer"]
 layout_mode = 2
@@ -1631,6 +1636,58 @@ theme_override_font_sizes/font_size = 32
 text = "0"
 horizontal_alignment = 2
 vertical_alignment = 1
+
+[node name="MobileControls" type="CanvasLayer" parent="."]
+
+[node name="moveLeft" type="TouchScreenButton" parent="MobileControls"]
+modulate = Color(1, 1, 1, 0.392157)
+position = Vector2(50, 480)
+scale = Vector2(2.5, 2.5)
+texture_normal = ExtResource("34_qs4pp")
+texture_pressed = ExtResource("35_f4lon")
+passby_press = true
+action = "Move_Left"
+
+[node name="moveRight" type="TouchScreenButton" parent="MobileControls"]
+modulate = Color(1, 1, 1, 0.392157)
+position = Vector2(350, 580)
+rotation = 3.14159
+scale = Vector2(2.5, 2.5)
+texture_normal = ExtResource("34_qs4pp")
+texture_pressed = ExtResource("35_f4lon")
+passby_press = true
+action = "Move_Right"
+
+[node name="jumpButton" type="TouchScreenButton" parent="MobileControls"]
+modulate = Color(1, 1, 1, 0.392157)
+position = Vector2(1096, 304)
+rotation = 1.5708
+scale = Vector2(2.5, 2.5)
+texture_normal = ExtResource("34_qs4pp")
+texture_pressed = ExtResource("35_f4lon")
+passby_press = true
+action = "Jump"
+
+[node name="slideButton" type="TouchScreenButton" parent="MobileControls"]
+modulate = Color(1, 1, 1, 0.392157)
+position = Vector2(797, 499)
+scale = Vector2(2.5, 2.5)
+texture_normal = ExtResource("35_iyprq")
+action = "Slide"
+
+[node name="attackButton" type="TouchScreenButton" parent="MobileControls"]
+modulate = Color(1, 1, 1, 0.392157)
+position = Vector2(966, 474)
+scale = Vector2(3, 3)
+texture_normal = ExtResource("36_f4lon")
+action = "Attack"
+
+[node name="blockButton" type="TouchScreenButton" parent="MobileControls"]
+modulate = Color(1, 1, 1, 0.392157)
+position = Vector2(856, 368)
+scale = Vector2(2.5, 2.5)
+texture_normal = ExtResource("37_8ynux")
+action = "Block"
 
 [connection signal="area_entered" from="AttackDirection/HitBox" to="PlayerStateMachine/AttackPlayerState" method="_on_hit_box_area_entered"]
 [connection signal="area_entered" from="AttackDirection/UltimateBox" to="PlayerStateMachine/UltimativePlayerState" method="_on_ultimate_box_area_entered"]

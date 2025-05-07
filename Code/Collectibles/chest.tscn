@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://d1bon5qicvfhj"]
+[gd_scene load_steps=12 format=3 uid="uid://d1bon5qicvfhj"]
 
 [ext_resource type="Script" uid="uid://cffhivlehv2ko" path="res://Code/Collectibles/chest.gd" id="1_a7u42"]
 [ext_resource type="Texture2D" uid="uid://bjf1x562asx1s" path="res://Art/Collectibles/chestsAll.png" id="1_owu04"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://dtoey7ugpcyxc" path="res://Art/UI/fb611.png" id="4_855o4"]
 [ext_resource type="Texture2D" uid="uid://k2ofbt1y3p5l" path="res://Art/UI/fb641.png" id="5_j2n44"]
 [ext_resource type="Texture2D" uid="uid://b7xtvse2mxn5y" path="res://Art/UI/fb644.png" id="6_yuetd"]
+[ext_resource type="Texture2D" uid="uid://c30mlrixgsklg" path="res://Art/UI/Buttons/slide_button.png" id="7_j2n44"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_a7u42"]
 atlas = ExtResource("1_owu04")
@@ -52,7 +53,8 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("CircleShape2D_xt78l")
 
-[node name="Help" type="Label" parent="."]
+[node name="HelpPC" type="Label" parent="."]
+visible = false
 modulate = Color(1, 1, 1, 0.784314)
 offset_left = -49.0
 offset_top = -70.0
@@ -62,6 +64,19 @@ scale = Vector2(0.31405, 0.31405)
 theme_override_font_sizes/font_size = 72
 text = "Press \"F\" 
 to open the chest"
+horizontal_alignment = 1
+
+[node name="HelpMobile" type="Label" parent="."]
+visible = false
+modulate = Color(1, 1, 1, 0.784314)
+offset_left = -55.0
+offset_top = -70.0
+offset_right = 317.0
+offset_bottom = 53.0
+scale = Vector2(0.31405, 0.31405)
+theme_override_font_sizes/font_size = 72
+text = "Press on the chest
+ to open it"
 horizontal_alignment = 1
 
 [node name="Cost" type="Label" parent="."]
@@ -100,6 +115,13 @@ visible = false
 position = Vector2(0.167164, 0.167164)
 scale = Vector2(0.447948, 0.447948)
 texture = ExtResource("6_yuetd")
+
+[node name="ActionTouchButton" type="TouchScreenButton" parent="."]
+modulate = Color(0.0666667, 0, 0, 0)
+position = Vector2(-26, -26)
+scale = Vector2(1.28814, 1.28814)
+texture_normal = ExtResource("7_j2n44")
+action = "Action"
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

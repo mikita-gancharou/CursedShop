@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://das71jdok3y7t"]
+[gd_scene load_steps=9 format=3 uid="uid://das71jdok3y7t"]
 
 [ext_resource type="Script" uid="uid://drnxhp4mi3wug" path="res://Code/Collectibles/finalchest.gd" id="1_2uskq"]
 [ext_resource type="Texture2D" uid="uid://bjf1x562asx1s" path="res://Art/Collectibles/chestsAll.png" id="2_65xm3"]
 [ext_resource type="AudioStream" uid="uid://c4cevjtxcoxw1" path="res://Audio/SFX/Collectibles/chest_open.ogg" id="3_v0kj6"]
+[ext_resource type="Texture2D" uid="uid://c30mlrixgsklg" path="res://Art/UI/Buttons/slide_button.png" id="4_xj0et"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_a7u42"]
 atlas = ExtResource("2_65xm3")
@@ -80,6 +81,13 @@ vertical_alignment = 1
 [node name="ChestOpenAudio2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_v0kj6")
 volume_db = 4.0
+
+[node name="TouchScreenButton" type="TouchScreenButton" parent="."]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(-25, -25)
+scale = Vector2(1.28328, 1.28328)
+texture_normal = ExtResource("4_xj0et")
+action = "Action"
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

@@ -69,6 +69,13 @@ var spawn_maxhp:    int = 0
 
 # ─────────────────────────────────────────────────────────────────────────────
 func _ready() -> void:
+	if is_mobile():
+		Global.is_mobile = true
+		$MobileControls.visible = true
+	else:
+		Global.is_mobile = false
+		$MobileControls.visible = false
+	
 	add_to_group("Player")
 
 	# 1) Инициализируем стартовый чекпоинт (уровень начальной позиции)
@@ -115,3 +122,26 @@ func respawn() -> void:
 	velocity        = Vector2.ZERO
 
 	_update_ui()
+	
+	
+func is_mobile() -> bool:
+	var platform_name := OS.get_name()
+	if platform_name == "Web":
+		var user_agent: String = JavaScriptBridge.eval("navigator.userAgent", true).to_lower()
+
+		var mobile_signatures := [
+			"android",
+			"iphone",
+			"ipad",
+			"ipod",
+			"iemobile",
+			"blackberry",
+			"webos"
+		]
+
+		for signature in mobile_signatures:
+			if user_agent.find(signature) != -1:
+				return true
+		return false
+	else:
+		return platform_name == "Android" or platform_name == "iOS"

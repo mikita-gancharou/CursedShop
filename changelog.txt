@@ -1,11 +1,18 @@
 📦 Changelog
 
+🧪 v1.0.1 — 07.05.25
+✨ New
+Mobile devices support
+
+🐞 Fixes
+Big performance upgrade, now works better on old PC's
+
 🧪 v1.0.0 — 06.05.25
 
 ✨ New
 Released on itch.io!
 
-Level design pt.1 finished
+Level design finished
 
 Balance fixes
 
