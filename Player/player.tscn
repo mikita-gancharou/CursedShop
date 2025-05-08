@@ -30,8 +30,8 @@
 [ext_resource type="Texture2D" uid="uid://b63l7hq08jm3l" path="res://Art/UI/HP_bar_progress.png" id="13_dkpta"]
 [ext_resource type="AudioStream" uid="uid://cnhtt3mn665a1" path="res://Audio/SFX/Player/Ultimative/ultimative_01.ogg" id="14_j2n6q"]
 [ext_resource type="PackedScene" uid="uid://stp8rmlu0x5m" path="res://Audio/SFX/Player/Footsteps/footstep_audio_2D.tscn" id="18_b1ygp"]
-[ext_resource type="Texture2D" uid="uid://cpniesxk330f7" path="res://Art/UI/attack_icon.png" id="31_i4o1l"]
-[ext_resource type="Texture2D" uid="uid://i1s6kdji8uwi" path="res://Art/UI/armor_icon.png" id="32_j2n6q"]
+[ext_resource type="Texture2D" uid="uid://cpniesxk330f7" path="res://Art/UI/Attack_Icon.png" id="31_i4o1l"]
+[ext_resource type="Texture2D" uid="uid://i1s6kdji8uwi" path="res://Art/UI/Armor_Icon.png" id="32_j2n6q"]
 [ext_resource type="Texture2D" uid="uid://bkc8nuqjmg7y6" path="res://Art/UI/gold_icon.png" id="33_c6x0f"]
 [ext_resource type="Texture2D" uid="uid://ttcyiigc2kc7" path="res://Art/UI/Buttons/arrow_button.png" id="34_qs4pp"]
 [ext_resource type="Texture2D" uid="uid://cauakpehoqvai" path="res://Art/UI/Buttons/arrow_button_pressed.png" id="35_f4lon"]
@@ -1555,88 +1555,6 @@ scale = Vector2(17.4866, 17.4866)
 shape = SubResource("CircleShape2D_i4o1l")
 disabled = true
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="HealthBar" type="TextureProgressBar" parent="CanvasLayer"]
-offset_left = 7.0
-offset_top = 8.0
-offset_right = 47.0
-offset_bottom = 48.0
-scale = Vector2(7.33365, 1.78901)
-value = 50.0
-nine_patch_stretch = true
-texture_under = ExtResource("11_p5o4e")
-texture_over = ExtResource("12_gu6f8")
-texture_progress = ExtResource("13_dkpta")
-tint_over = Color(0.729412, 0.580392, 0.34902, 1)
-tint_progress = Color(0.723546, 0.203956, 0.145092, 1)
-
-[node name="Label" type="Label" parent="CanvasLayer/HealthBar"]
-layout_mode = 0
-offset_left = 13.4994
-offset_top = 11.7383
-offset_right = 75.4994
-offset_bottom = 34.7383
-scale = Vector2(0.22194, 0.696321)
-text = "100/100"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer"]
-offset_left = 13.0
-offset_top = 86.0
-offset_right = 67.0
-offset_bottom = 229.0
-scale = Vector2(1.65608, 0.919258)
-
-[node name="Attack" type="HBoxContainer" parent="CanvasLayer/VBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 0
-alignment = 1
-
-[node name="AttackImage" type="TextureRect" parent="CanvasLayer/VBoxContainer/Attack"]
-layout_mode = 2
-texture = ExtResource("31_i4o1l")
-
-[node name="Amount" type="Label" parent="CanvasLayer/VBoxContainer/Attack"]
-layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 1
-theme_override_font_sizes/font_size = 32
-text = "0"
-vertical_alignment = 1
-
-[node name="Armor" type="HBoxContainer" parent="CanvasLayer/VBoxContainer"]
-layout_mode = 2
-
-[node name="ArmorImage" type="TextureRect" parent="CanvasLayer/VBoxContainer/Armor"]
-layout_mode = 2
-texture = ExtResource("32_j2n6q")
-
-[node name="Amount" type="Label" parent="CanvasLayer/VBoxContainer/Armor"]
-layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 1
-theme_override_font_sizes/font_size = 32
-text = "0"
-vertical_alignment = 1
-
-[node name="Gold" type="HBoxContainer" parent="CanvasLayer/VBoxContainer"]
-layout_mode = 2
-
-[node name="GoldImage" type="TextureRect" parent="CanvasLayer/VBoxContainer/Gold"]
-layout_mode = 2
-texture = ExtResource("33_c6x0f")
-
-[node name="Amount" type="Label" parent="CanvasLayer/VBoxContainer/Gold"]
-layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 1
-theme_override_font_sizes/font_size = 32
-text = "0"
-horizontal_alignment = 2
-vertical_alignment = 1
-
 [node name="MobileControls" type="CanvasLayer" parent="."]
 
 [node name="moveLeft" type="TouchScreenButton" parent="MobileControls"]
@@ -1688,6 +1606,110 @@ position = Vector2(856, 368)
 scale = Vector2(2.5, 2.5)
 texture_normal = ExtResource("37_8ynux")
 action = "Block"
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Stats" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 9
+anchor_bottom = 1.0
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Stats"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 332.0
+offset_bottom = 233.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Stats/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_constants/separation = 10
+
+[node name="HealthBar" type="TextureProgressBar" parent="CanvasLayer/Stats/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(120, 56)
+layout_mode = 2
+value = 50.0
+nine_patch_stretch = true
+texture_under = ExtResource("11_p5o4e")
+texture_over = ExtResource("12_gu6f8")
+texture_progress = ExtResource("13_dkpta")
+tint_over = Color(0.729412, 0.580392, 0.34902, 1)
+tint_progress = Color(0.723546, 0.203956, 0.145092, 1)
+
+[node name="Label" type="Label" parent="CanvasLayer/Stats/MarginContainer/VBoxContainer/HealthBar"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "100/100"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Attack" type="HBoxContainer" parent="CanvasLayer/Stats/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="AttackImage" type="TextureRect" parent="CanvasLayer/Stats/MarginContainer/VBoxContainer/Attack"]
+layout_mode = 2
+texture = ExtResource("31_i4o1l")
+expand_mode = 2
+stretch_mode = 4
+
+[node name="Amount" type="Label" parent="CanvasLayer/Stats/MarginContainer/VBoxContainer/Attack"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 32
+text = "0"
+vertical_alignment = 1
+
+[node name="Armor" type="HBoxContainer" parent="CanvasLayer/Stats/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="ArmorImage" type="TextureRect" parent="CanvasLayer/Stats/MarginContainer/VBoxContainer/Armor"]
+layout_mode = 2
+texture = ExtResource("32_j2n6q")
+expand_mode = 2
+stretch_mode = 4
+
+[node name="Amount" type="Label" parent="CanvasLayer/Stats/MarginContainer/VBoxContainer/Armor"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 32
+text = "0"
+vertical_alignment = 1
+
+[node name="Gold" type="HBoxContainer" parent="CanvasLayer/Stats/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="GoldImage" type="TextureRect" parent="CanvasLayer/Stats/MarginContainer/VBoxContainer/Gold"]
+layout_mode = 2
+texture = ExtResource("33_c6x0f")
+expand_mode = 2
+stretch_mode = 4
+
+[node name="Amount" type="Label" parent="CanvasLayer/Stats/MarginContainer/VBoxContainer/Gold"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 32
+text = "0"
+horizontal_alignment = 2
+vertical_alignment = 1
 
 [connection signal="area_entered" from="AttackDirection/HitBox" to="PlayerStateMachine/AttackPlayerState" method="_on_hit_box_area_entered"]
 [connection signal="area_entered" from="AttackDirection/UltimateBox" to="PlayerStateMachine/UltimativePlayerState" method="_on_ultimate_box_area_entered"]

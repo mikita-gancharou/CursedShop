@@ -60,11 +60,11 @@ var spawn_maxhp:    int = 0
 # Nodes
 @onready var animplayer: AnimationPlayer       = $AnimationPlayer
 @onready var sprite: AnimatedSprite2D          = $AnimatedSprite2D
-@onready var healthbar: TextureProgressBar     = $CanvasLayer/HealthBar
-@onready var healthbar_text: Label            = $CanvasLayer/HealthBar/Label
-@onready var gold_label: Label                = $CanvasLayer/VBoxContainer/Gold/Amount
-@onready var attack_label: Label              = $CanvasLayer/VBoxContainer/Attack/Amount
-@onready var armor_label: Label               = $CanvasLayer/VBoxContainer/Armor/Amount
+@onready var healthbar: TextureProgressBar     = $CanvasLayer/Stats/MarginContainer/VBoxContainer/HealthBar
+@onready var healthbar_text: Label            = $CanvasLayer/Stats/MarginContainer/VBoxContainer/HealthBar/Label
+@onready var gold_label: Label                = $CanvasLayer/Stats/MarginContainer/VBoxContainer/Gold/Amount
+@onready var attack_label: Label              = $CanvasLayer/Stats/MarginContainer/VBoxContainer/Attack/Amount
+@onready var armor_label: Label               = $CanvasLayer/Stats/MarginContainer/VBoxContainer/Armor/Amount
 @onready var bg_music: AudioStreamPlayer2D    = $BgMusic
 
 # ─────────────────────────────────────────────────────────────────────────────
